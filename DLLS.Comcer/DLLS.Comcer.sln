@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31410.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DLLS.Comcer.API", "DLLS.Comcer.API\DLLS.Comcer.API.csproj", "{93C764FB-989D-41DF-B512-ED27008EB61E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DLLS.Comcer.Utilitarios", "DLLS.Comcer.Utilitarios\DLLS.Comcer.Utilitarios.csproj", "{855D45A1-688C-4A37-998E-1E74676503D7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DLLS.Comcer.Interfaces", "DLLS.Comcer.Interfaces\DLLS.Comcer.Interfaces.csproj", "{B1CC2DFF-9973-43D9-83C9-4DBCB0505D9E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DLLS.Comcer.Startup", "DLLS.Comcer.Startup\DLLS.Comcer.Startup.csproj", "{5D7DFC51-02DC-4515-A143-F4DEF88B12C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLLS.Comcer.Infraestrutura", "DLLS.Comcer.Infraestrutura\DLLS.Comcer.Infraestrutura.csproj", "{8978E832-F501-4144-B0FC-28B3E2172FB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLLS.Comcer.Dominio", "DLLS.Comcer.Dominio\DLLS.Comcer.Dominio.csproj", "{4C417CC7-E2FF-418A-88AE-7FD6A2F83ACB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{93C764FB-989D-41DF-B512-ED27008EB61E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93C764FB-989D-41DF-B512-ED27008EB61E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93C764FB-989D-41DF-B512-ED27008EB61E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93C764FB-989D-41DF-B512-ED27008EB61E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{855D45A1-688C-4A37-998E-1E74676503D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{855D45A1-688C-4A37-998E-1E74676503D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{855D45A1-688C-4A37-998E-1E74676503D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{855D45A1-688C-4A37-998E-1E74676503D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1CC2DFF-9973-43D9-83C9-4DBCB0505D9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1CC2DFF-9973-43D9-83C9-4DBCB0505D9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1CC2DFF-9973-43D9-83C9-4DBCB0505D9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1CC2DFF-9973-43D9-83C9-4DBCB0505D9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D7DFC51-02DC-4515-A143-F4DEF88B12C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D7DFC51-02DC-4515-A143-F4DEF88B12C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D7DFC51-02DC-4515-A143-F4DEF88B12C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D7DFC51-02DC-4515-A143-F4DEF88B12C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8978E832-F501-4144-B0FC-28B3E2172FB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8978E832-F501-4144-B0FC-28B3E2172FB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8978E832-F501-4144-B0FC-28B3E2172FB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8978E832-F501-4144-B0FC-28B3E2172FB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C417CC7-E2FF-418A-88AE-7FD6A2F83ACB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C417CC7-E2FF-418A-88AE-7FD6A2F83ACB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C417CC7-E2FF-418A-88AE-7FD6A2F83ACB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C417CC7-E2FF-418A-88AE-7FD6A2F83ACB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8B9ABE19-408F-44B4-8156-B0B0B65C582E}
+	EndGlobalSection
+EndGlobal

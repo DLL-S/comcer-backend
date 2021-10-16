@@ -1,0 +1,12 @@
+D:\GitHub\comcer-projeto\3. Desenvolvimento\3. Implementacao\comcer-backend\DLLS.Comcer\DLLS.Comcer.Interfaces\bin\Debug\net5.0\DLLS.Comcer.Interfaces.deps.json
+D:\GitHub\comcer-projeto\3. Desenvolvimento\3. Implementacao\comcer-backend\DLLS.Comcer\DLLS.Comcer.Interfaces\bin\Debug\net5.0\DLLS.Comcer.Interfaces.dll
+D:\GitHub\comcer-projeto\3. Desenvolvimento\3. Implementacao\comcer-backend\DLLS.Comcer\DLLS.Comcer.Interfaces\bin\Debug\net5.0\ref\DLLS.Comcer.Interfaces.dll
+D:\GitHub\comcer-projeto\3. Desenvolvimento\3. Implementacao\comcer-backend\DLLS.Comcer\DLLS.Comcer.Interfaces\bin\Debug\net5.0\DLLS.Comcer.Interfaces.pdb
+D:\GitHub\comcer-projeto\3. Desenvolvimento\3. Implementacao\comcer-backend\DLLS.Comcer\DLLS.Comcer.Interfaces\obj\Debug\net5.0\DLLS.Comcer.Interfaces.csproj.AssemblyReference.cache
+D:\GitHub\comcer-projeto\3. Desenvolvimento\3. Implementacao\comcer-backend\DLLS.Comcer\DLLS.Comcer.Interfaces\obj\Debug\net5.0\DLLS.Comcer.Interfaces.GeneratedMSBuildEditorConfig.editorconfig
+D:\GitHub\comcer-projeto\3. Desenvolvimento\3. Implementacao\comcer-backend\DLLS.Comcer\DLLS.Comcer.Interfaces\obj\Debug\net5.0\DLLS.Comcer.Interfaces.AssemblyInfoInputs.cache
+D:\GitHub\comcer-projeto\3. Desenvolvimento\3. Implementacao\comcer-backend\DLLS.Comcer\DLLS.Comcer.Interfaces\obj\Debug\net5.0\DLLS.Comcer.Interfaces.AssemblyInfo.cs
+D:\GitHub\comcer-projeto\3. Desenvolvimento\3. Implementacao\comcer-backend\DLLS.Comcer\DLLS.Comcer.Interfaces\obj\Debug\net5.0\DLLS.Comcer.Interfaces.csproj.CoreCompileInputs.cache
+D:\GitHub\comcer-projeto\3. Desenvolvimento\3. Implementacao\comcer-backend\DLLS.Comcer\DLLS.Comcer.Interfaces\obj\Debug\net5.0\DLLS.Comcer.Interfaces.dll
+D:\GitHub\comcer-projeto\3. Desenvolvimento\3. Implementacao\comcer-backend\DLLS.Comcer\DLLS.Comcer.Interfaces\obj\Debug\net5.0\ref\DLLS.Comcer.Interfaces.dll
+D:\GitHub\comcer-projeto\3. Desenvolvimento\3. Implementacao\comcer-backend\DLLS.Comcer\DLLS.Comcer.Interfaces\obj\Debug\net5.0\DLLS.Comcer.Interfaces.pdb

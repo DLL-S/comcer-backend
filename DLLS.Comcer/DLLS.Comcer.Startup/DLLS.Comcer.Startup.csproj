@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.11" />
+    <PackageReference Include="Npgsql" Version="5.0.10" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.10" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DLLS.Comcer.Dominio\DLLS.Comcer.Dominio.csproj" />
+    <ProjectReference Include="..\DLLS.Comcer.Infraestrutura\DLLS.Comcer.Infraestrutura.csproj" />
+    <ProjectReference Include="..\DLLS.Comcer.Utilitarios\DLLS.Comcer.Utilitarios.csproj" />
+  </ItemGroup>
+
+</Project>

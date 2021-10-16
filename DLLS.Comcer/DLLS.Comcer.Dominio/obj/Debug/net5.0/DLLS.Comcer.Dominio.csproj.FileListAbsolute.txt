@@ -1,0 +1,12 @@
+D:\GitHub\comcer-projeto\3. Desenvolvimento\3. Implementacao\comcer-backend\DLLS.Comcer\DLLS.Comcer.Dominio\bin\Debug\net5.0\DLLS.Comcer.Dominio.deps.json
+D:\GitHub\comcer-projeto\3. Desenvolvimento\3. Implementacao\comcer-backend\DLLS.Comcer\DLLS.Comcer.Dominio\bin\Debug\net5.0\DLLS.Comcer.Dominio.dll
+D:\GitHub\comcer-projeto\3. Desenvolvimento\3. Implementacao\comcer-backend\DLLS.Comcer\DLLS.Comcer.Dominio\bin\Debug\net5.0\ref\DLLS.Comcer.Dominio.dll
+D:\GitHub\comcer-projeto\3. Desenvolvimento\3. Implementacao\comcer-backend\DLLS.Comcer\DLLS.Comcer.Dominio\bin\Debug\net5.0\DLLS.Comcer.Dominio.pdb
+D:\GitHub\comcer-projeto\3. Desenvolvimento\3. Implementacao\comcer-backend\DLLS.Comcer\DLLS.Comcer.Dominio\obj\Debug\net5.0\DLLS.Comcer.Dominio.GeneratedMSBuildEditorConfig.editorconfig
+D:\GitHub\comcer-projeto\3. Desenvolvimento\3. Implementacao\comcer-backend\DLLS.Comcer\DLLS.Comcer.Dominio\obj\Debug\net5.0\DLLS.Comcer.Dominio.AssemblyInfoInputs.cache
+D:\GitHub\comcer-projeto\3. Desenvolvimento\3. Implementacao\comcer-backend\DLLS.Comcer\DLLS.Comcer.Dominio\obj\Debug\net5.0\DLLS.Comcer.Dominio.AssemblyInfo.cs
+D:\GitHub\comcer-projeto\3. Desenvolvimento\3. Implementacao\comcer-backend\DLLS.Comcer\DLLS.Comcer.Dominio\obj\Debug\net5.0\DLLS.Comcer.Dominio.csproj.CoreCompileInputs.cache
+D:\GitHub\comcer-projeto\3. Desenvolvimento\3. Implementacao\comcer-backend\DLLS.Comcer\DLLS.Comcer.Dominio\obj\Debug\net5.0\DLLS.Comcer.Dominio.dll
+D:\GitHub\comcer-projeto\3. Desenvolvimento\3. Implementacao\comcer-backend\DLLS.Comcer\DLLS.Comcer.Dominio\obj\Debug\net5.0\ref\DLLS.Comcer.Dominio.dll
+D:\GitHub\comcer-projeto\3. Desenvolvimento\3. Implementacao\comcer-backend\DLLS.Comcer\DLLS.Comcer.Dominio\obj\Debug\net5.0\DLLS.Comcer.Dominio.pdb
+D:\GitHub\comcer-projeto\3. Desenvolvimento\3. Implementacao\comcer-backend\DLLS.Comcer\DLLS.Comcer.Dominio\obj\Debug\net5.0\DLLS.Comcer.Dominio.csproj.AssemblyReference.cache

@@ -1,0 +1,78 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.API\\DLLS.Comcer.APIa.csproj": {}
+  },
+  "projects": {
+    "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.API\\DLLS.Comcer.APIa.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.API\\DLLS.Comcer.APIa.csproj",
+        "projectName": "DLLS.Comcer.API",
+        "projectPath": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.API\\DLLS.Comcer.APIa.csproj",
+        "packagesPath": "C:\\Users\\leona\\.nuget\\packages\\",
+        "outputPath": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.API\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\leona\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.10.14, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.6.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.303\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
