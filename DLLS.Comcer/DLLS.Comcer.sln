@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLLS.Comcer.API", "DLLS.Comcer\DLLS.Comcer.API.csproj", "{92C52E10-06F3-48C9-BB38-8D404EB46BB5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLLS.Comcer.API", "DLLS.Comcer.API\DLLS.Comcer.API.csproj", "{92C52E10-06F3-48C9-BB38-8D404EB46BB5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLLS.Comcer.Interfaces", "DLLS.Comcer.Interfaces\DLLS.Comcer.Interfaces.csproj", "{0F0B872C-45A7-491A-855A-C5A090C0BBBA}"
 EndProject

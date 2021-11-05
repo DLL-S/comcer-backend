@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Utilitarios\\DLLS.Comcer.Utilitarios.csproj": {}
+    "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Utilitarios\\DLLS.Comcer.Utilitarios.csproj": {}
   },
   "projects": {
-    "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Utilitarios\\DLLS.Comcer.Utilitarios.csproj": {
+    "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Utilitarios\\DLLS.Comcer.Utilitarios.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Utilitarios\\DLLS.Comcer.Utilitarios.csproj",
+        "projectUniqueName": "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Utilitarios\\DLLS.Comcer.Utilitarios.csproj",
         "projectName": "DLLS.Comcer.Utilitarios",
-        "projectPath": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Utilitarios\\DLLS.Comcer.Utilitarios.csproj",
-        "packagesPath": "C:\\Users\\leona\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Utilitarios\\obj\\",
+        "projectPath": "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Utilitarios\\DLLS.Comcer.Utilitarios.csproj",
+        "packagesPath": "C:\\Users\\lucas\\.nuget\\packages\\",
+        "outputPath": "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Utilitarios\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\leona\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

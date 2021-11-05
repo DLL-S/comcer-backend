@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Startup\\DLLS.Comcer.Startup.csproj": {}
+    "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Startup\\DLLS.Comcer.Startup.csproj": {}
   },
   "projects": {
-    "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Dominio\\DLLS.Comcer.Dominio.csproj": {
+    "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Dominio\\DLLS.Comcer.Dominio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Dominio\\DLLS.Comcer.Dominio.csproj",
+        "projectUniqueName": "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Dominio\\DLLS.Comcer.Dominio.csproj",
         "projectName": "DLLS.Comcer.Dominio",
-        "projectPath": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Dominio\\DLLS.Comcer.Dominio.csproj",
-        "packagesPath": "C:\\Users\\leona\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Dominio\\obj\\",
+        "projectPath": "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Dominio\\DLLS.Comcer.Dominio.csproj",
+        "packagesPath": "C:\\Users\\lucas\\.nuget\\packages\\",
+        "outputPath": "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Dominio\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\leona\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -31,8 +28,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Utilitarios\\DLLS.Comcer.Utilitarios.csproj": {
-                "projectPath": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Utilitarios\\DLLS.Comcer.Utilitarios.csproj"
+              "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Utilitarios\\DLLS.Comcer.Utilitarios.csproj": {
+                "projectPath": "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Utilitarios\\DLLS.Comcer.Utilitarios.csproj"
               }
             }
           }
@@ -65,20 +62,17 @@
         }
       }
     },
-    "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Infraestrutura\\DLLS.Comcer.Infraestrutura.csproj": {
+    "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Infraestrutura\\DLLS.Comcer.Infraestrutura.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Infraestrutura\\DLLS.Comcer.Infraestrutura.csproj",
+        "projectUniqueName": "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Infraestrutura\\DLLS.Comcer.Infraestrutura.csproj",
         "projectName": "DLLS.Comcer.Infraestrutura",
-        "projectPath": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Infraestrutura\\DLLS.Comcer.Infraestrutura.csproj",
-        "packagesPath": "C:\\Users\\leona\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Infraestrutura\\obj\\",
+        "projectPath": "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Infraestrutura\\DLLS.Comcer.Infraestrutura.csproj",
+        "packagesPath": "C:\\Users\\lucas\\.nuget\\packages\\",
+        "outputPath": "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Infraestrutura\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\leona\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -92,16 +86,16 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Dominio\\DLLS.Comcer.Dominio.csproj": {
-                "projectPath": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Dominio\\DLLS.Comcer.Dominio.csproj",
+              "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Dominio\\DLLS.Comcer.Dominio.csproj": {
+                "projectPath": "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Dominio\\DLLS.Comcer.Dominio.csproj",
                 "privateAssets": "all"
               },
-              "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Interfaces\\DLLS.Comcer.Interfaces.csproj": {
-                "projectPath": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Interfaces\\DLLS.Comcer.Interfaces.csproj",
+              "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Interfaces\\DLLS.Comcer.Interfaces.csproj": {
+                "projectPath": "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Interfaces\\DLLS.Comcer.Interfaces.csproj",
                 "privateAssets": "all"
               },
-              "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Utilitarios\\DLLS.Comcer.Utilitarios.csproj": {
-                "projectPath": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Utilitarios\\DLLS.Comcer.Utilitarios.csproj"
+              "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Utilitarios\\DLLS.Comcer.Utilitarios.csproj": {
+                "projectPath": "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Utilitarios\\DLLS.Comcer.Utilitarios.csproj"
               }
             }
           }
@@ -176,20 +170,17 @@
         }
       }
     },
-    "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Interfaces\\DLLS.Comcer.Interfaces.csproj": {
+    "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Interfaces\\DLLS.Comcer.Interfaces.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Interfaces\\DLLS.Comcer.Interfaces.csproj",
+        "projectUniqueName": "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Interfaces\\DLLS.Comcer.Interfaces.csproj",
         "projectName": "DLLS.Comcer.Interfaces",
-        "projectPath": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Interfaces\\DLLS.Comcer.Interfaces.csproj",
-        "packagesPath": "C:\\Users\\leona\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Interfaces\\obj\\",
+        "projectPath": "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Interfaces\\DLLS.Comcer.Interfaces.csproj",
+        "packagesPath": "C:\\Users\\lucas\\.nuget\\packages\\",
+        "outputPath": "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Interfaces\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\leona\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -203,8 +194,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Dominio\\DLLS.Comcer.Dominio.csproj": {
-                "projectPath": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Dominio\\DLLS.Comcer.Dominio.csproj"
+              "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Dominio\\DLLS.Comcer.Dominio.csproj": {
+                "projectPath": "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Dominio\\DLLS.Comcer.Dominio.csproj"
               }
             }
           }
@@ -237,20 +228,17 @@
         }
       }
     },
-    "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Negocio\\DLLS.Comcer.Negocio.csproj": {
+    "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Negocio\\DLLS.Comcer.Negocio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Negocio\\DLLS.Comcer.Negocio.csproj",
+        "projectUniqueName": "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Negocio\\DLLS.Comcer.Negocio.csproj",
         "projectName": "DLLS.Comcer.Negocio",
-        "projectPath": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Negocio\\DLLS.Comcer.Negocio.csproj",
-        "packagesPath": "C:\\Users\\leona\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Negocio\\obj\\",
+        "projectPath": "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Negocio\\DLLS.Comcer.Negocio.csproj",
+        "packagesPath": "C:\\Users\\lucas\\.nuget\\packages\\",
+        "outputPath": "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Negocio\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\leona\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -264,8 +252,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Interfaces\\DLLS.Comcer.Interfaces.csproj": {
-                "projectPath": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Interfaces\\DLLS.Comcer.Interfaces.csproj"
+              "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Interfaces\\DLLS.Comcer.Interfaces.csproj": {
+                "projectPath": "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Interfaces\\DLLS.Comcer.Interfaces.csproj"
               }
             }
           }
@@ -298,20 +286,17 @@
         }
       }
     },
-    "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Startup\\DLLS.Comcer.Startup.csproj": {
+    "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Startup\\DLLS.Comcer.Startup.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Startup\\DLLS.Comcer.Startup.csproj",
+        "projectUniqueName": "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Startup\\DLLS.Comcer.Startup.csproj",
         "projectName": "DLLS.Comcer.Startup",
-        "projectPath": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Startup\\DLLS.Comcer.Startup.csproj",
-        "packagesPath": "C:\\Users\\leona\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Startup\\obj\\",
+        "projectPath": "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Startup\\DLLS.Comcer.Startup.csproj",
+        "packagesPath": "C:\\Users\\lucas\\.nuget\\packages\\",
+        "outputPath": "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Startup\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\leona\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -325,16 +310,16 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Infraestrutura\\DLLS.Comcer.Infraestrutura.csproj": {
-                "projectPath": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Infraestrutura\\DLLS.Comcer.Infraestrutura.csproj",
+              "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Infraestrutura\\DLLS.Comcer.Infraestrutura.csproj": {
+                "projectPath": "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Infraestrutura\\DLLS.Comcer.Infraestrutura.csproj",
                 "privateAssets": "all"
               },
-              "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Interfaces\\DLLS.Comcer.Interfaces.csproj": {
-                "projectPath": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Interfaces\\DLLS.Comcer.Interfaces.csproj",
+              "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Interfaces\\DLLS.Comcer.Interfaces.csproj": {
+                "projectPath": "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Interfaces\\DLLS.Comcer.Interfaces.csproj",
                 "privateAssets": "all"
               },
-              "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Negocio\\DLLS.Comcer.Negocio.csproj": {
-                "projectPath": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Negocio\\DLLS.Comcer.Negocio.csproj",
+              "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Negocio\\DLLS.Comcer.Negocio.csproj": {
+                "projectPath": "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Negocio\\DLLS.Comcer.Negocio.csproj",
                 "privateAssets": "all"
               }
             }
@@ -388,20 +373,17 @@
         }
       }
     },
-    "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Utilitarios\\DLLS.Comcer.Utilitarios.csproj": {
+    "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Utilitarios\\DLLS.Comcer.Utilitarios.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Utilitarios\\DLLS.Comcer.Utilitarios.csproj",
+        "projectUniqueName": "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Utilitarios\\DLLS.Comcer.Utilitarios.csproj",
         "projectName": "DLLS.Comcer.Utilitarios",
-        "projectPath": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Utilitarios\\DLLS.Comcer.Utilitarios.csproj",
-        "packagesPath": "C:\\Users\\leona\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Utilitarios\\obj\\",
+        "projectPath": "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Utilitarios\\DLLS.Comcer.Utilitarios.csproj",
+        "packagesPath": "C:\\Users\\lucas\\.nuget\\packages\\",
+        "outputPath": "D:\\Estudos\\Sistemas de informação\\TCC\\Projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Utilitarios\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\leona\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
