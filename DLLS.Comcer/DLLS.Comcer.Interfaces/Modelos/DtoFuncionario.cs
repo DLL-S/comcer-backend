@@ -2,7 +2,7 @@ using System;
 
 namespace DLLS.Comcer.Interfaces.Modelos
 {
-   public class DtoFuncionario : DtoBase
+	public class DtoFuncionario : DtoBase
 	{
 		public string Nome { get; set; }
 		public string CPF { get; set; }

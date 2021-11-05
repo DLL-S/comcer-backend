@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace DLLS.Comcer.Interfaces.Modelos
 {
-   public class DtoBase
+	public class DtoBase
 	{
 		public long Id { get; set; }
 

@@ -1,8 +1,8 @@
-﻿using DLLS.Comcer.Dominio.Objetos.Funcionario;
+using DLLS.Comcer.Dominio.Objetos.Funcionario;
 
 namespace DLLS.Comcer.Interfaces.InterfacesDeRepositorios
 {
-    public interface IRepositorioFuncionario : IRepositorioObjetoComIdNumerico<Funcionario>
-    {
-    }
+	public interface IRepositorioFuncionario : IRepositorioObjetoComIdNumerico<Funcionario>
+	{
+	}
 }

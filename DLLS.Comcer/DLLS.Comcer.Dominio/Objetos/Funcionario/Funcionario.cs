@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
 using DLLS.Comcer.Dominio.Objetos.Compartilhados;
 
 namespace DLLS.Comcer.Dominio.Objetos.Funcionario

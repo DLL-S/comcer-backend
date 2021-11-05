@@ -6,7 +6,7 @@ using DLLS.Comcer.Interfaces.Conversores;
 
 namespace DLLS.Comcer.Negocio.Conversores
 {
-   public class ConversorPadrao<TObjeto, TDto> : IConversorPadrao<TObjeto, TDto>
+	public class ConversorPadrao<TObjeto, TDto> : IConversorPadrao<TObjeto, TDto>
 	{
 		public TDto Converta(TObjeto objeto)
 		{
@@ -35,6 +35,7 @@ namespace DLLS.Comcer.Negocio.Conversores
 
 			return lista;
 		}
+
 		private static TSaida Copie<TSaida, TEntrada>(TEntrada entrada)
 		{
 			Type typeT = typeof(TEntrada);

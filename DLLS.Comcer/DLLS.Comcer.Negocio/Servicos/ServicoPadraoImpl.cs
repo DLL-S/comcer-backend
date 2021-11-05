@@ -7,7 +7,7 @@ using DLLS.Comcer.Interfaces.Modelos;
 
 namespace DLLS.Comcer.Negocio.Servicos
 {
-   public abstract class ServicoPadraoImpl<TObjeto, TDto> : IServicoPadrao<TDto> where TDto : DtoBase where TObjeto : ObjetoComIdNumerico
+	public abstract class ServicoPadraoImpl<TObjeto, TDto> : IServicoPadrao<TDto> where TDto : DtoBase where TObjeto : ObjetoComIdNumerico
 	{
 		protected readonly IRepositorioObjetoComIdNumerico<TObjeto> _repositorio;
 		protected readonly IConversorPadrao<TObjeto, TDto> _conversor;

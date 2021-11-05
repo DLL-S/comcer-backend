@@ -1,82 +1,82 @@
-﻿using DLLS.Comcer.Dominio.Objetos.Compartilhados;
+using DLLS.Comcer.Dominio.Objetos.Compartilhados;
 using DLLS.Comcer.Dominio.Objetos.Funcionario;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos
 {
-    internal class FuncionarioMap : IEntityTypeConfiguration<Funcionario>
-    {
-        private const string NOME_TABELA = "FUNCIONARIOS";
-        public void Configure(EntityTypeBuilder<Funcionario> builder)
-        {
-            builder.ToTable(NOME_TABELA);
-            builder.HasKey(x => x.Id);
+	internal class FuncionarioMap : IEntityTypeConfiguration<Funcionario>
+	{
+		private const string NOME_TABELA = "FUNCIONARIOS";
+		public void Configure(EntityTypeBuilder<Funcionario> builder)
+		{
+			builder.ToTable(NOME_TABELA);
+			builder.HasKey(x => x.Id);
 
-            #region ID
+			#region ID
 
-            builder.Property(x => x.Id)
-                 .HasColumnName("ID")
-                 .HasColumnType("SERIAL")
-                 .UseIdentityAlwaysColumn()
-                 .ValueGeneratedOnAdd()
-                 .IsRequired();
+			builder.Property(x => x.Id)
+				 .HasColumnName("ID")
+				 .HasColumnType("SERIAL")
+				 .UseIdentityAlwaysColumn()
+				 .ValueGeneratedOnAdd()
+				 .IsRequired();
 
-            builder.HasIndex(x => x.Id)
-                 .HasDatabaseName("IDX_IDFUNCIONARIO")
-                 .IsUnique();
+			builder.HasIndex(x => x.Id)
+				 .HasDatabaseName("IDX_IDFUNCIONARIO")
+				 .IsUnique();
 
-            #endregion
+			#endregion
 
-            #region CELULAR
+			#region CELULAR
 
-            builder.Property(x => x.Celular)
-                 .HasColumnName("CELULAR")
-                 .HasColumnType("TEXT");
+			builder.Property(x => x.Celular)
+				 .HasColumnName("CELULAR")
+				 .HasColumnType("TEXT");
 
-            #endregion
+			#endregion
 
-            #region CPF
+			#region CPF
 
-            builder.Property(x => x.CPF)
-                 .HasColumnName("CPF")
-                 .HasColumnType("TEXT")
-                 .IsRequired();
+			builder.Property(x => x.CPF)
+				 .HasColumnName("CPF")
+				 .HasColumnType("TEXT")
+				 .IsRequired();
 
-            #endregion
+			#endregion
 
-            #region DATA_NASCIMENTO
+			#region DATA_NASCIMENTO
 
-            builder.Property(x => x.DataNascimento)
-                 .HasColumnName("DATA_NASCIMENTO")
-                 .HasColumnType("DATE")
-                 .IsRequired();
+			builder.Property(x => x.DataNascimento)
+				 .HasColumnName("DATA_NASCIMENTO")
+				 .HasColumnType("DATE")
+				 .IsRequired();
 
-            #endregion
+			#endregion
 
-            #region EMAIL
+			#region EMAIL
 
-            builder.Property(x => x.Email)
-                 .HasColumnName("EMAIL")
-                 .HasColumnType("TEXT")
-                 .IsRequired();
+			builder.Property(x => x.Email)
+				 .HasColumnName("EMAIL")
+				 .HasColumnType("TEXT")
+				 .IsRequired();
 
-            #endregion
+			#endregion
 
-            #region NOME
+			#region NOME
 
-            builder.Property(x => x.Nome)
-                 .HasColumnName("NOME")
-                 .HasColumnType("TEXT")
-                 .IsRequired();
+			builder.Property(x => x.Nome)
+				 .HasColumnName("NOME")
+				 .HasColumnType("TEXT")
+				 .IsRequired();
 
-            #endregion
+			#endregion
 
-            #region ENDERECO
+			#region ENDERECO
 
-            builder.HasOne(x => x.Endereco).WithOne().HasForeignKey<Endereco>("IDENDERECO");
+			builder.HasOne(x => x.Endereco).WithOne().HasForeignKey<Endereco>("IDENDERECO");
 
-            #endregion
-        }
-    }
+			#endregion
+		}
+	}
 }

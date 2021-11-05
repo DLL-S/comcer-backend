@@ -1,4 +1,4 @@
-﻿namespace DLLS.Comcer.Interfaces.Modelos
+namespace DLLS.Comcer.Interfaces.Modelos
 {
 	public class DtoEndereco : DtoBase
 	{

@@ -3,19 +3,24 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLLS.Comcer.API", "DLLS.Comcer.API\DLLS.Comcer.API.csproj", "{92C52E10-06F3-48C9-BB38-8D404EB46BB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DLLS.Comcer.API", "DLLS.Comcer.API\DLLS.Comcer.API.csproj", "{92C52E10-06F3-48C9-BB38-8D404EB46BB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLLS.Comcer.Interfaces", "DLLS.Comcer.Interfaces\DLLS.Comcer.Interfaces.csproj", "{0F0B872C-45A7-491A-855A-C5A090C0BBBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DLLS.Comcer.Interfaces", "DLLS.Comcer.Interfaces\DLLS.Comcer.Interfaces.csproj", "{0F0B872C-45A7-491A-855A-C5A090C0BBBA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLLS.Comcer.Startup", "DLLS.Comcer.Startup\DLLS.Comcer.Startup.csproj", "{802297D3-5E96-4CC6-BA81-5EB01A27A2C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DLLS.Comcer.Startup", "DLLS.Comcer.Startup\DLLS.Comcer.Startup.csproj", "{802297D3-5E96-4CC6-BA81-5EB01A27A2C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLLS.Comcer.Dominio", "DLLS.Comcer.Dominio\DLLS.Comcer.Dominio.csproj", "{DDA152AC-EEF3-45CD-A801-20109DCADD29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DLLS.Comcer.Dominio", "DLLS.Comcer.Dominio\DLLS.Comcer.Dominio.csproj", "{DDA152AC-EEF3-45CD-A801-20109DCADD29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLLS.Comcer.Infraestrutura", "DLLS.Comcer.Infraestrutura\DLLS.Comcer.Infraestrutura.csproj", "{2B911455-BC24-42AD-AB6F-6E5E20169306}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DLLS.Comcer.Infraestrutura", "DLLS.Comcer.Infraestrutura\DLLS.Comcer.Infraestrutura.csproj", "{2B911455-BC24-42AD-AB6F-6E5E20169306}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLLS.Comcer.Negocio", "DLLS.Comcer.Negocio\DLLS.Comcer.Negocio.csproj", "{450512D2-95C6-4771-8933-AAD749542CE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DLLS.Comcer.Negocio", "DLLS.Comcer.Negocio\DLLS.Comcer.Negocio.csproj", "{450512D2-95C6-4771-8933-AAD749542CE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLLS.Comcer.Utilitarios", "DLLS.Comcer.Utilitarios\DLLS.Comcer.Utilitarios.csproj", "{DBDC8411-8D15-4AFD-8E06-22CF4764904D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DLLS.Comcer.Utilitarios", "DLLS.Comcer.Utilitarios\DLLS.Comcer.Utilitarios.csproj", "{DBDC8411-8D15-4AFD-8E06-22CF4764904D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F53EEEC8-30A5-490D-B97E-358D6D5D7750}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,8 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DLLS.Comcer.Infraestrutura;
 using DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios;
 using DLLS.Comcer.Interfaces.InterfacesDeRepositorios;
@@ -12,10 +7,10 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace DLLS.Comcer.Startup
 {
-    public static class InjecaoDeDependencias
-    {
+	public static class InjecaoDeDependencias
+	{
 		public static void AddResolucaoDeDependencias(this IServiceCollection servicos, IConfiguration configuracao)
-        {
+		{
 			servicos.AddResolucaoDeAddResolucaoDeIdentidade(configuracao);
 			servicos.AddResolucaoDeBancoDeDados(configuracao);
 			servicos.AddResolucaoDeServicos();
@@ -29,9 +24,10 @@ namespace DLLS.Comcer.Startup
 		/// <param name="configuracao">A <see cref="IConfiguration"/> da aplicação.</param>
 		private static void AddResolucaoDeAddResolucaoDeIdentidade(this IServiceCollection servicos, IConfiguration configuracao)
 		{
-            //servicos.AddDbContext<ContextoPadrao>(options => options.UseNpgsql(configuracao.GetConnectionString("DefaultConnection")));
-            //servicos.AddIdentityCore<Usuario>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ContextoPadrao>();
-        }
+			//servicos.AddDbContext<ContextoPadrao>(options => options.UseNpgsql(configuracao.GetConnectionString("DefaultConnection")));
+			//servicos.AddIdentityCore<Usuario>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ContextoPadrao>();
+		}
+
 		/// <summary>
 		/// Método de extênsão para a configuração de serviços da aplicação.
 		/// </summary>

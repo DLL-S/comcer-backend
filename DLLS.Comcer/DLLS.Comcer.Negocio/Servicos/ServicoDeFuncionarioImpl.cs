@@ -5,7 +5,7 @@ using DLLS.Comcer.Interfaces.Modelos;
 
 namespace DLLS.Comcer.Negocio.Servicos
 {
-   public class ServicoDeFuncionarioImpl : ServicoPadraoImpl<Funcionario, DtoFuncionario>
+	public class ServicoDeFuncionarioImpl : ServicoPadraoImpl<Funcionario, DtoFuncionario>
 	{
 		public ServicoDeFuncionarioImpl(IRepositorioFuncionario repositorio, IConversorFuncionario conversor) : base(repositorio, conversor)
 		{
