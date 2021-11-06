@@ -1,3 +1,15 @@
+C:\Users\leona\source\repos\DLLS.Comcer\DLLS.Comcer.Utilitarios\bin\Debug\net5.0\DLLS.Comcer.Utilitarios.deps.json
+C:\Users\leona\source\repos\DLLS.Comcer\DLLS.Comcer.Utilitarios\bin\Debug\net5.0\DLLS.Comcer.Utilitarios.dll
+C:\Users\leona\source\repos\DLLS.Comcer\DLLS.Comcer.Utilitarios\bin\Debug\net5.0\ref\DLLS.Comcer.Utilitarios.dll
+C:\Users\leona\source\repos\DLLS.Comcer\DLLS.Comcer.Utilitarios\bin\Debug\net5.0\DLLS.Comcer.Utilitarios.pdb
+C:\Users\leona\source\repos\DLLS.Comcer\DLLS.Comcer.Utilitarios\obj\Debug\net5.0\DLLS.Comcer.Utilitarios.csproj.AssemblyReference.cache
+C:\Users\leona\source\repos\DLLS.Comcer\DLLS.Comcer.Utilitarios\obj\Debug\net5.0\DLLS.Comcer.Utilitarios.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\leona\source\repos\DLLS.Comcer\DLLS.Comcer.Utilitarios\obj\Debug\net5.0\DLLS.Comcer.Utilitarios.AssemblyInfoInputs.cache
+C:\Users\leona\source\repos\DLLS.Comcer\DLLS.Comcer.Utilitarios\obj\Debug\net5.0\DLLS.Comcer.Utilitarios.AssemblyInfo.cs
+C:\Users\leona\source\repos\DLLS.Comcer\DLLS.Comcer.Utilitarios\obj\Debug\net5.0\DLLS.Comcer.Utilitarios.csproj.CoreCompileInputs.cache
+C:\Users\leona\source\repos\DLLS.Comcer\DLLS.Comcer.Utilitarios\obj\Debug\net5.0\DLLS.Comcer.Utilitarios.dll
+C:\Users\leona\source\repos\DLLS.Comcer\DLLS.Comcer.Utilitarios\obj\Debug\net5.0\ref\DLLS.Comcer.Utilitarios.dll
+C:\Users\leona\source\repos\DLLS.Comcer\DLLS.Comcer.Utilitarios\obj\Debug\net5.0\DLLS.Comcer.Utilitarios.pdb
 D:\GitHub\comcer-projeto\3. Desenvolvimento\3. Implementacao\comcer-backend\DLLS.Comcer\DLLS.Comcer.Utilitarios\bin\Debug\net5.0\DLLS.Comcer.Utilitarios.deps.json
 D:\GitHub\comcer-projeto\3. Desenvolvimento\3. Implementacao\comcer-backend\DLLS.Comcer\DLLS.Comcer.Utilitarios\bin\Debug\net5.0\DLLS.Comcer.Utilitarios.dll
 D:\GitHub\comcer-projeto\3. Desenvolvimento\3. Implementacao\comcer-backend\DLLS.Comcer\DLLS.Comcer.Utilitarios\bin\Debug\net5.0\ref\DLLS.Comcer.Utilitarios.dll

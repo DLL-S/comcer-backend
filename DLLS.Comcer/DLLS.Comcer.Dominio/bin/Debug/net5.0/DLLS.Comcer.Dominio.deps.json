@@ -7,14 +7,27 @@
   "targets": {
     ".NETCoreApp,Version=v5.0": {
       "DLLS.Comcer.Dominio/1.0.0": {
+        "dependencies": {
+          "DLLS.Comcer.Utilitarios": "1.0.0"
+        },
         "runtime": {
           "DLLS.Comcer.Dominio.dll": {}
+        }
+      },
+      "DLLS.Comcer.Utilitarios/1.0.0": {
+        "runtime": {
+          "DLLS.Comcer.Utilitarios.dll": {}
         }
       }
     }
   },
   "libraries": {
     "DLLS.Comcer.Dominio/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DLLS.Comcer.Utilitarios/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

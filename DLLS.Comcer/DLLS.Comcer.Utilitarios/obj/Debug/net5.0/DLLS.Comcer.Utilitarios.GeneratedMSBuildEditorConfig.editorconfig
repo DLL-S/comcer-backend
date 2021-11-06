@@ -6,3 +6,5 @@ build_property.ProjectTypeGuids =
 build_property.PublishSingleFile = 
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
+build_property.RootNamespace = DLLS.Comcer.Utilitarios
+build_property.ProjectDir = D:\GitHub\comcer-projeto\3. Desenvolvimento\3. Implementacao\comcer-backend\DLLS.Comcer\DLLS.Comcer.Utilitarios\

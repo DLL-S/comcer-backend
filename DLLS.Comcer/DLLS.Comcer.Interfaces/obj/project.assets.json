@@ -1,11 +1,48 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {}
+    "net5.0": {
+      "DLLS.Comcer.Dominio/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "DLLS.Comcer.Utilitarios": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DLLS.Comcer.Dominio.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DLLS.Comcer.Dominio.dll": {}
+        }
+      },
+      "DLLS.Comcer.Utilitarios/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/DLLS.Comcer.Utilitarios.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DLLS.Comcer.Utilitarios.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "DLLS.Comcer.Dominio/1.0.0": {
+      "type": "project",
+      "path": "../DLLS.Comcer.Dominio/DLLS.Comcer.Dominio.csproj",
+      "msbuildProject": "../DLLS.Comcer.Dominio/DLLS.Comcer.Dominio.csproj"
+    },
+    "DLLS.Comcer.Utilitarios/1.0.0": {
+      "type": "project",
+      "path": "../DLLS.Comcer.Utilitarios/DLLS.Comcer.Utilitarios.csproj",
+      "msbuildProject": "../DLLS.Comcer.Utilitarios/DLLS.Comcer.Utilitarios.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net5.0": []
+    "net5.0": [
+      "DLLS.Comcer.Dominio >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\leona\\.nuget\\packages\\": {},
@@ -37,7 +74,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Dominio\\DLLS.Comcer.Dominio.csproj": {
+              "projectPath": "D:\\GitHub\\comcer-projeto\\3. Desenvolvimento\\3. Implementacao\\comcer-backend\\DLLS.Comcer\\DLLS.Comcer.Dominio\\DLLS.Comcer.Dominio.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -64,7 +105,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.303\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }
