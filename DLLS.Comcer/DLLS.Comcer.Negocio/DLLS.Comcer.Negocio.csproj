@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DLLS.Comcer.Infraestrutura\DLLS.Comcer.Infraestrutura.csproj" />
     <ProjectReference Include="..\DLLS.Comcer.Interfaces\DLLS.Comcer.Interfaces.csproj" />
   </ItemGroup>
 

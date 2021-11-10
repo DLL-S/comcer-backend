@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using DLLS.Comcer.Dominio.Objetos.Compartilhados;
 
-namespace DLLS.Comcer.Interfaces.InterfacesDeRepositorios
+namespace DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios
 {
 	public interface IRepositorioObjetoComIdNumerico<TObjeto> : IRepositorioGenerico<TObjeto>
 		 where TObjeto : ObjetoComIdNumerico
@@ -10,7 +10,7 @@ namespace DLLS.Comcer.Interfaces.InterfacesDeRepositorios
 		/// Cadastra um novo objeto no contexto definido.
 		/// </summary>
 		/// <param name="objeto">O objeto a ser cadastrado.</param>
-		void Cadastre(TObjeto objeto);
+		TObjeto Cadastre(TObjeto objeto);
 
 		/// <summary>
 		/// Consulta um objeto no contexto definido.
@@ -29,7 +29,7 @@ namespace DLLS.Comcer.Interfaces.InterfacesDeRepositorios
 		/// Atualiza um registro no contexto definido.
 		/// </summary>
 		/// <param name="objeto">O objeto modificado.</param>
-		void Atualize(TObjeto objeto);
+		TObjeto Atualize(TObjeto objeto);
 
 		/// <summary>
 		/// Exclui um registro no contexto.

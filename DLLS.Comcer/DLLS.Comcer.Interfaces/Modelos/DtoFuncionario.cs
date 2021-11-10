@@ -1,4 +1,5 @@
 using System;
+using DLLS.Comcer.Utilitarios.Enumeradores;
 
 namespace DLLS.Comcer.Interfaces.Modelos
 {
@@ -10,5 +11,6 @@ namespace DLLS.Comcer.Interfaces.Modelos
 		public string Email { get; set; }
 		public string Celular { get; set; }
 		public DtoEndereco Endereco { get; set; }
+		public EnumSituacao Situacao { get; set; }
 	}
 }

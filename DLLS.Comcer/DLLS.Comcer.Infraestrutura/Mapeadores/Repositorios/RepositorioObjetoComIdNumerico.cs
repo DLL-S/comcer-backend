@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DLLS.Comcer.Dominio.Objetos.Compartilhados;
-using DLLS.Comcer.Interfaces.InterfacesDeRepositorios;
+using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
 
 namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 {
@@ -19,10 +19,12 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 		/// Cadastra um novo objeto no contexto definido.
 		/// </summary>
 		/// <param name="objeto">O objeto a ser cadastrado.</param>
-		public virtual void Cadastre(TObjeto objeto)
+		public virtual TObjeto Cadastre(TObjeto objeto)
 		{
 			Persistencia.Add(objeto);
 			Contexto.SaveChanges();
+
+			return objeto;
 		}
 
 		/// <summary>
@@ -59,10 +61,12 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 		/// Atualiza um registro no contexto definido.
 		/// </summary>
 		/// <param name="objeto">O objeto modificado.</param>
-		public virtual void Atualize(TObjeto objeto)
+		public virtual TObjeto Atualize(TObjeto objeto)
 		{
 			Persistencia.Update(objeto);
 			Contexto.SaveChanges();
+
+			return objeto;
 		}
 
 		/// <summary>

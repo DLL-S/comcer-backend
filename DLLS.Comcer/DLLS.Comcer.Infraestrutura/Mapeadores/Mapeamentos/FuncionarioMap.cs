@@ -77,6 +77,15 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos
 			builder.HasOne(x => x.Endereco).WithOne().HasForeignKey<Endereco>("IDENDERECO");
 
 			#endregion
+
+			#region SITUACAO
+
+			builder.Property(x => x.Situacao)
+				 .HasColumnName("SITUACAO")
+				 .HasColumnType("NUMERIC")
+				 .IsRequired();
+
+			#endregion
 		}
 	}
 }

@@ -7,16 +7,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["DLLS.Comcer.API/DLLS.Comcer.API.csproj", "DLLS.Comcer.API/"]
-RUN dotnet restore "DLLS.Comcer.API/DLLS.Comcer.API.csproj"
+COPY ["DLLS.Comcer/DLLS.Comcer.csproj", "DLLS.Comcer/"]
+RUN dotnet restore "DLLS.Comcer/DLLS.Comcer.csproj"
 COPY . .
-WORKDIR "/src/DLLS.Comcer.API"
-RUN dotnet build "DLLS.Comcer.API.csproj" -c Release -o /app/build
+WORKDIR "/src/DLLS.Comcer"
+RUN dotnet build "DLLS.Comcer.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "DLLS.Comcer.API.csproj" -c Release -o /app/publish
+RUN dotnet publish "DLLS.Comcer.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "DLLS.Comcer.API.dll"]
+ENTRYPOINT ["dotnet", "DLLS.Comcer.dll"]

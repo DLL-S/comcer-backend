@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using DLLS.Comcer.Dominio.Objetos.Compartilhados;
+using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
 using DLLS.Comcer.Interfaces.Conversores;
-using DLLS.Comcer.Interfaces.InterfacesDeRepositorios;
 using DLLS.Comcer.Interfaces.InterfacesDeServicos;
 using DLLS.Comcer.Interfaces.Modelos;
 

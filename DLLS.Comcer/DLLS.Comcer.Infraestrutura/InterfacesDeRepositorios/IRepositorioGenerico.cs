@@ -1,6 +1,6 @@
 using DLLS.Comcer.Dominio.Objetos.Compartilhados;
 
-namespace DLLS.Comcer.Interfaces.InterfacesDeRepositorios
+namespace DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios
 {
 	public interface IRepositorioGenerico<TObjeto> where TObjeto : ObjetoComIdNumerico
 	{

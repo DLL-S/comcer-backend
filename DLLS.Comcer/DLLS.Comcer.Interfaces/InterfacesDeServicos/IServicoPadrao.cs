@@ -9,6 +9,6 @@ namespace DLLS.Comcer.Interfaces.InterfacesDeServicos
 		IList<TDto> Liste();
 		TDto Atualize(TDto objeto);
 		TDto Cadastre(TDto objeto);
-		void Exclua(long condigo);
+		void Exclua(long codigo);
 	}
 }
