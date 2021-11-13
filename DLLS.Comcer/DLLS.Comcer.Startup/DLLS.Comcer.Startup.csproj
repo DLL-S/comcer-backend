@@ -1,27 +1,27 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+	 <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.11" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.11">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.11" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.10" />
+	 <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.12" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.12">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+	 <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.12" />
+	 <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.10" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DLLS.Comcer.Infraestrutura\DLLS.Comcer.Infraestrutura.csproj">
+	 <ProjectReference Include="..\DLLS.Comcer.Infraestrutura\DLLS.Comcer.Infraestrutura.csproj">
 		<PrivateAssets>All</PrivateAssets>
 	</ProjectReference>
-    <ProjectReference Include="..\DLLS.Comcer.Interfaces\DLLS.Comcer.Interfaces.csproj">
+	 <ProjectReference Include="..\DLLS.Comcer.Interfaces\DLLS.Comcer.Interfaces.csproj">
 		<PrivateAssets>All</PrivateAssets>
 	</ProjectReference>
-    <ProjectReference Include="..\DLLS.Comcer.Negocio\DLLS.Comcer.Negocio.csproj">
+	 <ProjectReference Include="..\DLLS.Comcer.Negocio\DLLS.Comcer.Negocio.csproj">
 		<PrivateAssets>All</PrivateAssets>
 	</ProjectReference>
   </ItemGroup>
