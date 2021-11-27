@@ -1,6 +1,6 @@
-namespace DLLS.Comcer.Interfaces.Modelos
+﻿namespace DLLS.Comcer.Dominio.Objetos.Compartilhados
 {
-	public class MensagemDeValidacao
+	public class InconsistenciaDeValidacao
 	{
 		public string Propriedade { get; set; }
 		public string Mensagem { get; set; }

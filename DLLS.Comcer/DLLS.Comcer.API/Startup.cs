@@ -26,7 +26,11 @@ namespace DLLS.Comcer.API
 
 			services.AddSwaggerGen(c =>
 			{
-				c.SwaggerDoc("v1", new OpenApiInfo { Title = "DLLS.Comcer.API", Version = "v1", Description = "API para o sistema de comanda eletronica COMCER" });
+				c.SwaggerDoc("v1", new OpenApiInfo {
+					Title = "DLLS.Comcer.API",
+					Version = "v1",
+					Description = "API para o sistema de comanda eletronica COMCER."
+				});
 			});
 		}
 

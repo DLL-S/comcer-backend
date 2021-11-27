@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DLLS.Comcer.Interfaces.InterfacesDeServicos;
 using DLLS.Comcer.Interfaces.Modelos;
 using Microsoft.AspNetCore.Mvc;
@@ -8,19 +9,19 @@ namespace DLLS.Comcer.API.Controllers
 	[ApiExplorerSettings(IgnoreApi = true)]
 	public class BaseController<TDto> : ControllerBase where TDto : DtoBase
 	{
-		protected IServicoPadrao<TDto> _Servico;
+		protected IServicoPadrao<TDto> _servico;
 
 		protected BaseController(IServicoPadrao<TDto> servico)
 		{
-			_Servico = servico;
+			_servico = servico;
 		}
 
 		[ApiExplorerSettings(IgnoreApi = true)]
 		protected ActionResult<TDto> Consultar(long codigo)
 		{
-			var obj = _Servico.Consulte(codigo);
+			var obj = _servico.Consulte(codigo);
 
-			if (obj.Sucesso == false)
+			if (obj == null)
 			{
 				return new NotFoundObjectResult(null);
 			}
@@ -29,9 +30,22 @@ namespace DLLS.Comcer.API.Controllers
 		}
 
 		[ApiExplorerSettings(IgnoreApi = true)]
-		protected ActionResult<IList<TDto>> Listar()
+		protected ActionResult<IList<TDto>> ListarTudo()
 		{
-			var list = _Servico.Liste();
+			var list = _servico.Liste();
+
+			if (list == null || list.Count == 0)
+			{
+				return new NoContentResult();
+			}
+
+			return Ok(list);
+		}
+
+		[ApiExplorerSettings(IgnoreApi = true)]
+		protected ActionResult<IList<TDto>> ListarPagina(int pagina, int quantidade, EnumOrdem ordem)
+		{
+			var list = _servico.Liste(pagina, quantidade, ordem);
 
 			if (list == null || list.Count == 0)
 			{
@@ -46,7 +60,7 @@ namespace DLLS.Comcer.API.Controllers
 		{
 			try
 			{
-				_Servico.Exclua(codigo);
+				_servico.Exclua(codigo);
 			}
 			catch
 			{
@@ -63,7 +77,7 @@ namespace DLLS.Comcer.API.Controllers
 
 			try
 			{
-				obj = _Servico.Atualize(novoObjeto);
+				obj = _servico.Atualize(novoObjeto);
 
 				if (obj.Sucesso == false)
 				{
@@ -85,16 +99,16 @@ namespace DLLS.Comcer.API.Controllers
 
 			try
 			{
-				obj = _Servico.Cadastre(novoObjeto);
+				obj = _servico.Cadastre(novoObjeto);
 
 				if (obj.Sucesso == false)
 				{
 					return new BadRequestObjectResult(obj);
 				}
 			}
-			catch
+			catch (Exception ex)
 			{
-				return new NotFoundObjectResult(null);
+				throw ex;
 			}
 
 			return CreatedAtAction("Cadastrar", obj);

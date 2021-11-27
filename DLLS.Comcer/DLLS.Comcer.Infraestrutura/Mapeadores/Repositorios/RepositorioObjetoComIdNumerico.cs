@@ -47,6 +47,17 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 		}
 
 		/// <summary>
+		/// Consulta uma página de registros no contexto definido.
+		/// </summary>
+		/// <returns>Uma lista com os registros.</returns>
+		public virtual IList<TObjeto> ConsulteLista(int pagina, int quantidade, EnumOrdem ordem)
+		{
+			return ordem == EnumOrdem.ASC
+				? Persistencia.OrderBy(x => x.Id).Skip(pagina).Take(quantidade).ToList()
+				: Persistencia.OrderByDescending(x => x.Id).Skip(pagina).Take(quantidade).ToList();
+		}
+
+		/// <summary>
 		/// Consulta uma lista parcial dos registros no contexto definido.
 		/// </summary>
 		/// <param name="qtdeAPular">A quantidade de registros a ser pulada a partir do primeiro.</param>

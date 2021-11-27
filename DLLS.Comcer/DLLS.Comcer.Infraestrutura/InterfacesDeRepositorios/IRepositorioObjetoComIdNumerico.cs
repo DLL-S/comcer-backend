@@ -15,15 +15,24 @@ namespace DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios
 		/// <summary>
 		/// Consulta um objeto no contexto definido.
 		/// </summary>
-		/// <param name="Codigo">O código do objeto.</param>
+		/// <param name="codigo">O código do objeto.</param>
 		/// <returns>O objeto da base, ou null caso não exista.</returns>
-		TObjeto Consulte(long Codigo);
+		TObjeto Consulte(long codigo);
 
 		/// <summary>
 		/// Consulta todos os registros no contexto definido.
 		/// </summary>
 		/// <returns>Uma lista com os registros.</returns>
 		IList<TObjeto> ConsulteLista();
+
+		/// <summary>
+		/// Consulta uma página de registros no contexto definido.
+		/// </summary>
+		/// <param name="pagina">O indice do primeiro item.</param>
+		/// <param name="quantidade">A quantidade de itens a retornar.</param>
+		/// <param name="ordem">A ordem dos itens na lista.</param>
+		/// <returns>Uma lista com os registros.</returns>
+		IList<TObjeto> ConsulteLista(int pagina, int quantidade, EnumOrdem ordem);
 
 		/// <summary>
 		/// Atualiza um registro no contexto definido.

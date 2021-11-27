@@ -74,7 +74,7 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos
 
 			#region ENDERECO
 
-			builder.HasOne(x => x.Endereco).WithOne().HasForeignKey<Endereco>("IDENDERECO");
+			builder.HasOne(x => x.Endereco).WithOne().HasForeignKey<Endereco>("ID");
 
 			#endregion
 

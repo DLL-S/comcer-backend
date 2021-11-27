@@ -20,19 +20,42 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 		public TDto Atualize(TDto objeto)
 		{
-			_repositorio.Atualize(_conversor.Converta(objeto));
+			var objetoConvertido = _conversor.Converta(objeto);
+
+			CentralDeValidacoes.inserirRetornoValidacao(ref objeto, objetoConvertido, (a) => new List<InconsistenciaDeValidacao>());
+			if (objeto.Sucesso == false)
+			{
+				return objeto;
+			}
+
+			_repositorio.Atualize(objetoConvertido);
 			return objeto;
 		}
 
 		public TDto Cadastre(TDto objeto)
 		{
-			_repositorio.Cadastre(_conversor.Converta(objeto));
+			var objetoConvertido = _conversor.Converta(objeto);
+
+			CentralDeValidacoes.inserirRetornoValidacao(ref objeto, objetoConvertido, (a) => new List<InconsistenciaDeValidacao>());
+			if (objeto.Sucesso == false)
+			{
+				return objeto;
+			}
+
+			_repositorio.Cadastre(objetoConvertido);
 			return objeto;
 		}
 
 		public TDto Consulte(long codigo)
 		{
-			return _conversor.Converta(_repositorio.Consulte(codigo));
+			var objetoConsultado = _repositorio.Consulte(codigo);
+
+			if (objetoConsultado == null)
+			{
+				return null;
+			}
+
+			return _conversor.Converta(objetoConsultado);
 		}
 
 		public void Exclua(long codigo)
@@ -43,6 +66,11 @@ namespace DLLS.Comcer.Negocio.Servicos
 		public IList<TDto> Liste()
 		{
 			return _conversor.Converta(_repositorio.ConsulteLista());
+		}
+
+		public IList<TDto> Liste(int pagina, int quantidade, EnumOrdem ordem)
+		{
+			return _conversor.Converta(_repositorio.ConsulteLista(pagina, quantidade, ordem));
 		}
 	}
 }

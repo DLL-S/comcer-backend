@@ -7,6 +7,7 @@ namespace DLLS.Comcer.Interfaces.InterfacesDeServicos
 	{
 		TDto Consulte(long condigo);
 		IList<TDto> Liste();
+		IList<TDto> Liste(int pagina, int quantidade, EnumOrdem ordem);
 		TDto Atualize(TDto objeto);
 		TDto Cadastre(TDto objeto);
 		void Exclua(long codigo);

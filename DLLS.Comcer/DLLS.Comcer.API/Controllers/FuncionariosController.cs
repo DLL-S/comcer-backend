@@ -16,6 +16,11 @@ namespace DLLS.Comcer.API.Controllers
 
 		}
 
+		private IServicoDeFuncionario Servico()
+		{
+			return (IServicoDeFuncionario)_servico;
+		}
+
 		[HttpGet("Consultar/{codigo}")]
 		public new ActionResult<DtoFuncionario> Consultar(long codigo)
 		{
@@ -25,7 +30,7 @@ namespace DLLS.Comcer.API.Controllers
 		[HttpGet("Listar")]
 		public new ActionResult<IList<DtoFuncionario>> Listar()
 		{
-			return base.Listar();
+			return base.ListarTudo();
 		}
 
 		[HttpPut("Atualizar")]
@@ -43,7 +48,20 @@ namespace DLLS.Comcer.API.Controllers
 		[HttpPatch("AlternarAtivacao/{codigo}")]
 		public ActionResult<DtoFuncionario> AlternarAtivacao(long codigo)
 		{
-			return ((IServicoDeFuncionario)_Servico).AlterneAtivacao(codigo);
+			return Servico().AlterneAtivacao(codigo);
+		}
+
+		[HttpGet("Consultar")]
+		public ActionResult<IList<DtoFuncionario>> Consultar(string termoDeBusca, int quantidade, EnumOrdem ordem)
+		{
+			var list = Servico().Consulte(termoDeBusca, quantidade, ordem);
+
+			if (list == null || list.Count == 0)
+			{
+				return new NoContentResult();
+			}
+
+			return Ok(list);
 		}
 	}
 }
