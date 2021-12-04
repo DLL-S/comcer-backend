@@ -21,9 +21,7 @@ namespace DLLS.Comcer.API
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddResolucaoDeDependencias(Configuration);
-
 			services.AddControllers();
-
 			services.AddSwaggerGen(c =>
 			{
 				c.SwaggerDoc("v1", new OpenApiInfo {
@@ -48,6 +46,7 @@ namespace DLLS.Comcer.API
 			app.UseRouting();
 
 			app.UseAuthorization();
+			app.UseAuthentication();
 
 			app.UseEndpoints(endpoints =>
 			{

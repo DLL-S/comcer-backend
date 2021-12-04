@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using DLLS.Comcer.Interfaces.InterfacesDeServicos;
 using DLLS.Comcer.Interfaces.Modelos;
 using Microsoft.AspNetCore.Mvc;
@@ -28,7 +28,7 @@ namespace DLLS.Comcer.API.Controllers
 		}
 
 		[HttpGet("Listar")]
-		public new ActionResult<IList<DtoFuncionario>> Listar()
+		public ActionResult<IList<DtoFuncionario>> Listar()
 		{
 			return base.ListarTudo();
 		}

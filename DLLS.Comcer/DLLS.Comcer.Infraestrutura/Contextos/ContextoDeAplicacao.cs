@@ -2,11 +2,11 @@ using DLLS.Comcer.Dominio.Objetos.Compartilhados;
 using DLLS.Comcer.Dominio.Objetos.Funcionario;
 using Microsoft.EntityFrameworkCore;
 
-namespace DLLS.Comcer.Infraestrutura
+namespace DLLS.Comcer.Infraestrutura.Contextos
 {
-	public class ContextoPadrao : DbContext
+	public class ContextoDeAplicacao : DbContext
 	{
-		public ContextoPadrao(DbContextOptions<ContextoPadrao> opcoes) : base(opcoes)
+		public ContextoDeAplicacao(DbContextOptions<ContextoDeAplicacao> opcoes) : base(opcoes)
 		{
 
 		}

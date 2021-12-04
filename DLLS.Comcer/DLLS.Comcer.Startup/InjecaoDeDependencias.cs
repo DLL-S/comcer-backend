@@ -1,4 +1,5 @@
-using DLLS.Comcer.Infraestrutura;
+using DLLS.Comcer.Dominio.Objetos.Usuario;
+using DLLS.Comcer.Infraestrutura.Contextos;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
 using DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios;
 using DLLS.Comcer.Interfaces.Conversores;
@@ -15,11 +16,10 @@ namespace DLLS.Comcer.Startup
 	{
 		public static void AddResolucaoDeDependencias(this IServiceCollection servicos, IConfiguration configuracao)
 		{
-			servicos.AddResolucaoDeConversores();
-			servicos.AddResolucaoDeAddResolucaoDeIdentidade(configuracao);
-			servicos.AddResolucaoDeBancoDeDados(configuracao);
-			servicos.AddResolucaoDeServicos();
-
+			AddResolucaoDeBancoDeDados(servicos, configuracao);
+			AddResolucaoDeAddResolucaoDeIdentidade(servicos, configuracao);
+			AddResolucaoDeServicos(servicos);
+			AddResolucaoDeConversores(servicos);
 		}
 
 		/// <summary>
@@ -27,45 +27,41 @@ namespace DLLS.Comcer.Startup
 		/// </summary>
 		/// <param name="servicos">A <see cref="IServiceCollection"/> da aplicação.</param>
 		/// <param name="configuracao">A <see cref="IConfiguration"/> da aplicação.</param>
-		private static void AddResolucaoDeAddResolucaoDeIdentidade(this IServiceCollection servicos, IConfiguration configuracao)
+		private static void AddResolucaoDeBancoDeDados(IServiceCollection servicos, IConfiguration configuracao)
 		{
-			//servicos.AddDbContext<ContextoPadrao>(options => options.UseNpgsql(configuracao.GetConnectionString("DefaultConnection")));
-			//servicos.AddIdentityCore<Usuario>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ContextoPadrao>();
-		}
-
-		/// <summary>
-		/// Método de extênsão para a configuração de serviços da aplicação.
-		/// </summary>
-		/// <param name="servicos">A <see cref="IServiceCollection"/> da aplicação.</param>
-		/// <param name="configuracao">A <see cref="IConfiguration"/> da aplicação.</param>
-		private static void AddResolucaoDeBancoDeDados(this IServiceCollection servicos, IConfiguration configuracao)
-		{
-			servicos.AddDbContext<ContextoPadrao>(options => options.UseNpgsql(configuracao.GetConnectionString("DefaultConnection")));
+			servicos.AddDbContext<ContextoDeAplicacao>(options => options.UseNpgsql(configuracao.GetConnectionString("DefaultConnection")));
 
 			servicos.AddTransient<IRepositorioFuncionario, RepositorioFuncionario>();
 			servicos.AddTransient(typeof(IRepositorioObjetoComIdNumerico<>), typeof(RepositorioObjetoComIdNumerico<>));
-			//servicos.AddTransient(typeof(IRepositorioGenerico<>), typeof(RepositorioGenerico<>));
 		}
 
 		/// <summary>
 		/// Método de extênsão para a configuração de serviços da aplicação.
 		/// </summary>
 		/// <param name="servicos">A <see cref="IServiceCollection"/> da aplicação.</param>
-		private static void AddResolucaoDeServicos(this IServiceCollection servicos)
+		/// <param name="configuracao">A <see cref="IConfiguration"/> da aplicação.</param>
+		private static void AddResolucaoDeAddResolucaoDeIdentidade(IServiceCollection servicos, IConfiguration configuracao)
+		{
+			servicos.AddDbContext<ContextoDeIdentidade>(options => options.UseNpgsql(configuracao.GetConnectionString("DefaultConnection")));
+			servicos.AddIdentityCore<Usuario>(options => options.SignIn.RequireConfirmedEmail = true).AddEntityFrameworkStores<ContextoDeIdentidade>();
+		}
+
+		/// <summary>
+		/// Método de extênsão para a configuração de serviços da aplicação.
+		/// </summary>
+		/// <param name="servicos">A <see cref="IServiceCollection"/> da aplicação.</param>
+		private static void AddResolucaoDeServicos(IServiceCollection servicos)
 		{
 			servicos.AddTransient<IServicoDeFuncionario, ServicoDeFuncionarioImpl>();
-			//servicos.AddTransient(typeof(IServicoPadrao<>), typeof(ServicoPadraoImpl<,>));
 		}
 
 		/// <summary>
 		/// Método de extênsão para a configuração de serviços da aplicação.
 		/// </summary>
 		/// <param name="servicos">A <see cref="IServiceCollection"/> da aplicação.</param>
-		private static void AddResolucaoDeConversores(this IServiceCollection servicos)
+		private static void AddResolucaoDeConversores(IServiceCollection servicos)
 		{
 			servicos.AddTransient<IConversorFuncionario, ConversorFuncionario>();
-			servicos.AddTransient(typeof(IConversorPadrao<,>), typeof(ConversorPadrao<,>));
-			//servicos.AddTransient(typeof(IServicoPadrao<>), typeof(ServicoPadraoImpl<,>));
 		}
 	}
 }

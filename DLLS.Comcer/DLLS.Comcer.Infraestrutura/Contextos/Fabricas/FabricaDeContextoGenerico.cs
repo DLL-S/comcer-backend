@@ -1,14 +1,24 @@
 using System;
 using System.IO;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
-namespace DLLS.Comcer.Infraestrutura
+namespace DLLS.Comcer.Infraestrutura.Contextos.Fabricas
 {
-	class FabricaDeContexto : IDesignTimeDbContextFactory<ContextoPadrao>
+	abstract class FabricaDeContextoGenerico<T> where T : DbContext
 	{
-		public ContextoPadrao CreateDbContext(string[] args)
+		public T CreateDbContext(string[] args)
+		{
+			string stringDeConexao = ObtenhaStringDeConexao();
+
+			var builder = new DbContextOptionsBuilder<ContextoDeAplicacao>();
+			builder.UseNpgsql(stringDeConexao, opcoes =>
+				opcoes.MigrationsAssembly("DLLS.Comcer.Infraestrutura"));
+
+			return (T)Activator.CreateInstance(typeof(T), new object[] { builder.Options });
+		}
+
+		private static string ObtenhaStringDeConexao()
 		{
 			string ambiente = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
@@ -20,12 +30,7 @@ namespace DLLS.Comcer.Infraestrutura
 				.Build();
 
 			string stringDeConexao = configuracao.GetConnectionString("DefaultConnection");
-
-			var builder = new DbContextOptionsBuilder<ContextoPadrao>();
-			builder.UseNpgsql(stringDeConexao, opcoes =>
-				opcoes.MigrationsAssembly("DLLS.Comcer.Infraestrutura"));
-
-			return new ContextoPadrao(builder.Options);
+			return stringDeConexao;
 		}
 	}
 }

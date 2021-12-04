@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DLLS.Comcer.Dominio.Objetos.Funcionario;
+using DLLS.Comcer.Infraestrutura.Contextos;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
 using DLLS.Comcer.Utilitarios.Enumeradores;
 
@@ -12,7 +13,7 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 		/// Construtor padrão.
 		/// </summary>
 		/// <param name="contexto">O contexto da aplicação (via injeção de dependência).</param>
-		public RepositorioFuncionario(ContextoPadrao contexto)
+		public RepositorioFuncionario(ContextoDeAplicacao contexto)
 			: base(contexto) { }
 
 		public Funcionario AlterneAtivacao(long codigo)
