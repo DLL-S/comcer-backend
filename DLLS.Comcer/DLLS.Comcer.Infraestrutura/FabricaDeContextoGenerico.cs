@@ -3,9 +3,9 @@ using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace DLLS.Comcer.Infraestrutura.Contextos.Fabricas
+namespace DLLS.Comcer.Infraestrutura
 {
-	abstract class FabricaDeContextoGenerico<T> where T : DbContext
+	internal abstract class FabricaDeContextoGenerico<T> where T : DbContext
 	{
 		public T CreateDbContext(string[] args)
 		{

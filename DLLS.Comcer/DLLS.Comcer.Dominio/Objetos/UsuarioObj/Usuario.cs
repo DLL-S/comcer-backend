@@ -1,0 +1,11 @@
+
+using DLLS.Comcer.Dominio.Objetos.FuncionarioObj;
+using Microsoft.AspNetCore.Identity;
+
+namespace DLLS.Comcer.Dominio.Objetos.UsuarioObj
+{
+	public class Usuario : IdentityUser<int>
+	{
+		public Funcionario Funcionario { get; set; }
+	}
+}

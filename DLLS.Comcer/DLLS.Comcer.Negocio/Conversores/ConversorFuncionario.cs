@@ -1,4 +1,4 @@
-﻿using DLLS.Comcer.Dominio.Objetos.Funcionario;
+using DLLS.Comcer.Dominio.Objetos.FuncionarioObj;
 using DLLS.Comcer.Interfaces.Conversores;
 using DLLS.Comcer.Interfaces.Modelos;
 

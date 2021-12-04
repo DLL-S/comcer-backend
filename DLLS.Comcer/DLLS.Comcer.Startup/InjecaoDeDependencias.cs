@@ -1,5 +1,5 @@
-using DLLS.Comcer.Dominio.Objetos.Usuario;
-using DLLS.Comcer.Infraestrutura.Contextos;
+using DLLS.Comcer.Dominio.Objetos.UsuarioObj;
+using DLLS.Comcer.Infraestrutura;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
 using DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios;
 using DLLS.Comcer.Interfaces.Conversores;
@@ -17,7 +17,7 @@ namespace DLLS.Comcer.Startup
 		public static void AddResolucaoDeDependencias(this IServiceCollection servicos, IConfiguration configuracao)
 		{
 			AddResolucaoDeBancoDeDados(servicos, configuracao);
-			AddResolucaoDeAddResolucaoDeIdentidade(servicos, configuracao);
+			AddResolucaoDeAddResolucaoDeIdentidade(servicos);
 			AddResolucaoDeServicos(servicos);
 			AddResolucaoDeConversores(servicos);
 		}
@@ -40,10 +40,9 @@ namespace DLLS.Comcer.Startup
 		/// </summary>
 		/// <param name="servicos">A <see cref="IServiceCollection"/> da aplicação.</param>
 		/// <param name="configuracao">A <see cref="IConfiguration"/> da aplicação.</param>
-		private static void AddResolucaoDeAddResolucaoDeIdentidade(IServiceCollection servicos, IConfiguration configuracao)
+		private static void AddResolucaoDeAddResolucaoDeIdentidade(IServiceCollection servicos)
 		{
-			servicos.AddDbContext<ContextoDeIdentidade>(options => options.UseNpgsql(configuracao.GetConnectionString("DefaultConnection")));
-			servicos.AddIdentityCore<Usuario>(options => options.SignIn.RequireConfirmedEmail = true).AddEntityFrameworkStores<ContextoDeIdentidade>();
+			servicos.AddIdentityCore<Usuario>(options => options.SignIn.RequireConfirmedEmail = true).AddEntityFrameworkStores<ContextoDeAplicacao>();
 		}
 
 		/// <summary>

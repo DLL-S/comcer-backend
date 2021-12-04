@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using DLLS.Comcer.Dominio.Objetos.Funcionario;
-using DLLS.Comcer.Infraestrutura.Contextos;
+using DLLS.Comcer.Dominio.Objetos.FuncionarioObj;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
 using DLLS.Comcer.Utilitarios.Enumeradores;
 

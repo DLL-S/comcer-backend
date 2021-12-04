@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using DLLS.Comcer.Dominio.Objetos.Compartilhados;
-using DLLS.Comcer.Dominio.Objetos.Funcionario;
+using DLLS.Comcer.Dominio.Objetos.FuncionarioObj;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
 using DLLS.Comcer.Interfaces.Conversores;
 using DLLS.Comcer.Interfaces.InterfacesDeServicos;

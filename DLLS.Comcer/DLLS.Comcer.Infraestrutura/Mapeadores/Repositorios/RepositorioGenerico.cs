@@ -1,5 +1,4 @@
 using DLLS.Comcer.Dominio.Objetos.Compartilhados;
-using DLLS.Comcer.Infraestrutura.Contextos;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
 using Microsoft.EntityFrameworkCore;
 

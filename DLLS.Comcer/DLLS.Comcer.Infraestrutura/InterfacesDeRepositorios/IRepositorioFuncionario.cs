@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using DLLS.Comcer.Dominio.Objetos.Funcionario;
+using DLLS.Comcer.Dominio.Objetos.FuncionarioObj;
 
 namespace DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios
 {

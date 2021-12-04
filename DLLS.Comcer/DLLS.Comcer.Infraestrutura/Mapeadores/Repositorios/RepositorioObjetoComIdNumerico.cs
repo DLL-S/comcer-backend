@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using DLLS.Comcer.Dominio.Objetos.Compartilhados;
-using DLLS.Comcer.Infraestrutura.Contextos;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
 
 namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios

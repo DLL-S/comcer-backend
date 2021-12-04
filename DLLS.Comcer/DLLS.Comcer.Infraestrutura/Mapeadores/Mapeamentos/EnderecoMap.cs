@@ -7,6 +7,7 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos
 	internal class EnderecoMap : IEntityTypeConfiguration<Endereco>
 	{
 		private const string NOME_TABELA = "ENDERECOS";
+
 		public void Configure(EntityTypeBuilder<Endereco> builder)
 		{
 			builder.ToTable(NOME_TABELA);
@@ -15,11 +16,7 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos
 			#region ID
 
 			builder.Property(x => x.Id)
-				 .HasColumnName("ID")
-				 .HasColumnType("SERIAL")
-				 .UseIdentityAlwaysColumn()
-				 .ValueGeneratedOnAdd()
-				 .IsRequired();
+				 .HasColumnName("ID");
 
 			builder.HasIndex(x => x.Id)
 				 .HasDatabaseName("IDX_IDENDERECO")
@@ -31,7 +28,8 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos
 
 			builder.Property(x => x.Cep)
 				 .HasColumnName("CEP")
-				 .HasColumnType("TEXT");
+				 .HasColumnType("TEXT")
+				 .HasMaxLength(Endereco.TAMANHO_MAXIMO_CEP);
 
 			#endregion
 
@@ -39,7 +37,8 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos
 
 			builder.Property(x => x.Cidade)
 				 .HasColumnName("CIDADE")
-				 .HasColumnType("TEXT");
+				 .HasColumnType("TEXT")
+				 .HasMaxLength(Endereco.TAMANHO_MAXIMO_CIDADE); ;
 
 			#endregion
 
@@ -47,7 +46,8 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos
 
 			builder.Property(x => x.Complemento)
 				 .HasColumnName("COMPLEMENTO")
-				 .HasColumnType("TEXT");
+				 .HasColumnType("TEXT")
+				 .HasMaxLength(Endereco.TAMANHO_MAXIMO_COMPLEMENTO);
 
 			#endregion
 
@@ -55,7 +55,8 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos
 
 			builder.Property(x => x.Estado)
 				 .HasColumnName("ESTADO")
-				 .HasColumnType("TEXT");
+				 .HasColumnType("TEXT")
+				 .HasMaxLength(Endereco.TAMANHO_MAXIMO_ESTADO);
 
 			#endregion
 
@@ -72,7 +73,8 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos
 
 			builder.Property(x => x.Rua)
 				 .HasColumnName("RUA")
-				 .HasColumnType("TEXT");
+				 .HasColumnType("TEXT")
+				 .HasMaxLength(Endereco.TAMANHO_MAXIMO_RUA);
 
 			#endregion
 
@@ -80,7 +82,8 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos
 
 			builder.Property(x => x.Bairro)
 				 .HasColumnName("BAIRRO")
-				 .HasColumnType("TEXT");
+				 .HasColumnType("TEXT")
+				 .HasMaxLength(Endereco.TAMANHO_MAXIMO_BAIRRO);
 
 			#endregion
 		}
