@@ -1,5 +1,5 @@
 using System;
-using DLLS.Comcer.Dominio.Objetos.UsuarioObj;
+using DLLS.Comcer.Dominio.Objetos.IdentityObj;
 using DLLS.Comcer.Infraestrutura;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
 using DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios;
@@ -52,7 +52,7 @@ namespace DLLS.Comcer.Startup
 		/// <param name="configuracao">A <see cref="IConfiguration"/> da aplicação.</param>
 		private static void AddResolucaoDeAddResolucaoDeIdentidade(IServiceCollection servicos)
 		{
-			servicos.AddIdentity<Usuario, IdentityRole<int>>(options =>
+			servicos.AddIdentity<Usuario, Role>(options =>
 			{
 				// SENHA
 				options.Password.RequiredLength = 8;

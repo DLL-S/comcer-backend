@@ -1,5 +1,5 @@
 using DLLS.Comcer.Dominio.Objetos.FuncionarioObj;
-using DLLS.Comcer.Dominio.Objetos.UsuarioObj;
+using DLLS.Comcer.Dominio.Objetos.IdentityObj;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

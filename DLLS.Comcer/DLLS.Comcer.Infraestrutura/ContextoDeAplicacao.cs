@@ -1,9 +1,8 @@
 using DLLS.Comcer.Dominio.Objetos.Compartilhados;
 using DLLS.Comcer.Dominio.Objetos.FuncionarioObj;
-using DLLS.Comcer.Dominio.Objetos.UsuarioObj;
+using DLLS.Comcer.Dominio.Objetos.IdentityObj;
 using DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos;
 using DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos.Identidade;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,7 +11,7 @@ namespace DLLS.Comcer.Infraestrutura
 	/// <summary>
 	/// Contexto padrão da aplicação.
 	/// </summary>
-	public class ContextoDeAplicacao : IdentityDbContext<Usuario, IdentityRole<int>, int>
+	public class ContextoDeAplicacao : IdentityDbContext<Usuario, Role, int>
 	{
 		/// <summary>
 		/// Inicia uma nova instância do contexto.

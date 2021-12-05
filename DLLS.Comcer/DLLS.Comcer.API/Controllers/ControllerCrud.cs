@@ -31,7 +31,7 @@ namespace DLLS.Comcer.API.Controllers
 			[FromQuery] string termoDeBusca)
 		{
 			var lista = _servico.Liste(pagina, quantidade, ordem, termoDeBusca);
-			return lista == null || lista.Count == 0 ? NotFound() : Ok(lista);
+			return lista == null || lista.Count == 0 ? NoContent() : Ok(lista);
 		}
 
 		[ApiExplorerSettings(IgnoreApi = true)]

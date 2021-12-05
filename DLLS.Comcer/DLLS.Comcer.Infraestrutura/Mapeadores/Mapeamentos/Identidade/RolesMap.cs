@@ -1,12 +1,13 @@
+using DLLS.Comcer.Dominio.Objetos.IdentityObj;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos.Identidade
 {
-	internal class RolesMap : IEntityTypeConfiguration<IdentityRole<int>>
+	internal class RolesMap : IEntityTypeConfiguration<Role>
 	{
-		public void Configure(EntityTypeBuilder<IdentityRole<int>> builder)
+		public void Configure(EntityTypeBuilder<Role> builder)
 		{
 			builder.ToTable("IDT_ROLES");
 
