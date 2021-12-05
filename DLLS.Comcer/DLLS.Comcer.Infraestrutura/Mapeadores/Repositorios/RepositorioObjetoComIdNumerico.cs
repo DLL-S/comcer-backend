@@ -1,11 +1,13 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using DLLS.Comcer.Dominio.Objetos.Compartilhados;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
+using DLLS.Comcer.Utilitarios.Enumeradores;
 
 namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 {
-	public class RepositorioObjetoComIdNumerico<TObjeto> : RepositorioGenerico<TObjeto>, IRepositorioObjetoComIdNumerico<TObjeto>
+	public abstract class RepositorioObjetoComIdNumerico<TObjeto> : RepositorioGenerico<TObjeto>, IRepositorioObjetoComIdNumerico<TObjeto>
 		 where TObjeto : ObjetoComIdNumerico
 	{
 		/// <summary>
@@ -32,7 +34,7 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 		/// </summary>
 		/// <param name="Codigo">O código do objeto.</param>
 		/// <returns>O objeto da base, ou null caso não exista.</returns>
-		public virtual TObjeto Consulte(long Codigo)
+		public virtual TObjeto Consulte(int Codigo)
 		{
 			return Persistencia.Where(x => x.Id == Codigo).FirstOrDefault();
 		}
@@ -41,31 +43,31 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 		/// Consulta todos os registros no contexto definido.
 		/// </summary>
 		/// <returns>Uma lista com os registros.</returns>
-		public virtual IList<TObjeto> ConsulteLista()
+		public virtual IList<TObjeto> Liste()
 		{
 			return Persistencia.OrderBy(x => x.Id).ToList();
 		}
 
 		/// <summary>
-		/// Consulta uma página de registros no contexto definido.
+		/// Retorna uma lista com os itens de acordo com os filtros passados.
 		/// </summary>
-		/// <returns>Uma lista com os registros.</returns>
-		public virtual IList<TObjeto> ConsulteLista(int pagina, int quantidade, EnumOrdem ordem)
+		/// <param name="pagina">O indice do primeiro item a ser retornado (Padrão: 1).</param>
+		/// <param name="quantidade">A quantidade de itens a ser retornada (Padrão: 50).</param>
+		/// <param name="ordem">A ordem em que os itens deverão ser retornados (Padrã: ASC).</param>
+		/// <param name="termoDeBusca">O termo de busca para a pesquisa.</param>
+		/// <returns>Uma lista de Objetos com os registros.</returns>
+		public virtual IList<TObjeto> Liste(int pagina, int quantidade, EnumOrdem ordem, string termoDeBusca)
 		{
-			return ordem == EnumOrdem.ASC
-				? Persistencia.OrderBy(x => x.Id).Skip(pagina).Take(quantidade).ToList()
-				: Persistencia.OrderByDescending(x => x.Id).Skip(pagina).Take(quantidade).ToList();
-		}
+			pagina = pagina < 1 ? 1 : pagina;
+			quantidade = quantidade < 1 ? 50 : quantidade;
+			ordem = !Enum.IsDefined(ordem) ? EnumOrdem.ASC : ordem;
 
-		/// <summary>
-		/// Consulta uma lista parcial dos registros no contexto definido.
-		/// </summary>
-		/// <param name="qtdeAPular">A quantidade de registros a ser pulada a partir do primeiro.</param>
-		/// <param name="qtdeARetornar">A quantidade de registros a ser retornada.</param>
-		/// <returns>Uma lista com os registros.</returns>
-		public virtual IList<TObjeto> ConsulteLista(int qtdeAPular, int qtdeARetornar)
-		{
-			return Persistencia.OrderBy(x => x.Id).Skip(qtdeAPular).Take(qtdeARetornar).ToList();
+			if(string.IsNullOrEmpty(termoDeBusca))
+				return ordem == EnumOrdem.ASC
+					? Persistencia.OrderBy(x => x.Id).Skip(pagina - 1).Take(quantidade).ToList()
+					: Persistencia.OrderByDescending(x => x.Id).Skip(pagina - 1).Take(quantidade).ToList();
+			else
+				return ListeComTermoDeBusca(pagina, quantidade, ordem, termoDeBusca);
 		}
 
 		/// <summary>
@@ -84,10 +86,20 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 		/// Exclui um registro no contexto.
 		/// </summary>
 		/// <param name="objeto">O objeto a ser excluído.</param>
-		public virtual void Exclua(long objeto)
+		public virtual void Exclua(int objeto)
 		{
 			Persistencia.Remove(Consulte(objeto));
 			Contexto.SaveChanges();
 		}
+
+		/// <summary>
+		/// Retorna uma lista com os itens de acordo com os filtros passados.
+		/// </summary>
+		/// <param name="pagina">O indice do primeiro item a ser retornado (Padrão: 1).</param>
+		/// <param name="quantidade">A quantidade de itens a ser retornada (Padrão: 50).</param>
+		/// <param name="ordem">A ordem em que os itens deverão ser retornados (Padrã: ASC).</param>
+		/// <param name="termoDeBusca">O termo de busca para a pesquisa.</param>
+		/// <returns>Uma lista de Objetos com os registros.</returns>
+		protected abstract IList<TObjeto> ListeComTermoDeBusca(int pagina, int quantidade, EnumOrdem ordem, string termoDeBusca);
 	}
 }

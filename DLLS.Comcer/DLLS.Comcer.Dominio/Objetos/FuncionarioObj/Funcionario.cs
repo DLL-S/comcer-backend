@@ -11,12 +11,12 @@ namespace DLLS.Comcer.Dominio.Objetos.FuncionarioObj
 		public const int TAMANHO_MAXIMO_CPF = 14;
 		public const int TAMANHO_MAXIMO_CELULAR = 16;
 
-		public string Nome { get; set; }
-		public string CPF { get; set; }
-		public DateTime DataNascimento { get; set; }
-		public string Email { get; set; }
-		public string Celular { get; set; }
-		public Endereco Endereco { get; set; }
-		public EnumSituacao Situacao { get; set; }
+		public virtual string Nome { get; set; }
+		public virtual string CPF { get; set; }
+		public virtual DateTime DataNascimento { get; set; }
+		public virtual string Email { get; set; }
+		public virtual string Celular { get; set; }
+		public virtual Endereco Endereco { get; set; }
+		public virtual EnumSituacao Situacao { get; set; }
 	}
 }

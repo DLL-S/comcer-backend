@@ -1,67 +1,72 @@
 using System.Collections.Generic;
 using DLLS.Comcer.Interfaces.InterfacesDeServicos;
 using DLLS.Comcer.Interfaces.Modelos;
+using DLLS.Comcer.Utilitarios.Enumeradores;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DLLS.Comcer.API.Controllers
 {
-	[Route("api/[controller]")]
 	[ApiController]
+	[Route("Api/[controller]")]
 	[ApiExplorerSettings(IgnoreApi = false)]
-	public class FuncionariosController : BaseController<DtoFuncionario>
+	public class FuncionariosController : ControllerCrud<DtoFuncionario>
 	{
 		public FuncionariosController(IServicoDeFuncionario servico)
 			: base(servico)
-		{
-
-		}
+		{ }
 
 		private IServicoDeFuncionario Servico()
 		{
 			return (IServicoDeFuncionario)_servico;
 		}
 
-		[HttpGet("Consultar/{codigo}")]
-		public new ActionResult<DtoFuncionario> Consultar(long codigo)
+		#region CONSULTAS
+
+		[HttpGet("{codigo}")]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status404NotFound)]
+		public new ActionResult<DtoFuncionario> Consultar(int codigo)
 		{
 			return base.Consultar(codigo);
 		}
 
-		[HttpGet("Listar")]
-		public ActionResult<IList<DtoFuncionario>> Listar()
+		[HttpGet()]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status204NoContent)]
+		public new ActionResult<IList<DtoFuncionario>> Listar(
+			[FromQuery] int pagina,
+			[FromQuery] int quantidade,
+			[FromQuery] EnumOrdem ordem,
+			[FromQuery] string termoDeBusca)
 		{
-			return base.ListarTudo();
+			return base.Listar(pagina, quantidade, ordem, termoDeBusca);
 		}
 
-		[HttpPut("Atualizar")]
-		public new ActionResult<DtoFuncionario> Atualizar(DtoFuncionario obj)
-		{
-			return base.Atualizar(obj);
-		}
+		#endregion
 
-		[HttpPost("Cadastrar")]
-		public new ActionResult<DtoFuncionario> Cadastrar(DtoFuncionario obj)
+		[HttpPost()]
+		[ProducesResponseType(StatusCodes.Status201Created)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		public new ActionResult<DtoFuncionario> Cadastrar([FromBody] DtoFuncionario obj)
 		{
 			return base.Cadastrar(obj);
 		}
 
-		[HttpPatch("AlternarAtivacao/{codigo}")]
-		public ActionResult<DtoFuncionario> AlternarAtivacao(long codigo)
+		[HttpPut()]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		public new ActionResult<DtoFuncionario> Atualizar([FromBody] DtoFuncionario obj)
 		{
-			return Servico().AlterneAtivacao(codigo);
+			return base.Atualizar(obj);
 		}
 
-		[HttpGet("Consultar")]
-		public ActionResult<IList<DtoFuncionario>> Consultar(string termoDeBusca, int quantidade, EnumOrdem ordem)
+
+		[HttpPatch("{codigo}/Situacao")]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		public ActionResult<EnumSituacao> AlternarSituacao(int codigo)
 		{
-			var list = Servico().Consulte(termoDeBusca, quantidade, ordem);
-
-			if (list == null || list.Count == 0)
-			{
-				return new NoContentResult();
-			}
-
-			return Ok(list);
+			return Ok(Servico().AlterneSituacao(codigo));
 		}
 	}
 }

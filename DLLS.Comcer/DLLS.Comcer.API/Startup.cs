@@ -42,11 +42,10 @@ namespace DLLS.Comcer.API
 				app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DLLS.Comcer.API v1"));
 			}
 			app.UseHttpsRedirection();
-
 			app.UseRouting();
 
-			app.UseAuthorization();
 			app.UseAuthentication();
+			app.UseAuthorization();
 
 			app.UseEndpoints(endpoints =>
 			{

@@ -9,12 +9,12 @@ namespace DLLS.Comcer.Dominio.Objetos.Compartilhados
 		public const int TAMANHO_MAXIMO_RUA = 15;
 		public const int TAMANHO_MAXIMO_COMPLEMENTO = 60;
 
-		public string Cep { get; set; }
-		public string Cidade { get; set; }
-		public string Estado { get; set; }
-		public string Bairro { get; set; }
-		public string Rua { get; set; }
-		public int Numero { get; set; }
-		public string Complemento { get; set; }
+		public virtual string Cep { get; set; }
+		public virtual string Cidade { get; set; }
+		public virtual string Estado { get; set; }
+		public virtual string Bairro { get; set; }
+		public virtual string Rua { get; set; }
+		public virtual int Numero { get; set; }
+		public virtual string Complemento { get; set; }
 	}
 }

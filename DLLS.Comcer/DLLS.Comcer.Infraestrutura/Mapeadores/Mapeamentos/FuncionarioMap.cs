@@ -83,6 +83,9 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos
 				.HasForeignKey("IDENDERECO")
 				.OnDelete(DeleteBehavior.Cascade);
 
+			builder.Navigation(x => x.Endereco)
+				.AutoInclude();
+
 			#endregion
 
 			#region SITUACAO

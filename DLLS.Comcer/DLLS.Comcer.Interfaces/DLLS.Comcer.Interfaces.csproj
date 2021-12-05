@@ -1,11 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\DLLS.Comcer.Dominio\DLLS.Comcer.Dominio.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\DLLS.Comcer.Dominio\DLLS.Comcer.Dominio.csproj">
+			<PrivateAssets>all</PrivateAssets>
+		</ProjectReference>
+		<ProjectReference Include="..\DLLS.Comcer.Utilitarios\DLLS.Comcer.Utilitarios.csproj">
+			<PrivateAssets>all</PrivateAssets>
+		</ProjectReference>
+	</ItemGroup>
 
 </Project>

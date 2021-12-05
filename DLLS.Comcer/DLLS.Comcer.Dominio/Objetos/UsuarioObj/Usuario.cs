@@ -6,6 +6,6 @@ namespace DLLS.Comcer.Dominio.Objetos.UsuarioObj
 {
 	public class Usuario : IdentityUser<int>
 	{
-		public Funcionario Funcionario { get; set; }
+		public virtual Funcionario Funcionario { get; set; }
 	}
 }

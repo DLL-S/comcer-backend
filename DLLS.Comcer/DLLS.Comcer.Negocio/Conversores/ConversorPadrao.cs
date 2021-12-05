@@ -85,7 +85,7 @@ namespace DLLS.Comcer.Negocio.Conversores
 						}
 						catch
 						{
-							// n„o d· erro quando for tipo diferente.
+							// n√£o d√° erro quando for tipo diferente.
 						}
 					}
 				}

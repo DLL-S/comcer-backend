@@ -1,3 +1,4 @@
+using System;
 using DLLS.Comcer.Dominio.Objetos.UsuarioObj;
 using DLLS.Comcer.Infraestrutura;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
@@ -6,6 +7,7 @@ using DLLS.Comcer.Interfaces.Conversores;
 using DLLS.Comcer.Interfaces.InterfacesDeServicos;
 using DLLS.Comcer.Negocio.Conversores;
 using DLLS.Comcer.Negocio.Servicos;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -41,7 +43,6 @@ namespace DLLS.Comcer.Startup
 			servicos.AddDbContext<ContextoDeAplicacao>(options => options.UseNpgsql(configuracao.GetConnectionString("DefaultConnection")));
 
 			servicos.AddTransient<IRepositorioFuncionario, RepositorioFuncionario>();
-			servicos.AddTransient(typeof(IRepositorioObjetoComIdNumerico<>), typeof(RepositorioObjetoComIdNumerico<>));
 		}
 
 		/// <summary>
@@ -51,7 +52,28 @@ namespace DLLS.Comcer.Startup
 		/// <param name="configuracao">A <see cref="IConfiguration"/> da aplicação.</param>
 		private static void AddResolucaoDeAddResolucaoDeIdentidade(IServiceCollection servicos)
 		{
-			servicos.AddIdentityCore<Usuario>(options => options.SignIn.RequireConfirmedEmail = true).AddEntityFrameworkStores<ContextoDeAplicacao>();
+			servicos.AddIdentity<Usuario, IdentityRole<int>>(options =>
+			{
+				// SENHA
+				options.Password.RequiredLength = 8;
+				options.Password.RequireNonAlphanumeric = false;
+				options.Password.RequireDigit = true;
+				options.Password.RequireLowercase = true;
+				options.Password.RequireUppercase = true;
+
+				// LOCKOUT
+				options.Lockout.AllowedForNewUsers = true;
+				options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+				options.Lockout.MaxFailedAccessAttempts = 5;
+
+				// USUARIO
+				options.User.RequireUniqueEmail = true;
+
+				// SIGNIN
+				options.SignIn.RequireConfirmedEmail = false;
+			})
+				.AddEntityFrameworkStores<ContextoDeAplicacao>()
+				.AddDefaultTokenProviders();
 		}
 
 		/// <summary>

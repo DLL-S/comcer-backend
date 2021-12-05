@@ -3,9 +3,9 @@ using DLLS.Comcer.Dominio.Modelos;
 
 namespace DLLS.Comcer.Interfaces.Modelos
 {
-	public class DtoBase
+	public abstract class DtoBase
 	{
-		public long Id { get; set; }
+		public int Id { get; set; }
 
 		public IList<MensagemDeValidacao> Validacoes { get; set; }
 

@@ -66,6 +66,9 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos.Identidade
 				.HasForeignKey("IDFUNCIONARIO")
 				.IsRequired();
 
+			builder.Navigation(x => x.Funcionario)
+				.AutoInclude();
+
 			#endregion
 
 			#region PROPRIEDADES DE CONFIGURACAO

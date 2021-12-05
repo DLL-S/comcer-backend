@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DLLS.Comcer.Infraestrutura.Migrations
 {
     [DbContext(typeof(ContextoDeAplicacao))]
-    [Migration("20211205005415_SetupFuncionariosETabelasDoIdentity")]
+    [Migration("20211205192647_SetupFuncionariosETabelasDoIdentity")]
     partial class SetupFuncionariosETabelasDoIdentity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -1,10 +1,9 @@
-using System.Collections.Generic;
-using DLLS.Comcer.Dominio.Objetos.Compartilhados;
 using DLLS.Comcer.Dominio.Objetos.FuncionarioObj;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
 using DLLS.Comcer.Interfaces.Conversores;
 using DLLS.Comcer.Interfaces.InterfacesDeServicos;
 using DLLS.Comcer.Interfaces.Modelos;
+using DLLS.Comcer.Utilitarios.Enumeradores;
 
 namespace DLLS.Comcer.Negocio.Servicos
 {
@@ -19,19 +18,14 @@ namespace DLLS.Comcer.Negocio.Servicos
 			return (IRepositorioFuncionario)_repositorio;
 		}
 
-		public DtoFuncionario AlterneAtivacao(long codigo)
+		/// <summary>
+		/// Altera a situacao de um Funcionario.
+		/// </summary>
+		/// <param name="codigo">O código do funcionário.</param>
+		/// <returns>O Dto do funcionário.</returns>
+		public EnumSituacao AlterneSituacao(int codigo)
 		{
-			var objeto = Repositorio().AlterneAtivacao(codigo);
-			var dtoRetorno = _conversor.Converta(objeto);
-			CentralDeValidacoes.inserirRetornoValidacao(ref dtoRetorno, objeto, (a) => new List<InconsistenciaDeValidacao>());
-			return dtoRetorno;
-		}
-
-		public IList<DtoFuncionario> Consulte(string termoDeBusca, int quantidade, EnumOrdem ordem)
-		{
-			var lista = _conversor.Converta(Repositorio().Consulte(termoDeBusca, quantidade, ordem));
-
-			return lista;
+			return Repositorio().AlterneAtivacao(codigo);
 		}
 	}
 }

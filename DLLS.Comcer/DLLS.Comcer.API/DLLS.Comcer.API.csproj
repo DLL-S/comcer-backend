@@ -1,39 +1,48 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-	 <TargetFramework>net5.0</TargetFramework>
-	 <UserSecretsId>061bc5ad-ac5a-4d7c-b963-025c94e125db</UserSecretsId>
-	 <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<UserSecretsId>061bc5ad-ac5a-4d7c-b963-025c94e125db</UserSecretsId>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+	</PropertyGroup>
 
-  <ItemGroup>
-	 <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.11.1" />
-	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.12">
-		  <PrivateAssets>all</PrivateAssets>
-		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-	  </PackageReference>
-	 <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.12">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+	</ItemGroup>
 
-  <ItemGroup>
-	 <ProjectReference Include="..\DLLS.Comcer.Interfaces\DLLS.Comcer.Interfaces.csproj" />
-	 <ProjectReference Include="..\DLLS.Comcer.Startup\DLLS.Comcer.Startup.csproj" />
-	 <ProjectReference Include="..\DLLS.Comcer.Utilitarios\DLLS.Comcer.Utilitarios.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\DLLS.Comcer.Interfaces\DLLS.Comcer.Interfaces.csproj" >
+			<PrivateAssets>all</PrivateAssets>
+		</ProjectReference>
+		<ProjectReference Include="..\DLLS.Comcer.Startup\DLLS.Comcer.Startup.csproj">
+			<PrivateAssets>all</PrivateAssets>
+		</ProjectReference>
+		<ProjectReference Include="..\DLLS.Comcer.Utilitarios\DLLS.Comcer.Utilitarios.csproj">
+			<PrivateAssets>all</PrivateAssets>
+		</ProjectReference>
+	</ItemGroup>
 
-  <ItemGroup>
-	 <Content Update="appsettings.Development.json">
-		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-		<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-	 </Content>
-	 <Content Update="appsettings.json">
-		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-		<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-	 </Content>
-  </ItemGroup>
+	<ItemGroup>
+		<Content Update="appsettings.Development.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+		<Content Update="appsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+	</ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+	<ProjectExtensions>
+		<VisualStudio>
+			<UserProperties appsettings_1json__JsonSchema="" />
+		</VisualStudio>
+	</ProjectExtensions>
 
 </Project>
