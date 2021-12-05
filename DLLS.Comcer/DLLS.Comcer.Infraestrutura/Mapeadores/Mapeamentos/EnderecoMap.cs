@@ -29,7 +29,8 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos
 			builder.Property(x => x.Cep)
 				 .HasColumnName("CEP")
 				 .HasColumnType("TEXT")
-				 .HasMaxLength(Endereco.TAMANHO_MAXIMO_CEP);
+				 .HasMaxLength(Endereco.TAMANHO_MAXIMO_CEP)
+				 .IsRequired();
 
 			#endregion
 
@@ -38,7 +39,8 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos
 			builder.Property(x => x.Cidade)
 				 .HasColumnName("CIDADE")
 				 .HasColumnType("TEXT")
-				 .HasMaxLength(Endereco.TAMANHO_MAXIMO_CIDADE); ;
+				 .HasMaxLength(Endereco.TAMANHO_MAXIMO_CIDADE)
+				 .IsRequired();
 
 			#endregion
 
@@ -56,7 +58,8 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos
 			builder.Property(x => x.Estado)
 				 .HasColumnName("ESTADO")
 				 .HasColumnType("TEXT")
-				 .HasMaxLength(Endereco.TAMANHO_MAXIMO_ESTADO);
+				 .HasMaxLength(Endereco.TAMANHO_MAXIMO_ESTADO)
+				 .IsRequired();
 
 			#endregion
 
@@ -64,7 +67,7 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos
 
 			builder.Property(x => x.Numero)
 				 .HasColumnName("NUMERO")
-				 .HasColumnType("NUMERIC")
+				 .HasColumnType("INT")
 				 .IsRequired();
 
 			#endregion
@@ -74,7 +77,8 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos
 			builder.Property(x => x.Rua)
 				 .HasColumnName("RUA")
 				 .HasColumnType("TEXT")
-				 .HasMaxLength(Endereco.TAMANHO_MAXIMO_RUA);
+				 .HasMaxLength(Endereco.TAMANHO_MAXIMO_RUA)
+				 .IsRequired();
 
 			#endregion
 
@@ -83,7 +87,8 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos
 			builder.Property(x => x.Bairro)
 				 .HasColumnName("BAIRRO")
 				 .HasColumnType("TEXT")
-				 .HasMaxLength(Endereco.TAMANHO_MAXIMO_BAIRRO);
+				 .HasMaxLength(Endereco.TAMANHO_MAXIMO_BAIRRO)
+				 .IsRequired();
 
 			#endregion
 		}

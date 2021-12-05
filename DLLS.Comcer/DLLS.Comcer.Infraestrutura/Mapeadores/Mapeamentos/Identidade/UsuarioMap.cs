@@ -40,6 +40,10 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos.Identidade
 			builder.Property(x => x.EmailConfirmed)
 				.HasColumnName("EMAILCONFIRMADO");
 
+			builder.HasIndex(x => x.Email)
+				 .HasDatabaseName("IDX_EMAILUSUARIO")
+				 .IsUnique();
+
 			#endregion
 
 			#region SENHA

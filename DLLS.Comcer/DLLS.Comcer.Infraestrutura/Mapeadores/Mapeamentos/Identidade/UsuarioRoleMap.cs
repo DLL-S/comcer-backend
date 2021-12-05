@@ -14,7 +14,7 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos.Identidade
 				.HasColumnName("IDUSUARIO");
 
 			builder.Property(x => x.RoleId)
-				.HasColumnName("IDROLES");
+				.HasColumnName("IDROLE");
 		}
 	}
 }

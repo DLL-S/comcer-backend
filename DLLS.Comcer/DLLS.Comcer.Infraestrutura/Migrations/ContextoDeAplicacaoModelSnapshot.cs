@@ -28,16 +28,19 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("Bairro")
+                        .IsRequired()
                         .HasMaxLength(60)
                         .HasColumnType("TEXT")
                         .HasColumnName("BAIRRO");
 
                     b.Property<string>("Cep")
+                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("TEXT")
                         .HasColumnName("CEP");
 
                     b.Property<string>("Cidade")
+                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("TEXT")
                         .HasColumnName("CIDADE");
@@ -48,15 +51,17 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                         .HasColumnName("COMPLEMENTO");
 
                     b.Property<string>("Estado")
+                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("TEXT")
                         .HasColumnName("ESTADO");
 
-                    b.Property<decimal>("Numero")
-                        .HasColumnType("NUMERIC")
+                    b.Property<int>("Numero")
+                        .HasColumnType("INT")
                         .HasColumnName("NUMERO");
 
                     b.Property<string>("Rua")
+                        .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("TEXT")
                         .HasColumnName("RUA");
@@ -108,11 +113,16 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("NOME");
 
-                    b.Property<decimal>("Situacao")
-                        .HasColumnType("NUMERIC")
+                    b.Property<string>("Situacao")
+                        .IsRequired()
+                        .HasColumnType("text")
                         .HasColumnName("SITUACAO");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasDatabaseName("IDX_EMAILFUNCIONARIO");
 
                     b.HasIndex("IDENDERECO");
 
@@ -189,6 +199,10 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                         .HasColumnName("NOMEDEUSUARIO");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasDatabaseName("IDX_EMAILUSUARIO");
 
                     b.HasIndex("IDFUNCIONARIO");
 
@@ -321,7 +335,7 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
 
                     b.Property<int>("RoleId")
                         .HasColumnType("integer")
-                        .HasColumnName("IDROLES");
+                        .HasColumnName("IDROLE");
 
                     b.HasKey("UserId", "RoleId");
 

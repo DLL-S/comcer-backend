@@ -60,6 +60,10 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos
 				 .HasMaxLength(Funcionario.TAMANHO_MAXIMO_EMAIL)
 				 .IsRequired();
 
+			builder.HasIndex(x => x.Email)
+				 .HasDatabaseName("IDX_EMAILFUNCIONARIO")
+				 .IsUnique();
+
 			#endregion
 
 			#region NOME
@@ -85,7 +89,7 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos
 
 			builder.Property(x => x.Situacao)
 				 .HasColumnName("SITUACAO")
-				 .HasColumnType("NUMERIC")
+				 .HasConversion<string>()
 				 .IsRequired();
 
 			#endregion

@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DLLS.Comcer.Infraestrutura.Migrations
 {
-    public partial class SetupComFuncionariosETabelasDoIdentity : Migration
+    public partial class SetupFuncionariosETabelasDoIdentity : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,12 +14,12 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                 {
                     ID = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    CEP = table.Column<string>(type: "TEXT", maxLength: 10, nullable: true),
-                    CIDADE = table.Column<string>(type: "TEXT", maxLength: 30, nullable: true),
-                    ESTADO = table.Column<string>(type: "TEXT", maxLength: 30, nullable: true),
-                    BAIRRO = table.Column<string>(type: "TEXT", maxLength: 60, nullable: true),
-                    RUA = table.Column<string>(type: "TEXT", maxLength: 15, nullable: true),
-                    NUMERO = table.Column<decimal>(type: "NUMERIC", nullable: false),
+                    CEP = table.Column<string>(type: "TEXT", maxLength: 10, nullable: false),
+                    CIDADE = table.Column<string>(type: "TEXT", maxLength: 30, nullable: false),
+                    ESTADO = table.Column<string>(type: "TEXT", maxLength: 30, nullable: false),
+                    BAIRRO = table.Column<string>(type: "TEXT", maxLength: 60, nullable: false),
+                    RUA = table.Column<string>(type: "TEXT", maxLength: 15, nullable: false),
+                    NUMERO = table.Column<int>(type: "INT", nullable: false),
                     COMPLEMENTO = table.Column<string>(type: "TEXT", maxLength: 60, nullable: true)
                 },
                 constraints: table =>
@@ -54,7 +54,7 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                     EMAIL = table.Column<string>(type: "TEXT", maxLength: 60, nullable: false),
                     CELULAR = table.Column<string>(type: "TEXT", maxLength: 16, nullable: true),
                     IDENDERECO = table.Column<int>(type: "integer", nullable: true),
-                    SITUACAO = table.Column<decimal>(type: "NUMERIC", nullable: false)
+                    SITUACAO = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -185,14 +185,14 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                 columns: table => new
                 {
                     IDUSUARIO = table.Column<int>(type: "integer", nullable: false),
-                    IDROLES = table.Column<int>(type: "integer", nullable: false)
+                    IDROLE = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_IDT_USUARIOROLES", x => new { x.IDUSUARIO, x.IDROLES });
+                    table.PrimaryKey("PK_IDT_USUARIOROLES", x => new { x.IDUSUARIO, x.IDROLE });
                     table.ForeignKey(
-                        name: "FK_IDT_USUARIOROLES_IDT_ROLES_IDROLES",
-                        column: x => x.IDROLES,
+                        name: "FK_IDT_USUARIOROLES_IDT_ROLES_IDROLE",
+                        column: x => x.IDROLE,
                         principalTable: "IDT_ROLES",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -208,6 +208,12 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                 name: "IDX_IDENDERECO",
                 table: "ENDERECOS",
                 column: "ID",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IDX_EMAILFUNCIONARIO",
+                table: "FUNCIONARIOS",
+                column: "EMAIL",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -243,14 +249,20 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                 column: "IDUSUARIO");
 
             migrationBuilder.CreateIndex(
-                name: "IX_IDT_USUARIOROLES_IDROLES",
+                name: "IX_IDT_USUARIOROLES_IDROLE",
                 table: "IDT_USUARIOROLES",
-                column: "IDROLES");
+                column: "IDROLE");
 
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",
                 table: "IDT_USUARIOS",
                 column: "EMAIL_NORMALIZADO");
+
+            migrationBuilder.CreateIndex(
+                name: "IDX_EMAILUSUARIO",
+                table: "IDT_USUARIOS",
+                column: "EMAIL",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_IDT_USUARIOS_IDFUNCIONARIO",

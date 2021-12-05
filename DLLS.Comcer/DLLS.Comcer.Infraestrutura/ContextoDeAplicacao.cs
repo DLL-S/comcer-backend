@@ -9,8 +9,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DLLS.Comcer.Infraestrutura
 {
+	/// <summary>
+	/// Contexto padrão da aplicação.
+	/// </summary>
 	public class ContextoDeAplicacao : IdentityDbContext<Usuario, IdentityRole<int>, int>
 	{
+		/// <summary>
+		/// Inicia uma nova instância do contexto.
+		/// </summary>
+		/// <param name="opcoes"></param>
 		public ContextoDeAplicacao(DbContextOptions<ContextoDeAplicacao> opcoes) : base(opcoes)
 		{
 		}
@@ -18,6 +25,10 @@ namespace DLLS.Comcer.Infraestrutura
 		public DbSet<Endereco> Enderecos { get; set; }
 		public DbSet<Funcionario> Funcionarios { get; set; }
 
+		/// <summary>
+		/// Define os mapeamentos a serem aplicados durante a criação do modelo para o contexto.
+		/// </summary>
+		/// <param name="builder"></param>
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
 			base.OnModelCreating(builder);

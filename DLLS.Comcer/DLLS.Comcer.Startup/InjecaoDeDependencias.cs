@@ -12,8 +12,17 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace DLLS.Comcer.Startup
 {
+	/// <summary>
+	/// Classe para configuração de resolução de dependências da aplicação.
+	/// </summary>
 	public static class InjecaoDeDependencias
 	{
+		/// <summary>
+		/// Método de extensão para adicionar resolução automática de serviços,
+		/// repositórios, conversores e contextos de banco de dados.
+		/// </summary>
+		/// <param name="servicos">A coleção de serviços da aplicação.</param>
+		/// <param name="configuracao">Parâmetros de configuração da aplicação.</param>
 		public static void AddResolucaoDeDependencias(this IServiceCollection servicos, IConfiguration configuracao)
 		{
 			AddResolucaoDeBancoDeDados(servicos, configuracao);
