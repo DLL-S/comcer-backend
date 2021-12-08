@@ -2,12 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
-using DLLS.Comcer.Interfaces.Conversores;
+using DLLS.Comcer.Dominio.Objetos.Compartilhados;
+using DLLS.Comcer.Interfaces.InterfacesDeConversores;
 using DLLS.Comcer.Interfaces.Modelos;
 
 namespace DLLS.Comcer.Negocio.Conversores
 {
-	public class ConversorPadrao<TObjeto, TDto> : IConversorPadrao<TObjeto, TDto> where TDto : DtoBase
+	public class ConversorPadrao<TObjeto, TDto> : IConversorPadrao<TObjeto, TDto>
+		where TDto : DtoBase
+		where TObjeto : ObjetoComIdNumerico
 	{
 		public virtual TDto Converta(TObjeto objeto)
 		{
@@ -18,19 +21,51 @@ namespace DLLS.Comcer.Negocio.Conversores
 
 			var dto = Copie<TDto, TObjeto>(objeto);
 
-			dto.Sucesso = true;
-			dto.Validacoes = null;
 			return dto;
 		}
 
-		public virtual TObjeto Converta(TDto objeto)
+		public virtual TObjeto Converta(TDto dto)
 		{
-			if (objeto == null)
+			if (dto == null)
 			{
 				return (TObjeto)Activator.CreateInstance(typeof(TObjeto));
 			}
 
-			return Copie<TObjeto, TDto>(objeto);
+			return Copie<TObjeto, TDto>(dto);
+		}
+
+		public virtual DtoSaida<TDto> ConvertaParaDtoSaida(TDto dto)
+		{
+			var dtoSaida = new DtoSaida<TDto> {
+				Resultados = new List<TDto> { dto }
+			};
+
+			dtoSaida.Quantidade = dtoSaida.Resultados.Count;
+
+			return dtoSaida;
+		}
+
+		public virtual DtoSaida<TDto> ConvertaParaDtoSaida(TObjeto objeto)
+		{
+			var dtoConvertido = Converta(objeto);
+			return ConvertaParaDtoSaida(dtoConvertido);
+		}
+
+		public virtual DtoSaida<TDto> ConvertaParaDtoSaida(IList<TDto> dto)
+		{
+			var dtoSaida = new DtoSaida<TDto> {
+				Resultados = dto
+			};
+
+			dtoSaida.Quantidade = dtoSaida.Resultados.Count;
+
+			return dtoSaida;
+		}
+
+		public virtual DtoSaida<TDto> ConvertaParaDtoSaida(IList<TObjeto> objeto)
+		{
+			var dtoConvertido = Converta(objeto);
+			return ConvertaParaDtoSaida(dtoConvertido);
 		}
 
 		public virtual IList<TDto> Converta(IList<TObjeto> objeto)
@@ -42,7 +77,10 @@ namespace DLLS.Comcer.Negocio.Conversores
 				return lista;
 			}
 
-			Parallel.ForEach(objeto, item => lista.Add(Converta(item)));
+			foreach (var item in objeto)
+			{
+				lista.Add(Converta(item));
+			};
 
 			return lista;
 		}

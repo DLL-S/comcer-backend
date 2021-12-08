@@ -1,5 +1,5 @@
 ﻿using DLLS.Comcer.Dominio.Objetos.Compartilhados;
-using DLLS.Comcer.Interfaces.Conversores;
+using DLLS.Comcer.Interfaces.InterfacesDeConversores;
 using DLLS.Comcer.Interfaces.Modelos;
 
 namespace DLLS.Comcer.Negocio.Conversores

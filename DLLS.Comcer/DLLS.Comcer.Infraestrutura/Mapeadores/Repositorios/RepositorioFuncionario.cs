@@ -42,8 +42,8 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 		protected override IList<Funcionario> ListeComTermoDeBusca(int pagina, int quantidade, EnumOrdem ordem, string termoDeBusca = "")
 		{
 			return ordem == EnumOrdem.ASC
-				? Persistencia.Where(x => x.Nome.Contains(termoDeBusca)).OrderBy(x => x.Id).Skip(pagina - 1).Take(quantidade).ToList()
-				: Persistencia.Where(x => x.Nome.Contains(termoDeBusca)).OrderByDescending(x => x.Id).Skip(pagina - 1).Take(quantidade).ToList();
+				? Persistencia.Where(x => x.Nome.Contains(termoDeBusca)).OrderBy(x => x.Id).Skip((pagina - 1) * quantidade).Take(quantidade).ToList()
+				: Persistencia.Where(x => x.Nome.Contains(termoDeBusca)).OrderByDescending(x => x.Id).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
 		}
 	}
 }

@@ -64,8 +64,8 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 
 			if(string.IsNullOrEmpty(termoDeBusca))
 				return ordem == EnumOrdem.ASC
-					? Persistencia.OrderBy(x => x.Id).Skip(pagina - 1).Take(quantidade).ToList()
-					: Persistencia.OrderByDescending(x => x.Id).Skip(pagina - 1).Take(quantidade).ToList();
+					? Persistencia.OrderBy(x => x.Id).Skip((pagina - 1) * quantidade).Take(quantidade).ToList()
+					: Persistencia.OrderByDescending(x => x.Id).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
 			else
 				return ListeComTermoDeBusca(pagina, quantidade, ordem, termoDeBusca);
 		}

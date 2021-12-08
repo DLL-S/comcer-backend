@@ -5,6 +5,16 @@ namespace DLLS.Comcer.Utilitarios.Utils
 	/// </summary>
 	public class InconsistenciaDeValidacao
 	{
+		public InconsistenciaDeValidacao()
+		{ }
+
+		public InconsistenciaDeValidacao(string propriedade, string mensagem, bool impeditivo)
+		{
+			Propriedade = propriedade;
+			Mensagem = mensagem;
+			Impeditivo = impeditivo;
+		}
+
 		/// <summary>
 		/// Nome da propriedade inconsistente.
 		/// </summary>

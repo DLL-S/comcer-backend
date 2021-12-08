@@ -1,33 +1,34 @@
 using System.Collections.Generic;
 using DLLS.Comcer.Dominio.Objetos.Compartilhados;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
-using DLLS.Comcer.Interfaces.Conversores;
+using DLLS.Comcer.Interfaces.InterfacesDeConversores;
 using DLLS.Comcer.Interfaces.InterfacesDeServicos;
+using DLLS.Comcer.Interfaces.InterfacesDeValidacao;
 using DLLS.Comcer.Interfaces.Modelos;
+using DLLS.Comcer.Negocio.Validacoes;
 using DLLS.Comcer.Utilitarios.Enumeradores;
-using DLLS.Comcer.Utilitarios.Utils;
 
 namespace DLLS.Comcer.Negocio.Servicos
 {
-	public abstract class ServicoPadraoImpl<TObjeto, TDto> : IServicoPadrao<TDto> where TDto : DtoBase where TObjeto : ObjetoComIdNumerico
+	public abstract class ServicoPadraoImpl<TObjeto, TDto> : IServicoPadrao<TDto>
+		where TDto : DtoBase
+		where TObjeto : ObjetoComIdNumerico
 	{
 		protected readonly IRepositorioObjetoComIdNumerico<TObjeto> _repositorio;
-		protected readonly IConversorPadrao<TObjeto, TDto> _conversor;
 
-		protected ServicoPadraoImpl(IRepositorioObjetoComIdNumerico<TObjeto> repositorio, IConversorPadrao<TObjeto, TDto> conversor)
+		protected ServicoPadraoImpl(IRepositorioObjetoComIdNumerico<TObjeto> repositorio)
 		{
 			_repositorio = repositorio;
-			_conversor = conversor;
 		}
 
-		#region CONSULTAS
+		#region CRUD
 
 		/// <summary>
 		/// Consulta um item pelo código.
 		/// </summary>
 		/// <param name="codigo">O código do item a ser pesquisado.</param>
 		/// <returns>Um Dto com o item encontrado ou null.</returns>
-		public TDto Consulte(int codigo)
+		public DtoSaida<TDto> Consulte(int codigo)
 		{
 			var objetoConsultado = _repositorio.Consulte(codigo);
 
@@ -36,16 +37,16 @@ namespace DLLS.Comcer.Negocio.Servicos
 				return null;
 			}
 
-			return _conversor.Converta(objetoConsultado);
+			return Conversor().ConvertaParaDtoSaida(objetoConsultado);
 		}
 
 		/// <summary>
 		/// Retorna uma lista com todos os registros da base (Utilize com cuidado).
 		/// </summary>
 		/// <returns>Uma lista de Dtos com os registros.</returns>
-		public virtual IList<TDto> Liste()
+		public virtual DtoSaida<TDto> Liste()
 		{
-			return _conversor.Converta(_repositorio.Liste());
+			return Conversor().ConvertaParaDtoSaida(_repositorio.Liste());
 		}
 
 		/// <summary>
@@ -56,27 +57,28 @@ namespace DLLS.Comcer.Negocio.Servicos
 		/// <param name="ordem">A ordem em que os itens deverão ser retornados (Padrã: ASC).</param>
 		/// <param name="termoDeBusca">O termo de busca para a pesquisa.</param>
 		/// <returns>Uma lista de Dtos com os registros.</returns>
-		public virtual IList<TDto> Liste(int pagina, int quantidade, EnumOrdem ordem, string termoDeBusca)
+		public virtual DtoSaida<TDto> Liste(int pagina, int quantidade, EnumOrdem ordem, string termoDeBusca)
 		{
-			return _conversor.Converta(_repositorio.Liste(pagina, quantidade, ordem, termoDeBusca));
+			return Conversor().ConvertaParaDtoSaida(_repositorio.Liste(pagina, quantidade, ordem, termoDeBusca));
 		}
-
-		#endregion
 
 		/// <summary>
 		/// Cadastrda um novo item na base.
 		/// </summary>
 		/// <param name="dto">O Dto a ser cadastrado.</param>
 		/// <returns>Retorna o Dto com uma indicação de Sucesso true ou false.</returns>
-		public TDto Cadastre(TDto dto)
+		public virtual DtoSaida<TDto> Cadastre(TDto dto)
 		{
-			var objetoConvertido = _conversor.Converta(dto);
+			var objetoConvertido = Conversor().Converta(dto);
+			var dtoSaida = Conversor().ConvertaParaDtoSaida(dto);
 
-			CentralDeValidacoes.InserirRetornoValidacao(ref dto, objetoConvertido, (a) => new List<InconsistenciaDeValidacao>());
-			if (dto.Sucesso == true)
+			Validador().AssineRegrasCadastro();
+			CentralDeValidacoes<TDto>.Valide(ref dtoSaida, objetoConvertido, Validador());
+
+			if (dtoSaida.Sucesso == true)
 				_repositorio.Cadastre(objetoConvertido);
 
-			return dto;
+			return dtoSaida;
 		}
 
 		/// <summary>
@@ -84,15 +86,18 @@ namespace DLLS.Comcer.Negocio.Servicos
 		/// </summary>
 		/// <param name="dto">O Dto do item a ser atualizado.</param>
 		/// <returns>Retorna o Dto com uma indicação de Sucesso true ou false.</returns>
-		public virtual TDto Atualize(TDto dto)
+		public virtual DtoSaida<TDto> Atualize(TDto dto)
 		{
-			var objetoConvertido = _conversor.Converta(dto);
+			var objetoConvertido = Conversor().Converta(dto);
+			var dtoSaida = Conversor().ConvertaParaDtoSaida(dto);
 
-			CentralDeValidacoes.InserirRetornoValidacao(ref dto, objetoConvertido, (a) => new List<InconsistenciaDeValidacao>());
-			if (dto.Sucesso == true)
+			Validador().AssineRegrasAtualizacao();
+			CentralDeValidacoes<TDto>.Valide(ref dtoSaida, objetoConvertido, Validador());
+
+			if (dtoSaida.Sucesso == true)
 				_repositorio.Atualize(objetoConvertido);
 
-			return dto;
+			return dtoSaida;
 		}
 
 		/// <summary>
@@ -101,7 +106,22 @@ namespace DLLS.Comcer.Negocio.Servicos
 		/// <param name="codigo">O código do item a ser excluído</param>
 		public virtual void Exclua(int codigo)
 		{
+			Validador().AssineRegrasExclusao();
 			_repositorio.Exclua(codigo);
 		}
+
+		#endregion
+
+		/// <summary>
+		/// Obtém ou define uma instância da classe de validação do conceito.
+		/// </summary>
+		/// <returns>A instância da classe de validação.</returns>
+		protected abstract IValidadorPadrao<TObjeto> Validador();
+
+		/// <summary>
+		/// Obtém ou define uma instância da classe de conversor do conceito.
+		/// </summary>
+		/// <returns>A instância da classe de conversor.</returns>
+		protected abstract IConversorPadrao<TObjeto, TDto> Conversor();
 	}
 }

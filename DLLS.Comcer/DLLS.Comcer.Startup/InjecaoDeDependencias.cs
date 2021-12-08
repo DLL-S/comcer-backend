@@ -3,7 +3,7 @@ using DLLS.Comcer.Dominio.Objetos.IdentityObj;
 using DLLS.Comcer.Infraestrutura;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
 using DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios;
-using DLLS.Comcer.Interfaces.Conversores;
+using DLLS.Comcer.Interfaces.InterfacesDeConversores;
 using DLLS.Comcer.Interfaces.InterfacesDeServicos;
 using DLLS.Comcer.Negocio.Conversores;
 using DLLS.Comcer.Negocio.Servicos;
@@ -30,7 +30,6 @@ namespace DLLS.Comcer.Startup
 			AddResolucaoDeBancoDeDados(servicos, configuracao);
 			AddResolucaoDeAddResolucaoDeIdentidade(servicos);
 			AddResolucaoDeServicos(servicos);
-			AddResolucaoDeConversores(servicos);
 		}
 
 		/// <summary>
@@ -57,9 +56,9 @@ namespace DLLS.Comcer.Startup
 				// SENHA
 				options.Password.RequiredLength = 8;
 				options.Password.RequireNonAlphanumeric = false;
-				options.Password.RequireDigit = true;
-				options.Password.RequireLowercase = true;
-				options.Password.RequireUppercase = true;
+				options.Password.RequireDigit = false;
+				options.Password.RequireLowercase = false;
+				options.Password.RequireUppercase = false;
 
 				// LOCKOUT
 				options.Lockout.AllowedForNewUsers = true;
@@ -83,15 +82,6 @@ namespace DLLS.Comcer.Startup
 		private static void AddResolucaoDeServicos(IServiceCollection servicos)
 		{
 			servicos.AddTransient<IServicoDeFuncionario, ServicoDeFuncionarioImpl>();
-		}
-
-		/// <summary>
-		/// Método de extênsão para a configuração de serviços da aplicação.
-		/// </summary>
-		/// <param name="servicos">A <see cref="IServiceCollection"/> da aplicação.</param>
-		private static void AddResolucaoDeConversores(IServiceCollection servicos)
-		{
-			servicos.AddTransient<IConversorFuncionario, ConversorFuncionario>();
 		}
 	}
 }
