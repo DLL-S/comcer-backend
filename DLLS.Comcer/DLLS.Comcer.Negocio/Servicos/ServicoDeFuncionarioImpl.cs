@@ -12,6 +12,7 @@ namespace DLLS.Comcer.Negocio.Servicos
 	public class ServicoDeFuncionarioImpl : ServicoPadraoImpl<Funcionario, DtoFuncionario>, IServicoDeFuncionario
 	{
 		private IConversorFuncionario _conversor;
+		private IValidadorFuncionario _validador;
 
 		public ServicoDeFuncionarioImpl(IRepositorioFuncionario repositorio) : base(repositorio)
 		{
@@ -34,7 +35,7 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 		protected override IValidadorPadrao<Funcionario> Validador()
 		{
-			throw new System.NotImplementedException();
+			throw _validador ??= new ValidadorFuncionario();
 		}
 
 		protected override IConversorPadrao<Funcionario, DtoFuncionario> Conversor()
