@@ -3,10 +3,9 @@ using DLLS.Comcer.Dominio.Objetos.IdentityObj;
 using DLLS.Comcer.Infraestrutura;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
 using DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios;
-using DLLS.Comcer.Interfaces.InterfacesDeConversores;
 using DLLS.Comcer.Interfaces.InterfacesDeServicos;
-using DLLS.Comcer.Negocio.Conversores;
 using DLLS.Comcer.Negocio.Servicos;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -30,6 +29,21 @@ namespace DLLS.Comcer.Startup
 			AddResolucaoDeBancoDeDados(servicos, configuracao);
 			AddResolucaoDeAddResolucaoDeIdentidade(servicos);
 			AddResolucaoDeServicos(servicos);
+		}
+
+		/// <summary>
+		/// Método de extensão para adicionar resolução automática de serviços,
+		/// repositórios, conversores e contextos de banco de dados.
+		/// </summary>
+		/// <param name="servicos">A coleção de serviços da aplicação.</param>
+		/// <param name="configuracao">Parâmetros de configuração da aplicação.</param>
+		public static void ExecuteMigrationsScoped(this IApplicationBuilder app)
+		{
+			using (var scope = app.ApplicationServices.CreateScope())
+			{
+				var db = scope.ServiceProvider.GetRequiredService<ContextoDeAplicacao>();
+				db.Database.Migrate();
+			}
 		}
 
 		/// <summary>
