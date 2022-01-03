@@ -5,6 +5,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="UtilExtension" Version="2.0.2" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\DLLS.Comcer.Infraestrutura\DLLS.Comcer.Infraestrutura.csproj">
 			<PrivateAssets>all</PrivateAssets>
 		</ProjectReference>

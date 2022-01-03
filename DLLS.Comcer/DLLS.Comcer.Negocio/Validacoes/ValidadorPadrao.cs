@@ -43,9 +43,15 @@ namespace DLLS.Comcer.Negocio.Validacoes
 		public virtual void AssineRegrasAtualizacao()
 		{
 			AssineRegrasCodigo();
+			AssineRegrasComunsCadastroEAtualizacao();
 		}
 
-		public abstract void AssineRegrasCadastro();
+		public virtual void AssineRegrasCadastro()
+		{
+			AssineRegrasComunsCadastroEAtualizacao();
+		}
+
+		public abstract void AssineRegrasComunsCadastroEAtualizacao();
 
 		public virtual void AssineRegrasExclusao()
 		{

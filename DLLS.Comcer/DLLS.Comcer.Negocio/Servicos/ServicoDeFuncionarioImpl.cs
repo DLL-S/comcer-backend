@@ -5,6 +5,7 @@ using DLLS.Comcer.Interfaces.InterfacesDeServicos;
 using DLLS.Comcer.Interfaces.InterfacesDeValidacao;
 using DLLS.Comcer.Interfaces.Modelos;
 using DLLS.Comcer.Negocio.Conversores;
+using DLLS.Comcer.Negocio.Validacoes;
 using DLLS.Comcer.Utilitarios.Enumeradores;
 
 namespace DLLS.Comcer.Negocio.Servicos
@@ -35,7 +36,7 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 		protected override IValidadorPadrao<Funcionario> Validador()
 		{
-			throw _validador ??= new ValidadorFuncionario();
+			return _validador ??= new ValidadorFuncionario();
 		}
 
 		protected override IConversorPadrao<Funcionario, DtoFuncionario> Conversor()
