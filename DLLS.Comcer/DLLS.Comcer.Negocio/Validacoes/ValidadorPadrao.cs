@@ -14,18 +14,18 @@ namespace DLLS.Comcer.Negocio.Validacoes
 
 		#region CODIGO
 
-		public void AssineRegraCodigoObrigatorio()
+		private void AssineRegraCodigoObrigatorio()
 		{
 			RuleFor(x => x.Id)
 				.NotEmpty()
 				.WithMessage(string.Format(Globalizacoes.CampoObrigatorio, "ID"));
 		}
 
-		public void AssineRegraCodigoValido()
+		private void AssineRegraCodigoValido()
 		{
 			RuleFor(x => x.Id)
 				.Must(CodigoValido)
-				.WithMessage(string.Format(Globalizacoes.CampoObrigatorio, "ID"));
+				.WithMessage(string.Format(Globalizacoes.CampoTamanhoRange, "ID", 1, ObjetoComIdNumerico.TAMANHO_MAXIMO_CODIGO));
 		}
 
 		#endregion
@@ -34,11 +34,23 @@ namespace DLLS.Comcer.Negocio.Validacoes
 
 		#region AGRUPAMENTOS DE VALIDACOES
 
-		public abstract void AssineRegrasAtualizacao();
+		public virtual void AssineRegrasCodigo()
+		{
+			AssineRegraCodigoObrigatorio();
+			AssineRegraCodigoValido();
+		}
+
+		public virtual void AssineRegrasAtualizacao()
+		{
+			AssineRegrasCodigo();
+		}
 
 		public abstract void AssineRegrasCadastro();
 
-		public abstract void AssineRegrasExclusao();
+		public virtual void AssineRegrasExclusao()
+		{
+			AssineRegrasCodigo();
+		}
 
 		#endregion
 
@@ -63,7 +75,7 @@ namespace DLLS.Comcer.Negocio.Validacoes
 
 		private bool CodigoValido(int codigo)
 		{
-			return codigo != 0 && codigo.ToString().Length <= ObjetoComIdNumerico.TAMANHO_MAXIMO_CODIGO;
+			return codigo != 0 && codigo <= ObjetoComIdNumerico.TAMANHO_MAXIMO_CODIGO;
 		}
 
 		#endregion
