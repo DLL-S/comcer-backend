@@ -19,6 +19,27 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                 .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+            modelBuilder.Entity("DLLS.Comcer.Dominio.Objetos.ComandaObj.Comanda", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Nome")
+                        .HasColumnType("text");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("numeric");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Comandas");
+                });
+
             modelBuilder.Entity("DLLS.Comcer.Dominio.Objetos.Compartilhados.Endereco", b =>
                 {
                     b.Property<int>("Id")
@@ -248,6 +269,75 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                     b.ToTable("IDT_USUARIOS");
                 });
 
+            modelBuilder.Entity("DLLS.Comcer.Dominio.Objetos.PedidoObj.Pedido", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int?>("ComandaId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("ProdutoId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Quantidade")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("ValorUnitario")
+                        .HasColumnType("numeric");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ComandaId");
+
+                    b.HasIndex("ProdutoId");
+
+                    b.ToTable("Pedidos");
+                });
+
+            modelBuilder.Entity("DLLS.Comcer.Dominio.Objetos.ProdutoObj.Produto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("ID")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Descricao")
+                        .HasMaxLength(255)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("DESCRICAO");
+
+                    b.Property<string>("Foto")
+                        .IsRequired()
+                        .HasMaxLength(1024000)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("FOTO");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("NOME");
+
+                    b.Property<decimal>("Preco")
+                        .HasColumnType("NUMERIC")
+                        .HasColumnName("PRECO");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Id")
+                        .IsUnique()
+                        .HasDatabaseName("IDX_IDPRODUTO");
+
+                    b.ToTable("PRODUTOS");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.Property<int>("Id")
@@ -388,6 +478,19 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                     b.Navigation("Funcionario");
                 });
 
+            modelBuilder.Entity("DLLS.Comcer.Dominio.Objetos.PedidoObj.Pedido", b =>
+                {
+                    b.HasOne("DLLS.Comcer.Dominio.Objetos.ComandaObj.Comanda", null)
+                        .WithMany("ListaPedidos")
+                        .HasForeignKey("ComandaId");
+
+                    b.HasOne("DLLS.Comcer.Dominio.Objetos.ProdutoObj.Produto", "Produto")
+                        .WithMany()
+                        .HasForeignKey("ProdutoId");
+
+                    b.Navigation("Produto");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("DLLS.Comcer.Dominio.Objetos.IdentityObj.Role", null)
@@ -437,6 +540,11 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("DLLS.Comcer.Dominio.Objetos.ComandaObj.Comanda", b =>
+                {
+                    b.Navigation("ListaPedidos");
                 });
 #pragma warning restore 612, 618
         }

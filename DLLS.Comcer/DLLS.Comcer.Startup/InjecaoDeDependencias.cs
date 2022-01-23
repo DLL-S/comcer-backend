@@ -56,6 +56,9 @@ namespace DLLS.Comcer.Startup
 			servicos.AddDbContext<ContextoDeAplicacao>(options => options.UseNpgsql(configuracao.GetConnectionString("DefaultConnection")));
 
 			servicos.AddTransient<IRepositorioFuncionario, RepositorioFuncionario>();
+			servicos.AddTransient<IRepositorioComanda, RepositorioComanda>();
+			servicos.AddTransient<IRepositorioPedido, RepositorioPedido>();
+			servicos.AddTransient<IRepositorioProduto, RepositorioProduto>();
 		}
 
 		/// <summary>
@@ -96,6 +99,9 @@ namespace DLLS.Comcer.Startup
 		private static void AddResolucaoDeServicos(IServiceCollection servicos)
 		{
 			servicos.AddTransient<IServicoDeFuncionario, ServicoDeFuncionarioImpl>();
+			servicos.AddTransient<IServicoDeComanda, ServicoDeComandaImpl>();
+			servicos.AddTransient<IServicoDePedido, ServicoDePedidoImpl>();
+			servicos.AddTransient<IServicoDeProduto, ServicoDeProdutoImpl>();
 		}
 	}
 }

@@ -16,6 +16,7 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 		public ServicoDePedidoImpl(IRepositorioPedido repositorio) : base(repositorio)
 		{
+			Validador();
 		}
 
 		private IValidadorPedido Repositorio()

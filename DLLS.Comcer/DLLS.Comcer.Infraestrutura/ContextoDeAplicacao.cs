@@ -46,6 +46,8 @@ namespace DLLS.Comcer.Infraestrutura
 		{
 			builder.ApplyConfiguration(new EnderecoMap());
 			builder.ApplyConfiguration(new FuncionarioMap());
+			builder.ApplyConfiguration(new ProdutoMap());
+			builder.ApplyConfiguration(new EnderecoMap());
 		}
 
 		private void AddConfiguracoesDoIdentity(ModelBuilder builder)

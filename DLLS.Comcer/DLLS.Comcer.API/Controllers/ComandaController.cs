@@ -65,7 +65,7 @@ namespace DLLS.Comcer.API.Controllers
 		[HttpPut("{codigo}")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public ActionResult<DtoComanda> IncluirPedido([FromBody] int codigo, [FromBody] DtoPedido obj)
+		public ActionResult<DtoComanda> IncluirPedido(int codigo, [FromBody] DtoPedido obj)
 		{
 			DtoSaida<DtoComanda> dto;
 

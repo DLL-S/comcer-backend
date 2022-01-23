@@ -16,11 +16,18 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 		public ServicoDeProdutoImpl(IRepositorioProduto repositorio) : base(repositorio)
 		{
+			var a = new ValidadorProduto();
+			Validador();
 		}
 
 		private IRepositorioProduto Repositorio()
 		{
 			return (IRepositorioProduto)_repositorio;
+		}
+
+		public override DtoSaida<DtoProduto> Cadastre(DtoProduto dto)
+		{
+			return base.Cadastre(dto);
 		}
 
 		protected override IValidadorPadrao<Produto> Validador()
