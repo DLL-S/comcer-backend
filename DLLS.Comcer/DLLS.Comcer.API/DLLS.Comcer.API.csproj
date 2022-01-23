@@ -15,7 +15,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\DLLS.Comcer.Interfaces\DLLS.Comcer.Interfaces.csproj" >
+		<ProjectReference Include="..\DLLS.Comcer.Interfaces\DLLS.Comcer.Interfaces.csproj">
 			<PrivateAssets>all</PrivateAssets>
 		</ProjectReference>
 		<ProjectReference Include="..\DLLS.Comcer.Startup\DLLS.Comcer.Startup.csproj">
@@ -40,9 +40,7 @@
 	</ItemGroup>
 
 	<ProjectExtensions>
-		<VisualStudio>
-			<UserProperties appsettings_1json__JsonSchema="" />
-		</VisualStudio>
+		<VisualStudio><UserProperties appsettings_1json__JsonSchema="" properties_4launchsettings_1json__JsonSchema="" /></VisualStudio>
 	</ProjectExtensions>
 
 </Project>

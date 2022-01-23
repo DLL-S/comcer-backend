@@ -1,6 +1,9 @@
+using DLLS.Comcer.Dominio.Objetos.ComandaObj;
 using DLLS.Comcer.Dominio.Objetos.Compartilhados;
 using DLLS.Comcer.Dominio.Objetos.FuncionarioObj;
 using DLLS.Comcer.Dominio.Objetos.IdentityObj;
+using DLLS.Comcer.Dominio.Objetos.PedidoObj;
+using DLLS.Comcer.Dominio.Objetos.ProdutoObj;
 using DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos;
 using DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos.Identidade;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -22,6 +25,9 @@ namespace DLLS.Comcer.Infraestrutura
 		}
 
 		public DbSet<Endereco> Enderecos { get; set; }
+		public DbSet<Produto> Produtos { get; set; }
+		public DbSet<Pedido> Pedidos { get; set; }
+		public DbSet<Comanda> Comandas { get; set; }
 		public DbSet<Funcionario> Funcionarios { get; set; }
 
 		/// <summary>

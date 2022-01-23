@@ -62,7 +62,7 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 			quantidade = quantidade < 1 ? 50 : quantidade;
 			ordem = !Enum.IsDefined(ordem) ? EnumOrdem.ASC : ordem;
 
-			if(string.IsNullOrEmpty(termoDeBusca))
+			if (string.IsNullOrEmpty(termoDeBusca))
 				return ordem == EnumOrdem.ASC
 					? Persistencia.OrderBy(x => x.Id).Skip((pagina - 1) * quantidade).Take(quantidade).ToList()
 					: Persistencia.OrderByDescending(x => x.Id).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
