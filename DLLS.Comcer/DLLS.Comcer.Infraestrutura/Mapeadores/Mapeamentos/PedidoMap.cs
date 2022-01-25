@@ -29,7 +29,7 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos
 			builder.HasOne(x => x.Produto)
 				.WithMany()
 				.HasForeignKey("IDPEDIDO")
-				.OnDelete(DeleteBehavior.Cascade);
+				.OnDelete(DeleteBehavior.NoAction);
 
 			builder.Navigation(x => x.Produto);
 
