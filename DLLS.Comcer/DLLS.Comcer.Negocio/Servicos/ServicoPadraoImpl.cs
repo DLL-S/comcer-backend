@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using DLLS.Comcer.Dominio.Objetos.Compartilhados;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
 using DLLS.Comcer.Interfaces.InterfacesDeConversores;
@@ -76,7 +75,7 @@ namespace DLLS.Comcer.Negocio.Servicos
 			CentralDeValidacoes<TDto>.Valide(ref dtoSaida, objetoConvertido, Validador());
 
 			if (dtoSaida.Sucesso == true)
-				_repositorio.Cadastre(objetoConvertido);
+				dtoSaida.Resultados[0].Id = _repositorio.Cadastre(objetoConvertido).Id;
 
 			return dtoSaida;
 		}
@@ -95,7 +94,7 @@ namespace DLLS.Comcer.Negocio.Servicos
 			CentralDeValidacoes<TDto>.Valide(ref dtoSaida, objetoConvertido, Validador());
 
 			if (dtoSaida.Sucesso == true)
-				_repositorio.Atualize(objetoConvertido);
+				dtoSaida.Resultados[0].Id = _repositorio.Atualize(objetoConvertido).Id;
 
 			return dtoSaida;
 		}

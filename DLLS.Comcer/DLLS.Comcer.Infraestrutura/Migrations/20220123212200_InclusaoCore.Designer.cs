@@ -37,7 +37,7 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
 
 					b.HasKey("Id");
 
-					b.ToTable("COMANDAS");
+					b.ToTable("Comandas");
 				});
 
 			modelBuilder.Entity("DLLS.Comcer.Dominio.Objetos.Compartilhados.Endereco", b =>

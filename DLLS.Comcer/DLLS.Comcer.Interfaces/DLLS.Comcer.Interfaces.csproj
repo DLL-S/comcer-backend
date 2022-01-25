@@ -5,6 +5,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="FluentValidation" Version="10.3.6" />
+	  <PackageReference Include="UtilExtension" Version="2.0.2" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\DLLS.Comcer.Dominio\DLLS.Comcer.Dominio.csproj">
 			<PrivateAssets>all</PrivateAssets>
 		</ProjectReference>

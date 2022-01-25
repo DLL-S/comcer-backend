@@ -70,12 +70,12 @@ namespace DLLS.Comcer.Negocio.Validacoes
 		#region Implementação das validaçoes
 		private bool EmailValido(string arg)
 		{
-			return !UtilExtension.UtilsExtension.CheckEmail(arg);
+			return UtilExtension.UtilsExtension.CheckEmail(arg);
 		}
 
 		private bool CPFValido(string arg)
 		{
-			return !UtilExtension.UtilsExtension.CheckCpf(arg);
+			return UtilExtension.UtilsExtension.CheckCpf(arg);
 		}
 
 		#endregion

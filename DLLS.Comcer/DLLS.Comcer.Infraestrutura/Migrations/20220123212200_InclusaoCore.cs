@@ -8,7 +8,7 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
 		protected override void Up(MigrationBuilder migrationBuilder)
 		{
 			migrationBuilder.CreateTable(
-				name: "COMANDAS",
+				name: "Comandas",
 				columns: table => new {
 					Id = table.Column<int>(type: "integer", nullable: false)
 						.Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
@@ -18,7 +18,7 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
 				},
 				constraints: table =>
 				{
-					table.PrimaryKey("PK_COMANDAS", x => x.Id);
+					table.PrimaryKey("PK_Comandas", x => x.Id);
 				});
 
 			migrationBuilder.CreateTable(
@@ -51,9 +51,9 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
 				{
 					table.PrimaryKey("PK_PEDIDOS", x => x.Id);
 					table.ForeignKey(
-						name: "FK_PEDIDOS_COMANDAS_ComandaId",
+						name: "FK_PEDIDOS_Comandas_ComandaId",
 						column: x => x.ComandaId,
-						principalTable: "COMANDAS",
+						principalTable: "Comandas",
 						principalColumn: "Id",
 						onDelete: ReferentialAction.Restrict);
 					table.ForeignKey(
@@ -87,7 +87,7 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
 				name: "PEDIDOS");
 
 			migrationBuilder.DropTable(
-				name: "COMANDAS");
+				name: "Comandas");
 
 			migrationBuilder.DropTable(
 				name: "PRODUTOS");

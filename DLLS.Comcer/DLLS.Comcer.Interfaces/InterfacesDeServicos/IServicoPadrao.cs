@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using DLLS.Comcer.Interfaces.Modelos;
 using DLLS.Comcer.Utilitarios.Enumeradores;
 
@@ -11,7 +10,7 @@ namespace DLLS.Comcer.Interfaces.InterfacesDeServicos
 		/// </summary>
 		/// <param name="codigo">O código do item a ser pesquisado.</param>
 		/// <returns>Um Dto com o item encontrado ou null.</returns>
-		DtoSaida<TDto> Consulte(int condigo);
+		DtoSaida<TDto> Consulte(int codigo);
 
 		/// <summary>
 		/// Retorna uma lista com todos os registros da base (Utilize com cuidado).

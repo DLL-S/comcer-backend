@@ -31,8 +31,7 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos
 				.HasForeignKey("IDPEDIDO")
 				.OnDelete(DeleteBehavior.Cascade);
 
-			builder.Navigation(x => x.Produto)
-				.AutoInclude();
+			builder.Navigation(x => x.Produto);
 
 			#endregion
 

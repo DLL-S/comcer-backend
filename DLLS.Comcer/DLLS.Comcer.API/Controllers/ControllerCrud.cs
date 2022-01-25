@@ -38,7 +38,7 @@ namespace DLLS.Comcer.API.Controllers
 		protected virtual ActionResult<TDto> Cadastrar([FromBody] TDto novoObjeto)
 		{
 			var dto = _servico.Cadastre(novoObjeto);
-			return dto.Sucesso ? CreatedAtAction("Consultar", dto) : BadRequest(dto);
+			return dto.Sucesso ? CreatedAtAction("Cadastrar", dto) : BadRequest(dto);
 		}
 
 		[ApiExplorerSettings(IgnoreApi = true)]

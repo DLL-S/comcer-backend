@@ -72,6 +72,8 @@ namespace DLLS.Comcer.Negocio.Validacoes
 				itemAdd.Mensagem = erro.ErrorMessage;
 				itemAdd.Propriedade = erro.PropertyName;
 				itemAdd.Impeditivo = erro.Severity.Equals(Severity.Error);
+
+				listaRetorno.Add(itemAdd);
 			}
 
 			return listaRetorno;
