@@ -6,6 +6,7 @@ using DLLS.Comcer.Interfaces.InterfacesDeValidacao;
 using DLLS.Comcer.Interfaces.Modelos;
 using DLLS.Comcer.Negocio.Conversores;
 using DLLS.Comcer.Negocio.Validacoes;
+using DLLS.Comcer.Utilitarios.Enumeradores;
 
 namespace DLLS.Comcer.Negocio.Servicos
 {
@@ -16,12 +17,11 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 		public ServicoDePedidoImpl(IRepositorioPedido repositorio) : base(repositorio)
 		{
-			Validador();
 		}
 
-		private IValidadorPedido Repositorio()
+		private IRepositorioPedido Repositorio()
 		{
-			return (IValidadorPedido)_repositorio;
+			return (IRepositorioPedido)_repositorio;
 		}
 
 		protected override IValidadorPadrao<Pedido> Validador()
@@ -32,6 +32,24 @@ namespace DLLS.Comcer.Negocio.Servicos
 		protected override IConversorPadrao<Pedido, DtoPedido> Conversor()
 		{
 			return _conversor ??= new ConversorPedido();
+		}
+
+		public DtoSaida<DtoPedido> AtualizeStatus(int codigo, EnumStatusPedido statusPedido)
+		{
+			var obj = Repositorio().Consulte(codigo);
+
+			obj.Status = statusPedido;
+
+			var dtoSaida = Conversor().ConvertaParaDtoSaida(obj);
+
+			Validador().AssineRegrasAtualizacao();
+
+			CentralDeValidacoes<DtoPedido>.Valide(ref dtoSaida, obj, Validador());
+
+			if (dtoSaida.Sucesso == true)
+				dtoSaida.Resultados[0].Id = _repositorio.Atualize(obj).Id;
+
+			return dtoSaida;
 		}
 	}
 }
