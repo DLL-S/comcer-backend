@@ -4,10 +4,25 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DLLS.Comcer.Infraestrutura.Migrations
 {
-    public partial class SetupFuncionariosETabelasDoIdentity : Migration
+    public partial class TudoIncluso : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "COMANDAS",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    NOME = table.Column<string>(type: "TEXT", maxLength: 80, nullable: false),
+                    VALOR = table.Column<decimal>(type: "NUMERIC", nullable: false),
+                    STATUS = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_COMANDAS", x => x.ID);
+                });
+
             migrationBuilder.CreateTable(
                 name: "ENDERECOS",
                 columns: table => new
@@ -40,6 +55,45 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_IDT_ROLES", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PRODUTOS",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    NOME = table.Column<string>(type: "TEXT", maxLength: 80, nullable: false),
+                    DESCRICAO = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
+                    PRECO = table.Column<decimal>(type: "NUMERIC", nullable: false),
+                    FOTO = table.Column<string>(type: "TEXT", maxLength: 1024000, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PRODUTOS", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PEDIDOS",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    IDPRODUTO = table.Column<decimal>(type: "NUMERIC", nullable: false),
+                    QUANTIDADE = table.Column<decimal>(type: "NUMERIC", nullable: false),
+                    VALOR_UNITARIO = table.Column<decimal>(type: "NUMERIC", nullable: false),
+                    STATUS = table.Column<string>(type: "text", nullable: false),
+                    COMANDA = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PEDIDOS", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_PEDIDOS_COMANDAS_COMANDA",
+                        column: x => x.COMANDA,
+                        principalTable: "COMANDAS",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -205,6 +259,12 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IDX_IDCOMANDA",
+                table: "COMANDAS",
+                column: "ID",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IDX_IDENDERECO",
                 table: "ENDERECOS",
                 column: "ID",
@@ -274,6 +334,23 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                 table: "IDT_USUARIOS",
                 column: "NOMEDEUSUARIO_NORMALIZADO",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IDX_IDPEDIDOS",
+                table: "PEDIDOS",
+                column: "ID",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PEDIDOS_COMANDA",
+                table: "PEDIDOS",
+                column: "COMANDA");
+
+            migrationBuilder.CreateIndex(
+                name: "IDX_IDPRODUTO",
+                table: "PRODUTOS",
+                column: "ID",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -294,10 +371,19 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                 name: "IDT_USUARIOROLES");
 
             migrationBuilder.DropTable(
+                name: "PEDIDOS");
+
+            migrationBuilder.DropTable(
+                name: "PRODUTOS");
+
+            migrationBuilder.DropTable(
                 name: "IDT_ROLES");
 
             migrationBuilder.DropTable(
                 name: "IDT_USUARIOS");
+
+            migrationBuilder.DropTable(
+                name: "COMANDAS");
 
             migrationBuilder.DropTable(
                 name: "FUNCIONARIOS");

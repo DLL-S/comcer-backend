@@ -20,18 +20,43 @@ namespace DLLS.Comcer.Negocio.Servicos
 			_servicoDeProduto = servicoDeProduto;
 		}
 
-		public DtoSaida<DtoComanda> IncluaPedido(int codgoComanda, DtoPedido pedido)
+		public DtoSaida<DtoComanda> IncluaPedido(int codigoComanda, DtoPedido pedido)
 		{
-			throw new System.NotImplementedException();
+			var comanda = Consulte(codigoComanda);
+			
+			if (comanda.Sucesso)
+			{
+				var consultaProduto = _servicoDeProduto.Consulte(pedido.Produto.Id);
+
+				if (consultaProduto.Sucesso)
+				{
+					pedido.Produto = consultaProduto.Resultados[0];
+					pedido.ValorUnitario = pedido.Produto.Preco;
+					comanda.Resultados[0].ListaPedidos.Add(pedido);
+					comanda.Resultados[0].Valor += pedido.Quantidade * pedido.ValorUnitario;
+
+					return Atualize(comanda.Resultados[0]);
+				}
+				else
+				{
+					comanda.Sucesso = consultaProduto.Sucesso;
+					comanda.Validacoes = consultaProduto.Validacoes;
+				}
+			}
+
+			return comanda;
 		}
 
 		public override DtoSaida<DtoComanda> Cadastre(DtoComanda dto)
 		{
-			foreach (var pedido in dto.ListaPedidos)
+			if (dto.ListaPedidos != null && dto.ListaPedidos.Count > 0)
 			{
-				pedido.Produto = _servicoDeProduto.Consulte(pedido.Produto.Id).Resultados[0];
-				pedido.ValorUnitario = pedido.Produto.Preco;
-				dto.Valor += pedido.Quantidade * pedido.ValorUnitario;
+				foreach (var pedido in dto.ListaPedidos)
+				{
+					pedido.Produto = _servicoDeProduto.Consulte(pedido.Produto.Id).Resultados[0];
+					pedido.ValorUnitario = pedido.Produto.Preco;
+					dto.Valor += pedido.Quantidade * pedido.ValorUnitario;
+				}
 			}
 
 			return base.Cadastre(dto);

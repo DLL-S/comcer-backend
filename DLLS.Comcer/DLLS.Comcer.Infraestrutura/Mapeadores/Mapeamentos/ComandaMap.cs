@@ -47,7 +47,7 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos
 
 			builder.HasMany(x => x.ListaPedidos)
 				.WithOne()
-				.HasForeignKey("PEDIDOS")
+				.HasForeignKey("COMANDA")
 				.OnDelete(DeleteBehavior.Cascade);
 
 			builder.Navigation(x => x.ListaPedidos)

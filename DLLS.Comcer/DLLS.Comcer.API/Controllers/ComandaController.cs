@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using DLLS.Comcer.Interfaces.InterfacesDeServicos;
 using DLLS.Comcer.Interfaces.Modelos;
@@ -78,9 +79,9 @@ namespace DLLS.Comcer.API.Controllers
 					return BadRequest(dto);
 				}
 			}
-			catch
+			catch(Exception ex)
 			{
-				return Problem();
+				return Problem(ex.Message);
 			}
 
 			return Ok(dto);

@@ -19,19 +19,17 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos
 				 .HasColumnName("ID");
 
 			builder.HasIndex(x => x.Id)
-				 .HasDatabaseName("IDX_IDPRODUTO")
+				 .HasDatabaseName("IDX_IDPEDIDOS")
 				 .IsUnique();
 
 			#endregion
 
 			#region PRODUTO
 
-			builder.HasOne(x => x.Produto)
-				.WithMany()
-				.HasForeignKey("IDPEDIDO")
-				.OnDelete(DeleteBehavior.NoAction);
-
-			builder.Navigation(x => x.Produto);
+			builder.Property(x => x.IdProduto)
+				 .HasColumnName("IDPRODUTO")
+				 .HasColumnType("NUMERIC")
+				 .IsRequired(); ;
 
 			#endregion
 

@@ -40,16 +40,9 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 			obj.Status = statusPedido;
 
-			var dtoSaida = Conversor().ConvertaParaDtoSaida(obj);
+			var dto = Conversor().Converta(obj);
 
-			Validador().AssineRegrasAtualizacao();
-
-			CentralDeValidacoes<DtoPedido>.Valide(ref dtoSaida, obj, Validador());
-
-			if (dtoSaida.Sucesso == true)
-				dtoSaida.Resultados[0].Id = _repositorio.Atualize(obj).Id;
-
-			return dtoSaida;
+			return Atualize(dto);
 		}
 	}
 }

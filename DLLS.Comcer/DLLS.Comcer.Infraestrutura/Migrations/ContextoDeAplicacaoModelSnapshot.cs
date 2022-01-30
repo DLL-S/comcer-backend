@@ -24,20 +24,31 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
+                        .HasColumnName("ID")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("Nome")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("NOME");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("integer");
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("STATUS");
 
                     b.Property<decimal>("Valor")
-                        .HasColumnType("numeric");
+                        .HasColumnType("NUMERIC")
+                        .HasColumnName("VALOR");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Comandas");
+                    b.HasIndex("Id")
+                        .IsUnique()
+                        .HasDatabaseName("IDX_IDCOMANDA");
+
+                    b.ToTable("COMANDAS");
                 });
 
             modelBuilder.Entity("DLLS.Comcer.Dominio.Objetos.Compartilhados.Endereco", b =>
@@ -274,30 +285,38 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
+                        .HasColumnName("ID")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("ComandaId")
+                    b.Property<int?>("COMANDA")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("ProdutoId")
-                        .HasColumnType("integer");
+                    b.Property<decimal>("IdProduto")
+                        .HasColumnType("NUMERIC")
+                        .HasColumnName("IDPRODUTO");
 
-                    b.Property<int>("Quantidade")
-                        .HasColumnType("integer");
+                    b.Property<decimal>("Quantidade")
+                        .HasColumnType("NUMERIC")
+                        .HasColumnName("QUANTIDADE");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("integer");
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("STATUS");
 
                     b.Property<decimal>("ValorUnitario")
-                        .HasColumnType("numeric");
+                        .HasColumnType("NUMERIC")
+                        .HasColumnName("VALOR_UNITARIO");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ComandaId");
+                    b.HasIndex("COMANDA");
 
-                    b.HasIndex("ProdutoId");
+                    b.HasIndex("Id")
+                        .IsUnique()
+                        .HasDatabaseName("IDX_IDPEDIDOS");
 
-                    b.ToTable("Pedidos");
+                    b.ToTable("PEDIDOS");
                 });
 
             modelBuilder.Entity("DLLS.Comcer.Dominio.Objetos.ProdutoObj.Produto", b =>
@@ -482,13 +501,8 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                 {
                     b.HasOne("DLLS.Comcer.Dominio.Objetos.ComandaObj.Comanda", null)
                         .WithMany("ListaPedidos")
-                        .HasForeignKey("ComandaId");
-
-                    b.HasOne("DLLS.Comcer.Dominio.Objetos.ProdutoObj.Produto", "Produto")
-                        .WithMany()
-                        .HasForeignKey("ProdutoId");
-
-                    b.Navigation("Produto");
+                        .HasForeignKey("COMANDA")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
