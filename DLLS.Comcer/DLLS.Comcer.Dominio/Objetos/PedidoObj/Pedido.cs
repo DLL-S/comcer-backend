@@ -1,4 +1,5 @@
-﻿using DLLS.Comcer.Dominio.Objetos.Compartilhados;
+﻿using System;
+using DLLS.Comcer.Dominio.Objetos.Compartilhados;
 using DLLS.Comcer.Utilitarios.Enumeradores;
 
 namespace DLLS.Comcer.Dominio.Objetos.PedidoObj
@@ -12,5 +13,7 @@ namespace DLLS.Comcer.Dominio.Objetos.PedidoObj
 		public virtual decimal ValorUnitario { get; set; }
 
 		public virtual EnumStatusPedido Status { get; set; }
+
+		public virtual DateTime DataHoraPedido { get; set; }
 	}
 }

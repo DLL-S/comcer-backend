@@ -1,4 +1,5 @@
-﻿using DLLS.Comcer.Utilitarios.Enumeradores;
+﻿using System;
+using DLLS.Comcer.Utilitarios.Enumeradores;
 
 namespace DLLS.Comcer.Interfaces.Modelos
 {
@@ -11,5 +12,7 @@ namespace DLLS.Comcer.Interfaces.Modelos
 		public decimal ValorUnitario { get; set; }
 
 		public EnumStatusPedido Status { get; set; }
+
+		public DateTime DataHoraPedido { get; set; }
 	}
 }

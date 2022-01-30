@@ -59,6 +59,15 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos
 				 .IsRequired();
 
 			#endregion
+
+			#region DataHora
+
+			builder.Property(x => x.DataHoraPedido)
+				 .HasColumnName("DATAHORAPEDIDO")
+				 .HasColumnType("DATE")
+				 .IsRequired();
+
+			#endregion
 		}
 	}
 }

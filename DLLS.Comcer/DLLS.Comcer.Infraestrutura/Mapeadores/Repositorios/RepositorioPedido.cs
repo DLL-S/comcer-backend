@@ -27,8 +27,8 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 		{
 			////TODO: Analizar possibilidade de adicionar o método por extensão
 			return ordem == EnumOrdem.ASC
-				? Persistencia.OrderBy(x => x.Id).Skip((pagina - 1) * quantidade).Take(quantidade).ToList()
-				: Persistencia.OrderByDescending(x => x.Id).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
+				? Persistencia.OrderBy(x => x.DataHoraPedido).Where(x => string.IsNullOrEmpty(termoDeBusca) || (int)x.Status == int.Parse(termoDeBusca)).Skip((pagina - 1) * quantidade).Take(quantidade).ToList()
+				: Persistencia.OrderByDescending(x => x.DataHoraPedido).Where(x => string.IsNullOrEmpty(termoDeBusca) || (int)x.Status == int.Parse(termoDeBusca)).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
 		}
 	}
 }

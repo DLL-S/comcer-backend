@@ -23,7 +23,7 @@ namespace DLLS.Comcer.Negocio.Servicos
 		public DtoSaida<DtoComanda> IncluaPedido(int codigoComanda, DtoPedido pedido)
 		{
 			var comanda = Consulte(codigoComanda);
-			
+
 			if (comanda.Sucesso)
 			{
 				var consultaProduto = _servicoDeProduto.Consulte(pedido.Produto.Id);
@@ -32,6 +32,7 @@ namespace DLLS.Comcer.Negocio.Servicos
 				{
 					pedido.Produto = consultaProduto.Resultados[0];
 					pedido.ValorUnitario = pedido.Produto.Preco;
+					pedido.DataHoraPedido = System.DateTime.Now;
 					comanda.Resultados[0].ListaPedidos.Add(pedido);
 					comanda.Resultados[0].Valor += pedido.Quantidade * pedido.ValorUnitario;
 
@@ -55,6 +56,7 @@ namespace DLLS.Comcer.Negocio.Servicos
 				{
 					pedido.Produto = _servicoDeProduto.Consulte(pedido.Produto.Id).Resultados[0];
 					pedido.ValorUnitario = pedido.Produto.Preco;
+					pedido.DataHoraPedido = System.DateTime.Now;
 					dto.Valor += pedido.Quantidade * pedido.ValorUnitario;
 				}
 			}
