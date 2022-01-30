@@ -3,7 +3,6 @@ using DLLS.Comcer.Infraestrutura;
 using DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios;
 using DLLS.Comcer.Interfaces.InterfacesDeConversores;
 using DLLS.Comcer.Interfaces.Modelos;
-using Microsoft.EntityFrameworkCore;
 
 namespace DLLS.Comcer.Negocio.Conversores
 {
@@ -11,6 +10,8 @@ namespace DLLS.Comcer.Negocio.Conversores
 	{
 		RepositorioProduto repositorioProduto;
 		ConversorProduto conversorProduto;
+
+
 
 		public override DtoPedido Converta(Pedido objeto)
 		{
@@ -33,7 +34,7 @@ namespace DLLS.Comcer.Negocio.Conversores
 		}
 		private RepositorioProduto RepositorioProduto()
 		{
-			return repositorioProduto ??= new RepositorioProduto(new ContextoDeAplicacao(new DbContextOptions<ContextoDeAplicacao>()));
+			return repositorioProduto ??= new RepositorioProduto(new FabricaDeContextoDeAplicacao().CreateDbContext(null));
 		}
 	}
 }

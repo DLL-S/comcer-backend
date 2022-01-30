@@ -1,6 +1,6 @@
 namespace DLLS.Comcer.Infraestrutura
 {
-	internal class FabricaDeContextoDeAplicacao : FabricaDeContextoGenerico<ContextoDeAplicacao>
+	public class FabricaDeContextoDeAplicacao : FabricaDeContextoGenerico<ContextoDeAplicacao>
 	{
 	}
 }

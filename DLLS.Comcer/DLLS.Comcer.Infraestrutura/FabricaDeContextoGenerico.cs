@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace DLLS.Comcer.Infraestrutura
 {
-	internal abstract class FabricaDeContextoGenerico<T> where T : DbContext
+	public abstract class FabricaDeContextoGenerico<T> where T : DbContext
 	{
 		public T CreateDbContext(string[] args)
 		{

@@ -76,6 +76,7 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 		/// <param name="objeto">O objeto modificado.</param>
 		public virtual TObjeto Atualize(TObjeto objeto)
 		{
+			Contexto.ChangeTracker.Clear();
 			Persistencia.Update(objeto);
 			Contexto.SaveChanges();
 

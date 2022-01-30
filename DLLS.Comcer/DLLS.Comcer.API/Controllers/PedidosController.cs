@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using DLLS.Comcer.Interfaces.InterfacesDeServicos;
 using DLLS.Comcer.Interfaces.Modelos;
@@ -48,20 +49,20 @@ namespace DLLS.Comcer.API.Controllers
 		[HttpPut("{codigo}")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public ActionResult<DtoPedido> AtualizarStatus(int codigo, [FromBody] EnumStatusPedido obj)
+		public ActionResult<DtoPedido> AtualizarStatus(int codigo, [FromQuery] EnumStatusPedido status)
 		{
 			DtoSaida<DtoPedido> dto;
 
 			try
 			{
-				dto = Servico().AtualizeStatus(codigo, obj);
+				dto = Servico().AtualizeStatus(codigo, status);
 
 				if (dto.Sucesso == false)
 				{
 					return BadRequest(dto);
 				}
 			}
-			catch
+			catch(Exception ex)
 			{
 				return Problem();
 			}
