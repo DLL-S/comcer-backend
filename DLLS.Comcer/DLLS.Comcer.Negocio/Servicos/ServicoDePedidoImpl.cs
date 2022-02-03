@@ -6,7 +6,6 @@ using DLLS.Comcer.Interfaces.InterfacesDeValidacao;
 using DLLS.Comcer.Interfaces.Modelos;
 using DLLS.Comcer.Negocio.Conversores;
 using DLLS.Comcer.Negocio.Validacoes;
-using DLLS.Comcer.Utilitarios.Enumeradores;
 
 namespace DLLS.Comcer.Negocio.Servicos
 {
@@ -32,17 +31,6 @@ namespace DLLS.Comcer.Negocio.Servicos
 		protected override IConversorPadrao<Pedido, DtoPedido> Conversor()
 		{
 			return _conversor ??= new ConversorPedido();
-		}
-
-		public DtoSaida<DtoPedido> AtualizeStatus(int codigo, EnumStatusPedido statusPedido)
-		{
-			var obj = Repositorio().Consulte(codigo);
-
-			obj.Status = statusPedido;
-
-			var dto = Conversor().Converta(obj);
-
-			return Atualize(dto);
 		}
 	}
 }

@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DLLS.Comcer.Infraestrutura.Migrations
 {
     [DbContext(typeof(ContextoDeAplicacao))]
-    [Migration("20220130183824_dataHoraPedido")]
-    partial class dataHoraPedido
+    [Migration("20220203043543_FKPedidosProduto")]
+    partial class FKPedidosProduto
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -297,9 +297,35 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                         .HasColumnType("DATE")
                         .HasColumnName("DATAHORAPEDIDO");
 
+                    b.HasKey("Id");
+
+                    b.HasIndex("COMANDA");
+
+                    b.HasIndex("Id")
+                        .IsUnique()
+                        .HasDatabaseName("IDX_IDPEDIDOS");
+
+                    b.ToTable("PEDIDOS");
+                });
+
+            modelBuilder.Entity("DLLS.Comcer.Dominio.Objetos.PedidoObj.ProdutoDoPedido", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("ID")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<DateTime>("DataHoraPedido")
+                        .HasColumnType("DATE")
+                        .HasColumnName("DATAHORAPEDIDO");
+
                     b.Property<decimal>("IdProduto")
                         .HasColumnType("NUMERIC")
                         .HasColumnName("IDPRODUTO");
+
+                    b.Property<int?>("PEDIDO")
+                        .HasColumnType("integer");
 
                     b.Property<decimal>("Quantidade")
                         .HasColumnType("NUMERIC")
@@ -316,13 +342,13 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("COMANDA");
-
                     b.HasIndex("Id")
                         .IsUnique()
-                        .HasDatabaseName("IDX_IDPEDIDOS");
+                        .HasDatabaseName("IDX_IDPEDIDOSPRODUTO");
 
-                    b.ToTable("PEDIDOS");
+                    b.HasIndex("PEDIDO");
+
+                    b.ToTable("PEDIDOSDOPRODUTO");
                 });
 
             modelBuilder.Entity("DLLS.Comcer.Dominio.Objetos.ProdutoObj.Produto", b =>
@@ -511,6 +537,14 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("DLLS.Comcer.Dominio.Objetos.PedidoObj.ProdutoDoPedido", b =>
+                {
+                    b.HasOne("DLLS.Comcer.Dominio.Objetos.PedidoObj.Pedido", null)
+                        .WithMany("ProdutosDoPedido")
+                        .HasForeignKey("PEDIDO")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("DLLS.Comcer.Dominio.Objetos.IdentityObj.Role", null)
@@ -565,6 +599,11 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
             modelBuilder.Entity("DLLS.Comcer.Dominio.Objetos.ComandaObj.Comanda", b =>
                 {
                     b.Navigation("ListaPedidos");
+                });
+
+            modelBuilder.Entity("DLLS.Comcer.Dominio.Objetos.PedidoObj.Pedido", b =>
+                {
+                    b.Navigation("ProdutosDoPedido");
                 });
 #pragma warning restore 612, 618
         }

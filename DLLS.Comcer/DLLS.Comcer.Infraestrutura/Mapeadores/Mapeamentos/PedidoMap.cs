@@ -24,39 +24,16 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos
 
 			#endregion
 
-			#region PRODUTO
 
-			builder.Property(x => x.IdProduto)
-				 .HasColumnName("IDPRODUTO")
-				 .HasColumnType("NUMERIC")
-				 .IsRequired(); ;
+			#region PRODUTOSPEDIDO
 
-			#endregion
+			builder.HasMany(x => x.ProdutosDoPedido)
+				.WithOne()
+				.HasForeignKey("PEDIDO")
+				.OnDelete(DeleteBehavior.Cascade);
 
-			#region VALOR_UNITARIO
-
-			builder.Property(x => x.ValorUnitario)
-				 .HasColumnName("VALOR_UNITARIO")
-				 .HasColumnType("NUMERIC")
-				 .IsRequired();
-
-			#endregion
-
-			#region STATUS
-
-			builder.Property(x => x.Status)
-				 .HasColumnName("STATUS")
-				 .HasConversion<string>()
-				 .IsRequired();
-
-			#endregion
-
-			#region QUANTIDADE
-
-			builder.Property(x => x.Quantidade)
-				 .HasColumnName("QUANTIDADE")
-				 .HasColumnType("NUMERIC")
-				 .IsRequired();
+			builder.Navigation(x => x.ProdutosDoPedido)
+				.AutoInclude();
 
 			#endregion
 

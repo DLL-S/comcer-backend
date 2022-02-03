@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DLLS.Comcer.Infraestrutura.Migrations
 {
-    public partial class TudoIncluso : Migration
+    public partial class FKPedidosProduto : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -79,10 +79,7 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                 {
                     ID = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    IDPRODUTO = table.Column<decimal>(type: "NUMERIC", nullable: false),
-                    QUANTIDADE = table.Column<decimal>(type: "NUMERIC", nullable: false),
-                    VALOR_UNITARIO = table.Column<decimal>(type: "NUMERIC", nullable: false),
-                    STATUS = table.Column<string>(type: "text", nullable: false),
+                    DATAHORAPEDIDO = table.Column<DateTime>(type: "DATE", nullable: false),
                     COMANDA = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
@@ -138,6 +135,30 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                         name: "FK_IDT_ROLECLAIMS_IDT_ROLES_IDROLE",
                         column: x => x.IDROLE,
                         principalTable: "IDT_ROLES",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PEDIDOSDOPRODUTO",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    IDPRODUTO = table.Column<decimal>(type: "NUMERIC", nullable: false),
+                    QUANTIDADE = table.Column<decimal>(type: "NUMERIC", nullable: false),
+                    VALOR_UNITARIO = table.Column<decimal>(type: "NUMERIC", nullable: false),
+                    STATUS = table.Column<string>(type: "text", nullable: false),
+                    DATAHORAPEDIDO = table.Column<DateTime>(type: "DATE", nullable: false),
+                    PEDIDO = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PEDIDOSDOPRODUTO", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_PEDIDOSDOPRODUTO_PEDIDOS_PEDIDO",
+                        column: x => x.PEDIDO,
+                        principalTable: "PEDIDOS",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -347,6 +368,17 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                 column: "COMANDA");
 
             migrationBuilder.CreateIndex(
+                name: "IDX_IDPEDIDOSPRODUTO",
+                table: "PEDIDOSDOPRODUTO",
+                column: "ID",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PEDIDOSDOPRODUTO_PEDIDO",
+                table: "PEDIDOSDOPRODUTO",
+                column: "PEDIDO");
+
+            migrationBuilder.CreateIndex(
                 name: "IDX_IDPRODUTO",
                 table: "PRODUTOS",
                 column: "ID",
@@ -371,7 +403,7 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                 name: "IDT_USUARIOROLES");
 
             migrationBuilder.DropTable(
-                name: "PEDIDOS");
+                name: "PEDIDOSDOPRODUTO");
 
             migrationBuilder.DropTable(
                 name: "PRODUTOS");
@@ -383,10 +415,13 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                 name: "IDT_USUARIOS");
 
             migrationBuilder.DropTable(
-                name: "COMANDAS");
+                name: "PEDIDOS");
 
             migrationBuilder.DropTable(
                 name: "FUNCIONARIOS");
+
+            migrationBuilder.DropTable(
+                name: "COMANDAS");
 
             migrationBuilder.DropTable(
                 name: "ENDERECOS");

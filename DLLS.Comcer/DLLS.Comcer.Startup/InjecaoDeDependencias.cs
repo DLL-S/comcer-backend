@@ -59,6 +59,7 @@ namespace DLLS.Comcer.Startup
 			servicos.AddTransient<IRepositorioComanda, RepositorioComanda>();
 			servicos.AddTransient<IRepositorioPedido, RepositorioPedido>();
 			servicos.AddTransient<IRepositorioProduto, RepositorioProduto>();
+			servicos.AddTransient<IRepositorioProdutoDoPedido, RepositorioProdutoDoPedido>();
 		}
 
 		/// <summary>
@@ -102,6 +103,7 @@ namespace DLLS.Comcer.Startup
 			servicos.AddTransient<IServicoDeComanda, ServicoDeComandaImpl>();
 			servicos.AddTransient<IServicoDePedido, ServicoDePedidoImpl>();
 			servicos.AddTransient<IServicoDeProduto, ServicoDeProdutoImpl>();
+			servicos.AddTransient<IServicoDeProdutosDoPedido, ServicoDeProdutosDoPedidoImpl>();
 		}
 	}
 }

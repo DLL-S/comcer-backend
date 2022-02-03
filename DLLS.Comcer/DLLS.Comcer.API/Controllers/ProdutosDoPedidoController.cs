@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using DLLS.Comcer.Interfaces.InterfacesDeServicos;
 using DLLS.Comcer.Interfaces.Modelos;
@@ -11,15 +10,15 @@ namespace DLLS.Comcer.API.Controllers
 	[ApiController]
 	[Route("Api/[controller]")]
 	[ApiExplorerSettings(IgnoreApi = false)]
-	public class PedidosController : ControllerCrud<DtoPedido>
+	public class ProdutosDoPedidoController : ControllerCrud<DtoPedidoProduto>
 	{
-		public PedidosController(IServicoDePedido servico)
+		public ProdutosDoPedidoController(IServicoDeProdutosDoPedido servico)
 			: base(servico)
 		{ }
 
-		private IServicoDePedido Servico()
+		private IServicoDeProdutosDoPedido Servico()
 		{
-			return (IServicoDePedido)_servico;
+			return (IServicoDeProdutosDoPedido)_servico;
 		}
 
 		#region CONSULTAS
@@ -27,7 +26,7 @@ namespace DLLS.Comcer.API.Controllers
 		[HttpGet("{codigo}")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
-		public new ActionResult<DtoPedido> Consultar(int codigo)
+		public new ActionResult<DtoPedidoProduto> Consultar(int codigo)
 		{
 			return base.Consultar(codigo);
 		}
@@ -35,7 +34,7 @@ namespace DLLS.Comcer.API.Controllers
 		[HttpGet()]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
-		public new ActionResult<IList<DtoPedido>> Listar(
+		public new ActionResult<IList<DtoPedidoProduto>> Listar(
 			[FromQuery] int pagina,
 			[FromQuery] int quantidade,
 			[FromQuery] EnumOrdem ordem,
@@ -46,28 +45,28 @@ namespace DLLS.Comcer.API.Controllers
 
 		#endregion
 
-		//[HttpPut("{codigo}")]
-		//[ProducesResponseType(StatusCodes.Status200OK)]
-		//[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		//public ActionResult<DtoPedido> AtualizarStatus(int codigo, [FromQuery] EnumStatusPedido status)
-		//{
-		//	DtoSaida<DtoPedido> dto;
+		[HttpPut("{codigo}")]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		public ActionResult<DtoPedidoProduto> AtualizarStatus(int codigo, [FromQuery] EnumStatusPedido status)
+		{
+			DtoSaida<DtoPedidoProduto> dto;
 
-		//	try
-		//	{
-		//		dto = Servico().AtualizeStatus(codigo, status);
+			try
+			{
+				dto = Servico().AtualizeStatus(codigo, status);
 
-		//		if (dto.Sucesso == false)
-		//		{
-		//			return BadRequest(dto);
-		//		}
-		//	}
-		//	catch(Exception ex)
-		//	{
-		//		return Problem();
-		//	}
+				if (dto.Sucesso == false)
+				{
+					return BadRequest(dto);
+				}
+			}
+			catch
+			{
+				return Problem();
+			}
 
-		//	return Ok(dto);
-		//}
+			return Ok(dto);
+		}
 	}
 }

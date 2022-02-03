@@ -1,6 +1,5 @@
+using System.Collections.Generic;
 using DLLS.Comcer.Dominio.Objetos.PedidoObj;
-using DLLS.Comcer.Infraestrutura;
-using DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios;
 using DLLS.Comcer.Interfaces.InterfacesDeConversores;
 using DLLS.Comcer.Interfaces.Modelos;
 
@@ -8,15 +7,12 @@ namespace DLLS.Comcer.Negocio.Conversores
 {
 	public class ConversorPedido : ConversorPadrao<Pedido, DtoPedido>, IConversorPedido
 	{
-		RepositorioProduto repositorioProduto;
-		ConversorProduto conversorProduto;
-
-
+		ConversorProdutoDoPedido conversorProduto;
 
 		public override DtoPedido Converta(Pedido objeto)
 		{
 			var dto = base.Converta(objeto);
-			dto.Produto = ConversorProduto().Converta(RepositorioProduto().Consulte(objeto.IdProduto));
+			dto.PedidosDoProduto = ConversorProdutoDoPedido().Converta(objeto.ProdutosDoPedido);
 
 			return dto;
 		}
@@ -24,17 +20,13 @@ namespace DLLS.Comcer.Negocio.Conversores
 		public override Pedido Converta(DtoPedido dto)
 		{
 			var objeto = base.Converta(dto);
-			objeto.IdProduto = dto.Produto.Id;
+			objeto.ProdutosDoPedido = ConversorProdutoDoPedido().Converta(dto.PedidosDoProduto);
 			return objeto;
 		}
 
-		private ConversorProduto ConversorProduto()
+		private ConversorProdutoDoPedido ConversorProdutoDoPedido()
 		{
-			return conversorProduto ??= new ConversorProduto();
-		}
-		private RepositorioProduto RepositorioProduto()
-		{
-			return repositorioProduto ??= new RepositorioProduto(new FabricaDeContextoDeAplicacao().CreateDbContext(null));
+			return conversorProduto ??= new ConversorProdutoDoPedido();
 		}
 	}
 }

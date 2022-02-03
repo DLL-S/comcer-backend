@@ -25,6 +25,7 @@ namespace DLLS.Comcer.Infraestrutura
 		}
 
 		public DbSet<Endereco> Enderecos { get; set; }
+		public DbSet<ProdutoDoPedido> ProdutosDosPedidos { get; set; }
 		public DbSet<Produto> Produtos { get; set; }
 		public DbSet<Pedido> Pedidos { get; set; }
 		public DbSet<Comanda> Comandas { get; set; }
@@ -49,6 +50,7 @@ namespace DLLS.Comcer.Infraestrutura
 			builder.ApplyConfiguration(new ProdutoMap());
 			builder.ApplyConfiguration(new EnderecoMap());
 			builder.ApplyConfiguration(new PedidoMap());
+			builder.ApplyConfiguration(new PedidoProdutoMap());
 			builder.ApplyConfiguration(new ComandaMap());
 		}
 

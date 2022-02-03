@@ -26,22 +26,26 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 			if (comanda.Sucesso)
 			{
-				var consultaProduto = _servicoDeProduto.Consulte(pedido.Produto.Id);
-
-				if (consultaProduto.Sucesso)
+				pedido.DataHoraPedido = System.DateTime.Now;
+				foreach (var produtoDoPedido in pedido.PedidosDoProduto)
 				{
-					pedido.Produto = consultaProduto.Resultados[0];
-					pedido.ValorUnitario = pedido.Produto.Preco;
-					pedido.DataHoraPedido = System.DateTime.Now;
-					comanda.Resultados[0].ListaPedidos.Add(pedido);
-					comanda.Resultados[0].Valor += pedido.Quantidade * pedido.ValorUnitario;
+					var consultaProduto = _servicoDeProduto.Consulte(produtoDoPedido.Produto.Id);
 
-					return Atualize(comanda.Resultados[0]);
-				}
-				else
-				{
-					comanda.Sucesso = consultaProduto.Sucesso;
-					comanda.Validacoes = consultaProduto.Validacoes;
+					if (consultaProduto.Sucesso)
+					{
+						produtoDoPedido.Produto = consultaProduto.Resultados[0];
+						produtoDoPedido.ValorUnitario = produtoDoPedido.Produto.Preco;
+						produtoDoPedido.DataHoraPedido = pedido.DataHoraPedido;
+						comanda.Resultados[0].ListaPedidos.Add(pedido);
+						comanda.Resultados[0].Valor += produtoDoPedido.Quantidade * produtoDoPedido.ValorUnitario;
+
+						return Atualize(comanda.Resultados[0]);
+					}
+					else
+					{
+						comanda.Sucesso = consultaProduto.Sucesso;
+						comanda.Validacoes = consultaProduto.Validacoes;
+					}
 				}
 			}
 
@@ -54,10 +58,13 @@ namespace DLLS.Comcer.Negocio.Servicos
 			{
 				foreach (var pedido in dto.ListaPedidos)
 				{
-					pedido.Produto = _servicoDeProduto.Consulte(pedido.Produto.Id).Resultados[0];
-					pedido.ValorUnitario = pedido.Produto.Preco;
 					pedido.DataHoraPedido = System.DateTime.Now;
-					dto.Valor += pedido.Quantidade * pedido.ValorUnitario;
+					foreach (var produtoDoPedido in pedido.PedidosDoProduto)
+					{
+						produtoDoPedido.Produto = _servicoDeProduto.Consulte(produtoDoPedido.Produto.Id).Resultados[0];
+						produtoDoPedido.ValorUnitario = produtoDoPedido.Produto.Preco;
+						dto.Valor += produtoDoPedido.Quantidade * produtoDoPedido.ValorUnitario;
+					}
 				}
 			}
 

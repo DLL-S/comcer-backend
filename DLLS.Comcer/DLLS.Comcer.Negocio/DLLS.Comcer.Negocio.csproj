@@ -5,6 +5,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="System.Drawing.Common" Version="5.0.3" />
+	  <PackageReference Include="System.Drawing.Primitives" Version="4.3.0" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\DLLS.Comcer.Infraestrutura\DLLS.Comcer.Infraestrutura.csproj">
 			<PrivateAssets>all</PrivateAssets>
 		</ProjectReference>
