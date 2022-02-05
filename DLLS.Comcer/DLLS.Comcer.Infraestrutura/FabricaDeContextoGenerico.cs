@@ -1,4 +1,5 @@
 using System;
+using System.Configuration;
 using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -29,7 +30,7 @@ namespace DLLS.Comcer.Infraestrutura
 				.AddEnvironmentVariables()
 				.Build();
 
-			string stringDeConexao = configuracao.GetConnectionString("DefaultConnection");
+			string stringDeConexao = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;//configuracao.GetConnectionString("DefaultConnection");
 			return stringDeConexao;
 		}
 	}
