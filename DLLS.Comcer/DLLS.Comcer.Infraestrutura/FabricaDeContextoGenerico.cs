@@ -1,8 +1,5 @@
 using System;
-using System.Configuration;
-using System.IO;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace DLLS.Comcer.Infraestrutura
 {
@@ -10,28 +7,13 @@ namespace DLLS.Comcer.Infraestrutura
 	{
 		public T CreateDbContext(string[] args)
 		{
-			string stringDeConexao = ObtenhaStringDeConexao();
+			string stringDeConexao = ConnectionStringUtils.ObtenhaStringDeConexao("DefaultConnection");
 
 			var builder = new DbContextOptionsBuilder<ContextoDeAplicacao>();
 			builder.UseNpgsql(stringDeConexao, opcoes =>
 				opcoes.MigrationsAssembly("DLLS.Comcer.Infraestrutura"));
 
 			return (T)Activator.CreateInstance(typeof(T), new object[] { builder.Options });
-		}
-
-		private static string ObtenhaStringDeConexao()
-		{
-			string ambiente = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-
-			IConfiguration configuracao = new ConfigurationBuilder()
-				.SetBasePath(Directory.GetCurrentDirectory())
-				.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-				.AddJsonFile($"appsettings.{ambiente}.json", optional: true)
-				.AddEnvironmentVariables()
-				.Build();
-
-			string stringDeConexao = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;//configuracao.GetConnectionString("DefaultConnection");
-			return stringDeConexao;
 		}
 	}
 }
