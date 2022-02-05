@@ -1,4 +1,5 @@
 using System;
+using System.Configuration;
 using DLLS.Comcer.Dominio.Objetos.IdentityObj;
 using DLLS.Comcer.Infraestrutura;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
@@ -53,7 +54,7 @@ namespace DLLS.Comcer.Startup
 		/// <param name="configuracao">A <see cref="IConfiguration"/> da aplicação.</param>
 		private static void AddResolucaoDeBancoDeDados(IServiceCollection servicos, IConfiguration configuracao)
 		{
-			servicos.AddDbContext<ContextoDeAplicacao>(options => options.UseNpgsql(configuracao.GetConnectionString("DefaultConnection")));
+			servicos.AddDbContext<ContextoDeAplicacao>(options => options.UseNpgsql(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString));
 
 			servicos.AddTransient<IRepositorioFuncionario, RepositorioFuncionario>();
 			servicos.AddTransient<IRepositorioComanda, RepositorioComanda>();
