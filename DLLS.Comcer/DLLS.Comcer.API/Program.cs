@@ -15,10 +15,10 @@ namespace DLLS.Comcer.API
 				.ConfigureWebHostDefaults(webBuilder =>
 				{
 					webBuilder
-						.ConfigureKestrel(serverOpt =>
-						{
-							serverOpt.ListenAnyIP(5000);
-						})
+						//.ConfigureKestrel(serverOpt =>
+						//{
+						//	serverOpt.ListenAnyIP(5000);
+						//})
 						.UseStartup<Startup>();
 				});
 	}
