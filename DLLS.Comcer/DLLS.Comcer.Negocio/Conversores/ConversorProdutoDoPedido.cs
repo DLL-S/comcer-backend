@@ -6,14 +6,14 @@ using DLLS.Comcer.Interfaces.Modelos;
 
 namespace DLLS.Comcer.Negocio.Conversores
 {
-	public class ConversorProdutoDoPedido : ConversorPadrao<ProdutoDoPedido, DtoPedidoProduto>, IConversorProdutoDoPedido
+	public class ConversorProdutoDoPedido : ConversorPadrao<ProdutoDoPedido, DtoProdutoDoPedido>, IConversorProdutoDoPedido
 	{
 		RepositorioProduto repositorioProduto;
 		ConversorProduto conversorProduto;
 
 
 
-		public override DtoPedidoProduto Converta(ProdutoDoPedido objeto)
+		public override DtoProdutoDoPedido Converta(ProdutoDoPedido objeto)
 		{
 			var dto = base.Converta(objeto);
 			dto.Produto = ConversorProduto().Converta(RepositorioProduto().Consulte(objeto.IdProduto));
@@ -21,7 +21,7 @@ namespace DLLS.Comcer.Negocio.Conversores
 			return dto;
 		}
 
-		public override ProdutoDoPedido Converta(DtoPedidoProduto dto)
+		public override ProdutoDoPedido Converta(DtoProdutoDoPedido dto)
 		{
 			var objeto = base.Converta(dto);
 			objeto.IdProduto = dto.Produto.Id;

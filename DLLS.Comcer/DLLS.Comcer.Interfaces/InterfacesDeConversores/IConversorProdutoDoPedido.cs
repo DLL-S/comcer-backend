@@ -3,7 +3,7 @@ using DLLS.Comcer.Interfaces.Modelos;
 
 namespace DLLS.Comcer.Interfaces.InterfacesDeConversores
 {
-	public interface IConversorProdutoDoPedido : IConversorPadrao<ProdutoDoPedido, DtoPedidoProduto>
+	public interface IConversorProdutoDoPedido : IConversorPadrao<ProdutoDoPedido, DtoProdutoDoPedido>
 	{
 	}
 }

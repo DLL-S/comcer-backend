@@ -27,7 +27,7 @@ namespace DLLS.Comcer.Negocio.Servicos
 			if (comanda.Sucesso)
 			{
 				pedido.DataHoraPedido = System.DateTime.Now;
-				foreach (var produtoDoPedido in pedido.PedidosDoProduto)
+				foreach (var produtoDoPedido in pedido.ProdutosDoPedido)
 				{
 					var consultaProduto = _servicoDeProduto.Consulte(produtoDoPedido.Produto.Id);
 
@@ -59,7 +59,7 @@ namespace DLLS.Comcer.Negocio.Servicos
 				foreach (var pedido in dto.ListaPedidos)
 				{
 					pedido.DataHoraPedido = System.DateTime.Now;
-					foreach (var produtoDoPedido in pedido.PedidosDoProduto)
+					foreach (var produtoDoPedido in pedido.ProdutosDoPedido)
 					{
 						produtoDoPedido.Produto = _servicoDeProduto.Consulte(produtoDoPedido.Produto.Id).Resultados[0];
 						produtoDoPedido.ValorUnitario = produtoDoPedido.Produto.Preco;

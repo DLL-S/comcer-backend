@@ -3,7 +3,7 @@ using DLLS.Comcer.Utilitarios.Enumeradores;
 
 namespace DLLS.Comcer.Interfaces.Modelos
 {
-	public class DtoPedidoProduto : DtoBase
+	public class DtoProdutoDoPedido : DtoBase
 	{
 		public DtoProduto Produto { get; set; }
 

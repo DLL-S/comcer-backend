@@ -3,8 +3,8 @@ using DLLS.Comcer.Utilitarios.Enumeradores;
 
 namespace DLLS.Comcer.Interfaces.InterfacesDeServicos
 {
-	public interface IServicoDeProdutosDoPedido : IServicoPadrao<DtoPedidoProduto>
+	public interface IServicoDeProdutosDoPedido : IServicoPadrao<DtoProdutoDoPedido>
 	{
-		public DtoSaida<DtoPedidoProduto> AtualizeStatus(int codigo, EnumStatusPedido status);
+		public DtoSaida<DtoProdutoDoPedido> AtualizeStatus(int codigo, EnumStatusPedido status);
 	}
 }

@@ -10,7 +10,7 @@ using DLLS.Comcer.Utilitarios.Enumeradores;
 
 namespace DLLS.Comcer.Negocio.Servicos
 {
-	public class ServicoDeProdutosDoPedidoImpl : ServicoPadraoImpl<ProdutoDoPedido, DtoPedidoProduto>, IServicoDeProdutosDoPedido
+	public class ServicoDeProdutosDoPedidoImpl : ServicoPadraoImpl<ProdutoDoPedido, DtoProdutoDoPedido>, IServicoDeProdutosDoPedido
 	{
 		private IConversorProdutoDoPedido _conversor;
 		private IValidadorProdutoDoPedido _validador;
@@ -29,12 +29,12 @@ namespace DLLS.Comcer.Negocio.Servicos
 			return _validador ??= new ValidadorProdutoDoPedido();
 		}
 
-		protected override IConversorPadrao<ProdutoDoPedido, DtoPedidoProduto> Conversor()
+		protected override IConversorPadrao<ProdutoDoPedido, DtoProdutoDoPedido> Conversor()
 		{
 			return _conversor ??= new ConversorProdutoDoPedido();
 		}
 
-		public DtoSaida<DtoPedidoProduto> AtualizeStatus(int codigo, EnumStatusPedido status)
+		public DtoSaida<DtoProdutoDoPedido> AtualizeStatus(int codigo, EnumStatusPedido status)
 		{
 			throw new System.NotImplementedException();
 		}

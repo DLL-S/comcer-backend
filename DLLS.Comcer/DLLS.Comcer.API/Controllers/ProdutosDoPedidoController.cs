@@ -10,7 +10,7 @@ namespace DLLS.Comcer.API.Controllers
 	[ApiController]
 	[Route("Api/[controller]")]
 	[ApiExplorerSettings(IgnoreApi = false)]
-	public class ProdutosDoPedidoController : ControllerCrud<DtoPedidoProduto>
+	public class ProdutosDoPedidoController : ControllerCrud<DtoProdutoDoPedido>
 	{
 		public ProdutosDoPedidoController(IServicoDeProdutosDoPedido servico)
 			: base(servico)
@@ -26,7 +26,7 @@ namespace DLLS.Comcer.API.Controllers
 		[HttpGet("{codigo}")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
-		public new ActionResult<DtoPedidoProduto> Consultar(int codigo)
+		public new ActionResult<DtoProdutoDoPedido> Consultar(int codigo)
 		{
 			return base.Consultar(codigo);
 		}
@@ -34,7 +34,7 @@ namespace DLLS.Comcer.API.Controllers
 		[HttpGet()]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
-		public new ActionResult<IList<DtoPedidoProduto>> Listar(
+		public new ActionResult<IList<DtoProdutoDoPedido>> Listar(
 			[FromQuery] int pagina,
 			[FromQuery] int quantidade,
 			[FromQuery] EnumOrdem ordem,
@@ -48,9 +48,9 @@ namespace DLLS.Comcer.API.Controllers
 		[HttpPut("{codigo}")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public ActionResult<DtoPedidoProduto> AtualizarStatus(int codigo, [FromQuery] EnumStatusPedido status)
+		public ActionResult<DtoProdutoDoPedido> AtualizarStatus(int codigo, [FromQuery] EnumStatusPedido status)
 		{
-			DtoSaida<DtoPedidoProduto> dto;
+			DtoSaida<DtoProdutoDoPedido> dto;
 
 			try
 			{
