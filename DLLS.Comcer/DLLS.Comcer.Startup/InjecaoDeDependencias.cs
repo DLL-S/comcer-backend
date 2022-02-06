@@ -35,8 +35,6 @@ namespace DLLS.Comcer.Startup
 		/// Método de extensão para adicionar resolução automática de serviços,
 		/// repositórios, conversores e contextos de banco de dados.
 		/// </summary>
-		/// <param name="servicos">A coleção de serviços da aplicação.</param>
-		/// <param name="configuracao">Parâmetros de configuração da aplicação.</param>
 		public static void ExecuteMigrationsScoped(this IApplicationBuilder app)
 		{
 			using (var scope = app.ApplicationServices.CreateScope())
@@ -53,7 +51,8 @@ namespace DLLS.Comcer.Startup
 		/// <param name="configuracao">A <see cref="IConfiguration"/> da aplicação.</param>
 		private static void AddResolucaoDeBancoDeDados(IServiceCollection servicos, IConfiguration configuracao)
 		{
-			servicos.AddDbContext<ContextoDeAplicacao>(options => options.UseNpgsql(ConnectionStringUtils.ObtenhaStringDeConexao("DefaultConnection")));
+			servicos.AddDbContext<ContextoDeAplicacao>(options =>
+				options.UseNpgsql(ConnectionStringUtils.ObtenhaStringDeConexao("POSTGRESQLCONNSTR_DefaultConnection")));
 
 			servicos.AddTransient<IRepositorioFuncionario, RepositorioFuncionario>();
 			servicos.AddTransient<IRepositorioComanda, RepositorioComanda>();

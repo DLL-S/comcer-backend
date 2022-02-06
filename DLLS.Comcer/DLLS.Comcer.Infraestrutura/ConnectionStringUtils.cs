@@ -1,4 +1,6 @@
-using System.Configuration;
+using System;
+using System.IO;
+using Microsoft.Extensions.Configuration;
 
 namespace DLLS.Comcer.Infraestrutura
 {
@@ -6,7 +8,10 @@ namespace DLLS.Comcer.Infraestrutura
 	{
 		public static string ObtenhaStringDeConexao(string key)
 		{
-			string stringDeConexao = ConfigurationManager.ConnectionStrings[key].ConnectionString;
+			string ambiente = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+			string stringDeConexao = Environment.GetEnvironmentVariable(
+				ambiente?.ToUpper() == "DEVELOPMENT" ? "connectionStringDev" : "connectionString");
+
 			return stringDeConexao;
 		}
 	}

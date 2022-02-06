@@ -7,7 +7,7 @@ namespace DLLS.Comcer.Infraestrutura
 	{
 		public T CreateDbContext(string[] args)
 		{
-			string stringDeConexao = ConnectionStringUtils.ObtenhaStringDeConexao("DefaultConnection");
+			string stringDeConexao = ConnectionStringUtils.ObtenhaStringDeConexao("POSTGRESQLCONNSTR_DefaultConnection");
 
 			var builder = new DbContextOptionsBuilder<ContextoDeAplicacao>();
 			builder.UseNpgsql(stringDeConexao, opcoes =>
