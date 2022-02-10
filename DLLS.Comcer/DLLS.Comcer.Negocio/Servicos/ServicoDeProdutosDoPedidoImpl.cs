@@ -31,7 +31,9 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 		public DtoSaida<DtoProdutoDoPedido> AtualizeStatus(int codigo, EnumStatusPedido status)
 		{
-			throw new System.NotImplementedException();
+			DtoProdutoDoPedido obj = Conversor().Converta(_repositorio.Consulte(codigo));
+			obj.Status = status;
+			return base.Atualize(obj);
 		}
 	}
 }
