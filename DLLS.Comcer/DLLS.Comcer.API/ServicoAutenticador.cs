@@ -37,7 +37,7 @@ namespace DLLS.Comcer.API
 			};
 			SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
 			user.Senha = string.Empty;
-			user.Token = token.ToString();
+			user.Token = tokenHandler.WriteToken(token);
 		}
 
 		public static string ObtenhaCriptografado(string texto)

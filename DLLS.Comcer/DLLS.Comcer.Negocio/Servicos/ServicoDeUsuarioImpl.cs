@@ -2,6 +2,8 @@ using DLLS.Comcer.Dominio.Objetos.IdentityObj;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
 using DLLS.Comcer.Interfaces.InterfacesDeServicos;
 using DLLS.Comcer.Interfaces.Modelos;
+using DLLS.Comcer.Negocio.Conversores;
+using DLLS.Comcer.Negocio.Validacoes;
 
 namespace DLLS.Comcer.Negocio.Servicos
 {
@@ -14,9 +16,28 @@ namespace DLLS.Comcer.Negocio.Servicos
 			_repositorio = repositorio;
 		}
 
-		public DtoLogin DefinaSenha(string usuario, string senha)
+		public DtoSaida<DtoFuncionario> CadastreUsuario(DtoLogin login, DtoFuncionario funcionario)
 		{
-			throw new System.NotImplementedException();
+			var conversorFuncionario = new ConversorFuncionario();
+			var objFuncionario = conversorFuncionario.Converta(funcionario);
+			var usuario = new Usuario {
+				Email = login.Usuario,
+				PasswordHash = login.Senha,
+				Funcionario = objFuncionario,
+				UserName = objFuncionario.Nome.Trim(),
+				PhoneNumber = objFuncionario.Celular
+			};
+
+			DtoSaida<DtoFuncionario> dtoSaida = conversorFuncionario.ConvertaParaDtoSaida(usuario.Funcionario);
+
+			var validador = new ValidadorFuncionario();
+			validador.AssineRegrasCadastro();
+			CentralDeValidacoes<DtoFuncionario>.Valide(ref dtoSaida, usuario.Funcionario, validador);
+
+			if (dtoSaida.Sucesso)
+				dtoSaida.Resultados[0].Id = _repositorio.Cadastre(usuario).Funcionario.Id;
+
+			return dtoSaida;
 		}
 
 		public DtoLogin ObtenhaRegistro(string usuario, string senha)

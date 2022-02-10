@@ -12,9 +12,12 @@ namespace DLLS.Comcer.API.Controllers
 	[ApiExplorerSettings(IgnoreApi = false)]
 	public class FuncionariosController : ControllerCrud<DtoFuncionario>
 	{
-		public FuncionariosController(IServicoDeFuncionario servico)
+		private readonly IServicoDeUsuario _servicoDeUsuario;
+		public FuncionariosController(IServicoDeFuncionario servico, IServicoDeUsuario servicoDeUsuario)
 			: base(servico)
-		{ }
+		{
+			_servicoDeUsuario = servicoDeUsuario;
+		}
 
 		private IServicoDeFuncionario Servico()
 		{
@@ -48,9 +51,12 @@ namespace DLLS.Comcer.API.Controllers
 		[HttpPost()]
 		[ProducesResponseType(StatusCodes.Status201Created)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public new ActionResult<DtoFuncionario> Cadastrar([FromBody] DtoFuncionario obj)
+		public ActionResult<DtoFuncionario> Cadastrar([FromBody] ModelCadastroDeUsuario obj)
 		{
-			return base.Cadastrar(obj);
+			obj.Login.Senha = ServicoAutenticador.ObtenhaCriptografado(obj.Login.Senha);
+			DtoSaida<DtoFuncionario> dto = _servicoDeUsuario.CadastreUsuario(obj.Login, obj.Funcionario);
+
+			return dto.Sucesso ? CreatedAtAction("Cadastrar", dto) : BadRequest(dto);
 		}
 
 		[HttpPut()]

@@ -20,6 +20,14 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 			Persistencia = Contexto.Set<Usuario>();
 		}
 
+		public Usuario Cadastre(Usuario usuario)
+		{
+			Persistencia.Add(usuario);
+			Contexto.SaveChanges();
+
+			return usuario;
+		}
+
 		public Usuario ConsultePorLogin(string usuario, string senha)
 		{
 			return Persistencia.FirstOrDefault(x => usuario == x.Email && x.PasswordHash == senha);
