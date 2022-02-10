@@ -29,7 +29,7 @@ namespace DLLS.Comcer.Negocio.Servicos
 		/// <returns>Um Dto com o item encontrado ou null.</returns>
 		public DtoSaida<TDto> Consulte(int codigo)
 		{
-			var objetoConsultado = _repositorio.Consulte(codigo);
+			TObjeto objetoConsultado = _repositorio.Consulte(codigo);
 
 			if (objetoConsultado == null)
 			{
@@ -87,8 +87,8 @@ namespace DLLS.Comcer.Negocio.Servicos
 		/// <returns>Retorna o Dto com uma indicação de Sucesso true ou false.</returns>
 		public virtual DtoSaida<TDto> Atualize(TDto objeto)
 		{
-			var objetoConvertido = Conversor().Converta(objeto);
-			var dtoSaida = Conversor().ConvertaParaDtoSaida(objeto);
+			TObjeto objetoConvertido = Conversor().Converta(objeto);
+			DtoSaida<TDto> dtoSaida = Conversor().ConvertaParaDtoSaida(objeto);
 
 			Validador().AssineRegrasAtualizacao();
 			CentralDeValidacoes<TDto>.Valide(ref dtoSaida, objetoConvertido, Validador());

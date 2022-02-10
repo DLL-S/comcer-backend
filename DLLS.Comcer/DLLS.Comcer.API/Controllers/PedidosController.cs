@@ -16,11 +16,6 @@ namespace DLLS.Comcer.API.Controllers
 			: base(servico)
 		{ }
 
-		private IServicoDePedido Servico()
-		{
-			return (IServicoDePedido)_servico;
-		}
-
 		#region CONSULTAS
 
 		[HttpGet("{codigo}")]

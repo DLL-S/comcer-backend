@@ -24,7 +24,7 @@ namespace DLLS.Comcer.Startup
 		/// </summary>
 		/// <param name="servicos">A coleção de serviços da aplicação.</param>
 		/// <param name="configuracao">Parâmetros de configuração da aplicação.</param>
-		public static void AddResolucaoDeDependencias(this IServiceCollection servicos, IConfiguration configuracao)
+		public static void AddResolucaoDeDependencias(this IServiceCollection servicos)
 		{
 			AddResolucaoDeBancoDeDados(servicos);
 			AddResolucaoDeAddResolucaoDeIdentidade(servicos);
@@ -37,11 +37,9 @@ namespace DLLS.Comcer.Startup
 		/// </summary>
 		public static void ExecuteMigrationsScoped(this IApplicationBuilder app)
 		{
-			using (var scope = app.ApplicationServices.CreateScope())
-			{
-				var db = scope.ServiceProvider.GetRequiredService<ContextoDeAplicacao>();
-				db.Database.Migrate();
-			}
+			using IServiceScope scope = app.ApplicationServices.CreateScope();
+			ContextoDeAplicacao db = scope.ServiceProvider.GetRequiredService<ContextoDeAplicacao>();
+			db.Database.Migrate();
 		}
 
 		/// <summary>
@@ -52,7 +50,7 @@ namespace DLLS.Comcer.Startup
 		private static void AddResolucaoDeBancoDeDados(IServiceCollection servicos)
 		{
 			servicos.AddDbContext<ContextoDeAplicacao>(options =>
-				options.UseNpgsql(ConnectionStringUtils.ObtenhaStringDeConexao("POSTGRESQLCONNSTR_DefaultConnection")));
+				options.UseNpgsql(ConnectionStringUtils.ObtenhaStringDeConexao()));
 
 			servicos.AddTransient<IRepositorioFuncionario, RepositorioFuncionario>();
 			servicos.AddTransient<IRepositorioComanda, RepositorioComanda>();
