@@ -44,7 +44,7 @@ namespace DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios
 		/// <summary>
 		/// Exclui um registro no contexto.
 		/// </summary>
-		/// <param name="objeto">O objeto a ser excluído.</param>
-		void Exclua(int Codigo);
+		/// <param name="codigo">O objeto a ser excluído.</param>
+		void Exclua(int codigo);
 	}
 }

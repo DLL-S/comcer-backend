@@ -39,13 +39,15 @@ namespace DLLS.Comcer.Negocio.Servicos
 				imagem = Image.FromStream(ms);
 			}
 
-			Bitmap b = new Bitmap(130, 80);
-			Graphics g = Graphics.FromImage((Image)b);
-			g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+			using (Bitmap b = new Bitmap(130, 80))
+			{
+				Graphics g = Graphics.FromImage((Image)b);
+				g.InterpolationMode = InterpolationMode.HighQualityBicubic;
 
-			g.DrawImage(imagem, 0, 0, 130, 80);
-			g.Dispose();
-			imagem = (Image)b;
+				g.DrawImage(imagem, 0, 0, 130, 80);
+				g.Dispose();
+				imagem = (Image)b;
+			}
 			using (MemoryStream ms = new MemoryStream())
 			{
 				// Convert Image to byte[]

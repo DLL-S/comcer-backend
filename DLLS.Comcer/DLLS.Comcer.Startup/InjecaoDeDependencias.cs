@@ -26,7 +26,7 @@ namespace DLLS.Comcer.Startup
 		/// <param name="configuracao">Parâmetros de configuração da aplicação.</param>
 		public static void AddResolucaoDeDependencias(this IServiceCollection servicos, IConfiguration configuracao)
 		{
-			AddResolucaoDeBancoDeDados(servicos, configuracao);
+			AddResolucaoDeBancoDeDados(servicos);
 			AddResolucaoDeAddResolucaoDeIdentidade(servicos);
 			AddResolucaoDeServicos(servicos);
 		}
@@ -49,7 +49,7 @@ namespace DLLS.Comcer.Startup
 		/// </summary>
 		/// <param name="servicos">A <see cref="IServiceCollection"/> da aplicação.</param>
 		/// <param name="configuracao">A <see cref="IConfiguration"/> da aplicação.</param>
-		private static void AddResolucaoDeBancoDeDados(IServiceCollection servicos, IConfiguration configuracao)
+		private static void AddResolucaoDeBancoDeDados(IServiceCollection servicos)
 		{
 			servicos.AddDbContext<ContextoDeAplicacao>(options =>
 				options.UseNpgsql(ConnectionStringUtils.ObtenhaStringDeConexao("POSTGRESQLCONNSTR_DefaultConnection")));

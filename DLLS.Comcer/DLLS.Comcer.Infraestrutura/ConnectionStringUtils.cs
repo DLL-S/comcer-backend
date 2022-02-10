@@ -1,10 +1,8 @@
 using System;
-using System.IO;
-using Microsoft.Extensions.Configuration;
 
 namespace DLLS.Comcer.Infraestrutura
 {
-	public class ConnectionStringUtils
+	public static class ConnectionStringUtils
 	{
 		public static string ObtenhaStringDeConexao(string key)
 		{

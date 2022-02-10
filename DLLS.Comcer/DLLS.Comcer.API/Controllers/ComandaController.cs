@@ -66,7 +66,7 @@ namespace DLLS.Comcer.API.Controllers
 			{
 				dto = Servico().IncluaPedido(codigo, obj);
 
-				if (dto.Sucesso == false)
+				if (!dto.Sucesso)
 				{
 					return BadRequest(dto);
 				}

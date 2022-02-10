@@ -13,7 +13,7 @@ namespace DLLS.Comcer.Negocio.Servicos
 	{
 		private IConversorComanda _conversor;
 		private IValidadorComanda _validador;
-		private IServicoDeProduto _servicoDeProduto;
+		private readonly IServicoDeProduto _servicoDeProduto;
 
 		public ServicoDeComandaImpl(IRepositorioComanda repositorio, IServicoDeProduto servicoDeProduto) : base(repositorio)
 		{

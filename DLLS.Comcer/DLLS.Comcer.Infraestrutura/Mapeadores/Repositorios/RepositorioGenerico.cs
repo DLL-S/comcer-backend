@@ -14,7 +14,7 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 		/// Construtor padrão.
 		/// </summary>
 		/// <param name="contexto">O contexto da aplicação (via injeção de dependência).</param>
-		public RepositorioGenerico(ContextoDeAplicacao contexto)
+		protected RepositorioGenerico(ContextoDeAplicacao contexto)
 		{
 			Contexto = contexto;
 			Persistencia = Contexto.Set<TObjeto>();

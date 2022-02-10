@@ -6,7 +6,7 @@ namespace DLLS.Comcer.Negocio.Servicos
 {
 	public class ServicoDeUsuarioImpl : IServicoDeUsuario
 	{
-		IRepositorioUsuario _repositorio;
+		readonly IRepositorioUsuario _repositorio;
 
 		public ServicoDeUsuarioImpl(IRepositorioUsuario repositorio)
 		{

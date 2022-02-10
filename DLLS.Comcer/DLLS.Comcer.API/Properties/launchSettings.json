@@ -29,7 +29,7 @@
         "connectionString": "Server=localhost;Port=5432;Database=dlls-dev-comcer-2;User Id=postgres;Password=Postgres2018!;ApplicationName=DLLS.Comcer.API;"
       },
       "dotnetRunMessages": "true",
-      "applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "applicationUrl": "https://localhost:5001;http://localhost:5000"
     }
   }
 }

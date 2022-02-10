@@ -14,7 +14,7 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 		/// Construtor padrão.
 		/// </summary>
 		/// <param name="contexto">O contexto da aplicação (via injeção de dependência).</param>
-		public RepositorioObjetoComIdNumerico(ContextoDeAplicacao contexto)
+		protected RepositorioObjetoComIdNumerico(ContextoDeAplicacao contexto)
 			 : base(contexto) { }
 
 		/// <summary>
@@ -32,11 +32,11 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 		/// <summary>
 		/// Consulta um objeto no contexto definido.
 		/// </summary>
-		/// <param name="Codigo">O código do objeto.</param>
+		/// <param name="codigo">O código do objeto.</param>
 		/// <returns>O objeto da base, ou null caso não exista.</returns>
-		public virtual TObjeto Consulte(int Codigo)
+		public virtual TObjeto Consulte(int codigo)
 		{
-			return Persistencia.Where(x => x.Id == Codigo).FirstOrDefault();
+			return Persistencia.Where(x => x.Id == codigo).FirstOrDefault();
 		}
 
 		/// <summary>
@@ -87,9 +87,9 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 		/// Exclui um registro no contexto.
 		/// </summary>
 		/// <param name="objeto">O objeto a ser excluído.</param>
-		public virtual void Exclua(int objeto)
+		public virtual void Exclua(int codigo)
 		{
-			Persistencia.Remove(Consulte(objeto));
+			Persistencia.Remove(Consulte(codigo));
 			Contexto.SaveChanges();
 		}
 

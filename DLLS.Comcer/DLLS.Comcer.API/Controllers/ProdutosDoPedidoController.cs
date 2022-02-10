@@ -56,7 +56,7 @@ namespace DLLS.Comcer.API.Controllers
 			{
 				dto = Servico().AtualizeStatus(codigo, status);
 
-				if (dto.Sucesso == false)
+				if (!dto.Sucesso)
 				{
 					return BadRequest(dto);
 				}

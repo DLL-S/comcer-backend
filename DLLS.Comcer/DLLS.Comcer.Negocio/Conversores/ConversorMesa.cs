@@ -10,7 +10,7 @@ namespace DLLS.Comcer.Negocio.Conversores
 
 		public override DtoMesa Converta(Mesa objeto)
 		{
-			var dto = base.Converta(objeto);
+			DtoMesa dto = base.Converta(objeto);
 			dto.Comandas = ConversorComanda().Converta(objeto.Comandas);
 
 			return dto;
@@ -18,7 +18,7 @@ namespace DLLS.Comcer.Negocio.Conversores
 
 		public override Mesa Converta(DtoMesa dto)
 		{
-			var objeto = base.Converta(dto);
+			Mesa objeto = base.Converta(dto);
 			objeto.Comandas = ConversorComanda().Converta(dto.Comandas);
 			return objeto;
 		}

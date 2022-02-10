@@ -64,17 +64,17 @@ namespace DLLS.Comcer.Negocio.Servicos
 		/// <summary>
 		/// Cadastrda um novo item na base.
 		/// </summary>
-		/// <param name="dto">O Dto a ser cadastrado.</param>
+		/// <param name="objeto">O Dto a ser cadastrado.</param>
 		/// <returns>Retorna o Dto com uma indicação de Sucesso true ou false.</returns>
-		public virtual DtoSaida<TDto> Cadastre(TDto dto)
+		public virtual DtoSaida<TDto> Cadastre(TDto objeto)
 		{
-			var objetoConvertido = Conversor().Converta(dto);
-			var dtoSaida = Conversor().ConvertaParaDtoSaida(dto);
+			TObjeto objetoConvertido = Conversor().Converta(objeto);
+			DtoSaida<TDto> dtoSaida = Conversor().ConvertaParaDtoSaida(objeto);
 
 			Validador().AssineRegrasCadastro();
 			CentralDeValidacoes<TDto>.Valide(ref dtoSaida, objetoConvertido, Validador());
 
-			if (dtoSaida.Sucesso == true)
+			if (dtoSaida.Sucesso)
 				dtoSaida.Resultados[0].Id = _repositorio.Cadastre(objetoConvertido).Id;
 
 			return dtoSaida;
@@ -83,17 +83,17 @@ namespace DLLS.Comcer.Negocio.Servicos
 		/// <summary>
 		/// Atualiza um item na base.
 		/// </summary>
-		/// <param name="dto">O Dto do item a ser atualizado.</param>
+		/// <param name="objeto">O Dto do item a ser atualizado.</param>
 		/// <returns>Retorna o Dto com uma indicação de Sucesso true ou false.</returns>
-		public virtual DtoSaida<TDto> Atualize(TDto dto)
+		public virtual DtoSaida<TDto> Atualize(TDto objeto)
 		{
-			var objetoConvertido = Conversor().Converta(dto);
-			var dtoSaida = Conversor().ConvertaParaDtoSaida(dto);
+			var objetoConvertido = Conversor().Converta(objeto);
+			var dtoSaida = Conversor().ConvertaParaDtoSaida(objeto);
 
 			Validador().AssineRegrasAtualizacao();
 			CentralDeValidacoes<TDto>.Valide(ref dtoSaida, objetoConvertido, Validador());
 
-			if (dtoSaida.Sucesso == true)
+			if (dtoSaida.Sucesso)
 				dtoSaida.Resultados[0].Id = _repositorio.Atualize(objetoConvertido).Id;
 
 			return dtoSaida;

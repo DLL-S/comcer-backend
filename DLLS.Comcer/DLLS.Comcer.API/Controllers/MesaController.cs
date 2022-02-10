@@ -73,7 +73,7 @@ namespace DLLS.Comcer.API.Controllers
 			{
 				dto = Servico().IncluaComanda(codigoMesa, obj);
 
-				if (dto.Sucesso == false)
+				if (!dto.Sucesso)
 				{
 					return BadRequest(dto);
 				}
@@ -97,7 +97,7 @@ namespace DLLS.Comcer.API.Controllers
 			{
 				dto = Servico().ObtenhaComandas(codigoMesa);
 
-				if (dto.Sucesso == false)
+				if (!dto.Sucesso)
 				{
 					return BadRequest(dto);
 				}

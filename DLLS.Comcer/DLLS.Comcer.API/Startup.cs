@@ -1,8 +1,10 @@
 using DLLS.Comcer.Startup;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 namespace DLLS.Comcer.API
@@ -22,22 +24,22 @@ namespace DLLS.Comcer.API
 			services.AddResolucaoDeDependencias(Configuration);
 			services.AddControllers();
 
-			//services.AddAuthentication(x =>
-			//{
-			//	x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-			//	x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-			//})
-			//	.AddJwtBearer(x =>
-			//	{
-			//		x.RequireHttpsMetadata = false;
-			//		x.SaveToken = true;
-			//		x.TokenValidationParameters = new TokenValidationParameters {
-			//			ValidateIssuerSigningKey = true,
-			//			IssuerSigningKey = new SymmetricSecurityKey(key),
-			//			ValidateIssuer = false,
-			//			ValidateAudience = false
-			//		};
-			//	});
+			services.AddAuthentication(x =>
+			{
+				x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+				x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+			})
+				.AddJwtBearer(x =>
+				{
+					x.RequireHttpsMetadata = false;
+					x.SaveToken = true;
+					x.TokenValidationParameters = new TokenValidationParameters {
+						ValidateIssuerSigningKey = true,
+						IssuerSigningKey = new SymmetricSecurityKey(ServicoAutenticador.ObtenhaByteKey()),
+						ValidateIssuer = false,
+						ValidateAudience = false
+					};
+				});
 
 			services.AddSwaggerGen(c =>
 			{
@@ -61,8 +63,8 @@ namespace DLLS.Comcer.API
 			app.UseHttpsRedirection();
 			app.UseRouting();
 
-			//app.UseAuthentication();
-			//app.UseAuthorization();
+			app.UseAuthentication();
+			app.UseAuthorization();
 
 			app.UseEndpoints(endpoints =>
 			{

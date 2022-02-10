@@ -12,7 +12,7 @@ namespace DLLS.Comcer.API
 {
 	public static class ServicoAutenticador
 	{
-		static byte[] KEY = Encoding.ASCII.GetBytes("fedaf7d8863b48e197b92fedaf7d8863b48e197b9287d492b708e87d49fedaf7d886fedaf7d8863b48e197b9287d492b708e3b48e197b9287fedaf7d8863b48e197b9287d492b708ed492b708e2b708e");
+		static readonly byte[] KEY = Encoding.ASCII.GetBytes("fedaf7d8863b48e197b92fedaf7d8863b48e197b9287d492b708e87d49fedaf7d886fedaf7d8863b48e197b9287d492b708e3b48e197b9287fedaf7d8863b48e197b9287d492b708ed492b708e2b708e");
 		static RC2CryptoServiceProvider cryptokey = new RC2CryptoServiceProvider {
 			Key = KEY.Reverse().Skip(KEY.Length - 16).ToArray(),
 			IV = KEY.Skip(KEY.Length - 8).ToArray()

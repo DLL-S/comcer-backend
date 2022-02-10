@@ -44,29 +44,5 @@ namespace DLLS.Comcer.API.Controllers
 		}
 
 		#endregion
-
-		//[HttpPut("{codigo}")]
-		//[ProducesResponseType(StatusCodes.Status200OK)]
-		//[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		//public ActionResult<DtoPedido> AtualizarStatus(int codigo, [FromQuery] EnumStatusPedido status)
-		//{
-		//	DtoSaida<DtoPedido> dto;
-
-		//	try
-		//	{
-		//		dto = Servico().AtualizeStatus(codigo, status);
-
-		//		if (dto.Sucesso == false)
-		//		{
-		//			return BadRequest(dto);
-		//		}
-		//	}
-		//	catch(Exception ex)
-		//	{
-		//		return Problem();
-		//	}
-
-		//	return Ok(dto);
-		//}
 	}
 }

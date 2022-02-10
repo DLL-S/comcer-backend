@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using DLLS.Comcer.Dominio.Objetos.ComandaObj;
 using DLLS.Comcer.Dominio.Objetos.MesaObj;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
 using DLLS.Comcer.Interfaces.InterfacesDeConversores;
@@ -16,7 +16,7 @@ namespace DLLS.Comcer.Negocio.Servicos
 	{
 		private IConversorMesa _conversor;
 		private IValidadorMesa _validador;
-		private IServicoDeComanda _servicoDeComanda;
+		private readonly IServicoDeComanda _servicoDeComanda;
 
 		public ServicoDeMesaImpl(IRepositorioMesa repositorio, IServicoDeComanda servicoDeComanda) : base(repositorio)
 		{
@@ -25,25 +25,14 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 		public DtoSaida<DtoComanda> ObtenhaComandas(int numeroMesa)
 		{
-			var comandas = _repositorio.Liste().Where(x => x.Numero == numeroMesa).SelectMany(x => x.Comandas);
-
-			if (comandas != null && comandas.Any())
-			{
-				foreach (var comanda in comandas)
-				{
-					Parallel.ForEach(comanda.ListaPedidos, x =>
-					{
-						x.ProdutosDoPedido = null;
-					});
-				}
-			}
+			IEnumerable<Comanda> comandas = Repositorio().Liste().Where(x => x.Numero == numeroMesa).SelectMany(x => x.Comandas);
 
 			return new ConversorComanda().ConvertaParaDtoSaida(comandas.ToList());
 		}
 
 		public DtoSaida<DtoMesa> IncluaComanda(int numeroMesa, DtoComanda comanda)
 		{
-			var mesa = Consulte(numeroMesa).Resultados[0];
+			DtoMesa mesa = Consulte(numeroMesa).Resultados[0];
 
 			mesa.Comandas.Add(_servicoDeComanda.TrateInclusaoDeComanda(comanda));
 			mesa.Disponivel = false;
@@ -52,7 +41,7 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 		public IList<int> ObtenhaMesasAtivas()
 		{
-			return _repositorio.Liste().Where(x => x.Comandas.Any() && x.Disponivel == false).Select(x => x.Numero).ToList();
+			return Repositorio().Liste().Where(x => x.Comandas.Any() && !x.Disponivel).Select(x => x.Numero).ToList();
 
 		}
 
