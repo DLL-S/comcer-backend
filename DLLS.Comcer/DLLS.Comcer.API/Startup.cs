@@ -56,7 +56,6 @@ namespace DLLS.Comcer.API
 		{
 			app.ExecuteMigrationsScoped();
 
-			app.UseDeveloperExceptionPage();
 			app.UseSwagger();
 			app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DLLS.Comcer.API v1"));
 
