@@ -59,6 +59,7 @@ namespace DLLS.Comcer.Startup
 			servicos.AddTransient<IRepositorioPedido, RepositorioPedido>();
 			servicos.AddTransient<IRepositorioProduto, RepositorioProduto>();
 			servicos.AddTransient<IRepositorioProdutoDoPedido, RepositorioProdutoDoPedido>();
+			servicos.AddTransient<IRepositorioMesa, RepositorioMesa>();
 		}
 
 		/// <summary>
@@ -68,6 +69,8 @@ namespace DLLS.Comcer.Startup
 		/// <param name="configuracao">A <see cref="IConfiguration"/> da aplicação.</param>
 		private static void AddResolucaoDeAddResolucaoDeIdentidade(IServiceCollection servicos)
 		{
+			servicos.AddTransient<IRepositorioUsuario, RepositorioUsuario>();
+			servicos.AddTransient<IServicoDeUsuario, ServicoDeUsuarioImpl>();
 			servicos.AddIdentity<Usuario, Role>(options =>
 			{
 				// SENHA
@@ -102,7 +105,9 @@ namespace DLLS.Comcer.Startup
 			servicos.AddTransient<IServicoDeComanda, ServicoDeComandaImpl>();
 			servicos.AddTransient<IServicoDePedido, ServicoDePedidoImpl>();
 			servicos.AddTransient<IServicoDeProduto, ServicoDeProdutoImpl>();
+			servicos.AddTransient<IServicoDeMesa, ServicoDeMesaImpl>();
 			servicos.AddTransient<IServicoDeProdutosDoPedido, ServicoDeProdutosDoPedidoImpl>();
+			servicos.AddTransient<IServicoDeUsuario, ServicoDeUsuarioImpl>();
 		}
 	}
 }

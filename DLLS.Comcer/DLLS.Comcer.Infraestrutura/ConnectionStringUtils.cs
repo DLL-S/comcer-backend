@@ -10,7 +10,9 @@ namespace DLLS.Comcer.Infraestrutura
 		{
 			string ambiente = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 			string stringDeConexao = Environment.GetEnvironmentVariable(
-				ambiente?.ToUpper() == "DEVELOPMENT" ? "connectionStringDev" : "connectionString");
+				ambiente?.ToUpper() == "DEVELOPMENT" ?
+				"connectionStringDev" :
+				"connectionString");
 
 			return stringDeConexao;
 		}

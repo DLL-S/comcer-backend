@@ -19,7 +19,7 @@ namespace DLLS.Comcer.Utilitarios.Globalizacoes {
     // através de uma ferramenta como ResGen ou Visual Studio.
     // Para adicionar ou remover um associado, edite o arquivo .ResX e execute ResGen novamente
     // com a opção /str, ou recrie o projeto do VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Globalizacoes {
@@ -102,6 +102,15 @@ namespace DLLS.Comcer.Utilitarios.Globalizacoes {
         public static string CampoValido {
             get {
                 return ResourceManager.GetString("CampoValido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a E-mail ou senha incorretos, por favor verifique os dados..
+        /// </summary>
+        public static string LoginInvalido {
+            get {
+                return ResourceManager.GetString("LoginInvalido", resourceCulture);
             }
         }
     }

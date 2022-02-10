@@ -54,21 +54,26 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 		public override DtoSaida<DtoComanda> Cadastre(DtoComanda dto)
 		{
-			if (dto.ListaPedidos != null && dto.ListaPedidos.Count > 0)
+			return base.Cadastre(TrateInclusaoDeComanda(dto));
+		}
+
+		public DtoComanda TrateInclusaoDeComanda(DtoComanda comanda)
+		{
+			if (comanda.ListaPedidos != null && comanda.ListaPedidos.Count > 0)
 			{
-				foreach (var pedido in dto.ListaPedidos)
+				foreach (var pedido in comanda.ListaPedidos)
 				{
 					pedido.DataHoraPedido = System.DateTime.Now;
 					foreach (var produtoDoPedido in pedido.ProdutosDoPedido)
 					{
 						produtoDoPedido.Produto = _servicoDeProduto.Consulte(produtoDoPedido.Produto.Id).Resultados[0];
 						produtoDoPedido.ValorUnitario = produtoDoPedido.Produto.Preco;
-						dto.Valor += produtoDoPedido.Quantidade * produtoDoPedido.ValorUnitario;
+						comanda.Valor += produtoDoPedido.Quantidade * produtoDoPedido.ValorUnitario;
 					}
 				}
 			}
 
-			return base.Cadastre(dto);
+			return comanda;
 		}
 
 		private IRepositorioComanda Repositorio()

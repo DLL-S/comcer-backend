@@ -14,7 +14,12 @@ namespace DLLS.Comcer.API
 			Host.CreateDefaultBuilder(args)
 				.ConfigureWebHostDefaults(webBuilder =>
 				{
-					webBuilder.UseStartup<Startup>();
+					webBuilder.ConfigureKestrel(x =>
+					{
+						x.ListenAnyIP(5000);
+						x.ListenAnyIP(5001);
+					}
+					).UseStartup<Startup>();
 				});
 	}
 }

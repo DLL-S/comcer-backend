@@ -137,4 +137,8 @@
     <value>O campo {0} deve ser valido.</value>
     <comment>Recebe um parâmetro indicando o campo.</comment>
   </data>
+  <data name="LoginInvalido" xml:space="preserve">
+    <value>E-mail ou senha incorretos, por favor verifique os dados.</value>
+    <comment>Retorno para falha na autenticação</comment>
+  </data>
 </root>

@@ -2,6 +2,7 @@ using DLLS.Comcer.Dominio.Objetos.ComandaObj;
 using DLLS.Comcer.Dominio.Objetos.Compartilhados;
 using DLLS.Comcer.Dominio.Objetos.FuncionarioObj;
 using DLLS.Comcer.Dominio.Objetos.IdentityObj;
+using DLLS.Comcer.Dominio.Objetos.MesaObj;
 using DLLS.Comcer.Dominio.Objetos.PedidoObj;
 using DLLS.Comcer.Dominio.Objetos.ProdutoObj;
 using DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos;
@@ -30,6 +31,7 @@ namespace DLLS.Comcer.Infraestrutura
 		public DbSet<Pedido> Pedidos { get; set; }
 		public DbSet<Comanda> Comandas { get; set; }
 		public DbSet<Funcionario> Funcionarios { get; set; }
+		public DbSet<Mesa> Mesas { get; set; }
 
 		/// <summary>
 		/// Define os mapeamentos a serem aplicados durante a criação do modelo para o contexto.
@@ -52,6 +54,7 @@ namespace DLLS.Comcer.Infraestrutura
 			builder.ApplyConfiguration(new PedidoMap());
 			builder.ApplyConfiguration(new PedidoProdutoMap());
 			builder.ApplyConfiguration(new ComandaMap());
+			builder.ApplyConfiguration(new MesaMap());
 		}
 
 		private void AddConfiguracoesDoIdentity(ModelBuilder builder)
