@@ -23,9 +23,8 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 		/// <param name="ordem">A ordem em que os itens deverão ser retornados (Padrã: ASC).</param>
 		/// <param name="termoDeBusca">O termo de busca para a pesquisa.</param>
 		/// <returns>Uma lista de Dtos com os registros.</returns>
-		protected override IList<Produto> ListeComTermoDeBusca(int pagina, int quantidade, EnumOrdem ordem, string termoDeBusca = "")
+		protected override IList<Produto> ListeComTermoDeBusca(int pagina, int quantidade, EnumOrdem ordem, string termoDeBusca)
 		{
-			////TODO: Analizar possibilidade de adicionar o método por extensão
 			return ordem == EnumOrdem.ASC
 				? Persistencia.Where(x => x.Nome.Contains(termoDeBusca)).OrderBy(x => x.Id).Skip((pagina - 1) * quantidade).Take(quantidade).ToList()
 				: Persistencia.Where(x => x.Nome.Contains(termoDeBusca)).OrderByDescending(x => x.Id).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();

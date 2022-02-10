@@ -22,14 +22,14 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 		public DtoSaida<DtoComanda> IncluaPedido(int codigoComanda, DtoPedido pedido)
 		{
-			var comanda = Consulte(codigoComanda);
+			DtoSaida<DtoComanda> comanda = Consulte(codigoComanda);
 
 			if (comanda.Sucesso)
 			{
 				pedido.DataHoraPedido = System.DateTime.Now;
-				foreach (var produtoDoPedido in pedido.ProdutosDoPedido)
+				foreach (DtoProdutoDoPedido produtoDoPedido in pedido.ProdutosDoPedido)
 				{
-					var consultaProduto = _servicoDeProduto.Consulte(produtoDoPedido.Produto.Id);
+					DtoSaida<DtoProduto> consultaProduto = _servicoDeProduto.Consulte(produtoDoPedido.Produto.Id);
 
 					if (consultaProduto.Sucesso)
 					{
@@ -61,10 +61,10 @@ namespace DLLS.Comcer.Negocio.Servicos
 		{
 			if (comanda.ListaPedidos != null && comanda.ListaPedidos.Count > 0)
 			{
-				foreach (var pedido in comanda.ListaPedidos)
+				foreach (DtoPedido pedido in comanda.ListaPedidos)
 				{
 					pedido.DataHoraPedido = System.DateTime.Now;
-					foreach (var produtoDoPedido in pedido.ProdutosDoPedido)
+					foreach (DtoProdutoDoPedido produtoDoPedido in pedido.ProdutosDoPedido)
 					{
 						produtoDoPedido.Produto = _servicoDeProduto.Consulte(produtoDoPedido.Produto.Id).Resultados[0];
 						produtoDoPedido.ValorUnitario = produtoDoPedido.Produto.Preco;
@@ -74,11 +74,6 @@ namespace DLLS.Comcer.Negocio.Servicos
 			}
 
 			return comanda;
-		}
-
-		private IRepositorioComanda Repositorio()
-		{
-			return (IRepositorioComanda)_repositorio;
 		}
 
 		protected override IValidadorPadrao<Comanda> Validador()

@@ -18,11 +18,6 @@ namespace DLLS.Comcer.Negocio.Servicos
 		{
 		}
 
-		private IRepositorioPedido Repositorio()
-		{
-			return (IRepositorioPedido)_repositorio;
-		}
-
 		protected override IValidadorPadrao<Pedido> Validador()
 		{
 			return _validador ??= new ValidadorPedido();

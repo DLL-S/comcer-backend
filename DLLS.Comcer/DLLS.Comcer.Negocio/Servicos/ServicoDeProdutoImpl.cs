@@ -25,30 +25,30 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 		public override DtoSaida<DtoProduto> Liste(int pagina, int quantidade, EnumOrdem ordem, string termoDeBusca)
 		{
-			var lista = base.Liste(pagina, quantidade, ordem, termoDeBusca);
+			DtoSaida<DtoProduto> lista = base.Liste(pagina, quantidade, ordem, termoDeBusca);
 			Parallel.ForEach(lista.Resultados, x => ComprimaFotoProduto(ref x));
 
 			return lista;
 		}
 
-		private void ComprimaFotoProduto(ref DtoProduto saidaProduto)
+		private static void ComprimaFotoProduto(ref DtoProduto saidaProduto)
 		{
 			Image imagem;
-			using (MemoryStream ms = new MemoryStream(saidaProduto.Foto))
+			using (var ms = new MemoryStream(saidaProduto.Foto))
 			{
 				imagem = Image.FromStream(ms);
 			}
 
-			using (Bitmap b = new Bitmap(130, 80))
+			using (var b = new Bitmap(130, 80))
 			{
-				Graphics g = Graphics.FromImage((Image)b);
+				var g = Graphics.FromImage((Image)b);
 				g.InterpolationMode = InterpolationMode.HighQualityBicubic;
 
 				g.DrawImage(imagem, 0, 0, 130, 80);
 				g.Dispose();
 				imagem = (Image)b;
 			}
-			using (MemoryStream ms = new MemoryStream())
+			using (var ms = new MemoryStream())
 			{
 				// Convert Image to byte[]
 				imagem.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
@@ -56,11 +56,6 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 				saidaProduto.Foto = imageBytes;
 			}
-		}
-
-		private IRepositorioProduto Repositorio()
-		{
-			return (IRepositorioProduto)_repositorio;
 		}
 
 		protected override IValidadorPadrao<Produto> Validador()

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using DLLS.Comcer.Dominio.Objetos.PedidoObj;
 using DLLS.Comcer.Interfaces.InterfacesDeConversores;
 using DLLS.Comcer.Interfaces.Modelos;
@@ -7,11 +6,11 @@ namespace DLLS.Comcer.Negocio.Conversores
 {
 	public class ConversorPedido : ConversorPadrao<Pedido, DtoPedido>, IConversorPedido
 	{
-		ConversorProdutoDoPedido conversorProduto;
+		private ConversorProdutoDoPedido conversorProduto;
 
 		public override DtoPedido Converta(Pedido objeto)
 		{
-			var dto = base.Converta(objeto);
+			DtoPedido dto = base.Converta(objeto);
 			dto.ProdutosDoPedido = ConversorProdutoDoPedido().Converta(objeto.ProdutosDoPedido);
 
 			return dto;
@@ -19,7 +18,7 @@ namespace DLLS.Comcer.Negocio.Conversores
 
 		public override Pedido Converta(DtoPedido dto)
 		{
-			var objeto = base.Converta(dto);
+			Pedido objeto = base.Converta(dto);
 			objeto.ProdutosDoPedido = ConversorProdutoDoPedido().Converta(dto.ProdutosDoPedido);
 			return objeto;
 		}

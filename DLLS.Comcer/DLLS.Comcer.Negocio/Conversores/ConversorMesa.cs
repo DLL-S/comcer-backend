@@ -6,7 +6,7 @@ namespace DLLS.Comcer.Negocio.Conversores
 {
 	public class ConversorMesa : ConversorPadrao<Mesa, DtoMesa>, IConversorMesa
 	{
-		ConversorComanda conversorComanda;
+		private ConversorComanda conversorComanda;
 
 		public override DtoMesa Converta(Mesa objeto)
 		{

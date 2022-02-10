@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using DLLS.Comcer.Dominio.Objetos.Compartilhados;
@@ -17,14 +16,14 @@ namespace DLLS.Comcer.Negocio.Validacoes
 		where TDtoTipo : DtoSaida<TDto>
 		where TObjeto : ObjetoComIdNumerico
 		{
-			var retornoValidacao = validador.Valide(objetoAValidar);
+			IList<InconsistenciaDeValidacao> retornoValidacao = validador.Valide(objetoAValidar);
 
-			if (retornoValidacao.Any(x => x.Impeditivo == true))
+			if (retornoValidacao.Any(x => x.Impeditivo))
 			{
 				dto.Sucesso = false;
 			}
 
-			foreach (var item in retornoValidacao)
+			foreach (InconsistenciaDeValidacao item in retornoValidacao)
 			{
 				dto.Validacoes ??= new List<InconsistenciaDeValidacao>();
 				dto.Validacoes.Add(new InconsistenciaDeValidacao(item.Propriedade, item.Mensagem, item.Impeditivo));

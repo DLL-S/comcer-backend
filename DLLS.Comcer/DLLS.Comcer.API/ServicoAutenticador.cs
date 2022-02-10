@@ -12,8 +12,8 @@ namespace DLLS.Comcer.API
 {
 	public static class ServicoAutenticador
 	{
-		static readonly byte[] KEY = Encoding.ASCII.GetBytes("fedaf7d8863b48e197b92fedaf7d8863b48e197b9287d492b708e87d49fedaf7d886fedaf7d8863b48e197b9287d492b708e3b48e197b9287fedaf7d8863b48e197b9287d492b708ed492b708e2b708e");
-		static RC2CryptoServiceProvider cryptokey = new RC2CryptoServiceProvider {
+		private static readonly byte[] KEY = Encoding.ASCII.GetBytes("fedaf7d8863b48e197b92fedaf7d8863b48e197b9287d492b708e87d49fedaf7d886fedaf7d8863b48e197b9287d492b708e3b48e197b9287fedaf7d8863b48e197b9287d492b708ed492b708e2b708e");
+		private static readonly RC2CryptoServiceProvider cryptokey = new() {
 			Key = KEY.Reverse().Skip(KEY.Length - 16).ToArray(),
 			IV = KEY.Skip(KEY.Length - 8).ToArray()
 		};
@@ -35,16 +35,16 @@ namespace DLLS.Comcer.API
 				Expires = DateTime.UtcNow.AddHours(2),
 				SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(KEY), SecurityAlgorithms.HmacSha256Signature)
 			};
-			var token = tokenHandler.CreateToken(tokenDescriptor);
+			SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
 			user.Senha = string.Empty;
 			user.Token = token.ToString();
 		}
 
 		public static string ObtenhaCriptografado(string texto)
 		{
-			MemoryStream memoryStream = new MemoryStream();
-			CryptoStream cryptoStream = new CryptoStream(memoryStream, cryptokey.CreateEncryptor(), CryptoStreamMode.Write);
-			StreamWriter streamWriter = new StreamWriter(cryptoStream);
+			var memoryStream = new MemoryStream();
+			var cryptoStream = new CryptoStream(memoryStream, cryptokey.CreateEncryptor(), CryptoStreamMode.Write);
+			var streamWriter = new StreamWriter(cryptoStream);
 			streamWriter.WriteLine(texto);
 			streamWriter.Close();
 			cryptoStream.Close();
@@ -55,9 +55,9 @@ namespace DLLS.Comcer.API
 
 		public static string ObtenhaDescriptografado(string texto)
 		{
-			MemoryStream memoryStream = new MemoryStream(Convert.FromBase64String(texto));
-			CryptoStream cryptoStream = new CryptoStream(memoryStream, cryptokey.CreateDecryptor(), CryptoStreamMode.Read);
-			StreamReader streamReader = new StreamReader(cryptoStream);
+			var memoryStream = new MemoryStream(Convert.FromBase64String(texto));
+			var cryptoStream = new CryptoStream(memoryStream, cryptokey.CreateDecryptor(), CryptoStreamMode.Read);
+			var streamReader = new StreamReader(cryptoStream);
 			string result = streamReader.ReadLine();
 			streamReader.Close();
 			cryptoStream.Close();

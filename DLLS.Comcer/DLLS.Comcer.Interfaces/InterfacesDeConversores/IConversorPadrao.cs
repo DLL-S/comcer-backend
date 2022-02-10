@@ -8,13 +8,13 @@ namespace DLLS.Comcer.Interfaces.InterfacesDeConversores
 		where TDto : DtoBase
 		where TObjeto : ObjetoComIdNumerico
 	{
-		IList<TDto> Converta(IList<TObjeto> objeto);
-		IList<TObjeto> Converta(IList<TDto> objeto);
-		DtoSaida<TDto> ConvertaParaDtoSaida(TDto dto);
-		DtoSaida<TDto> ConvertaParaDtoSaida(IList<TDto> dto);
-		DtoSaida<TDto> ConvertaParaDtoSaida(TObjeto objeto);
-		DtoSaida<TDto> ConvertaParaDtoSaida(IList<TObjeto> objeto);
 		TDto Converta(TObjeto objeto);
-		TObjeto Converta(TDto objeto);
+		TObjeto Converta(TDto dtos);
+		IList<TDto> Converta(IList<TObjeto> objetos);
+		IList<TObjeto> Converta(IList<TDto> dtos);
+		DtoSaida<TDto> ConvertaParaDtoSaida(TDto dto);
+		DtoSaida<TDto> ConvertaParaDtoSaida(IList<TDto> dtos);
+		DtoSaida<TDto> ConvertaParaDtoSaida(TObjeto objeto);
+		DtoSaida<TDto> ConvertaParaDtoSaida(IList<TObjeto> objetos);
 	}
 }

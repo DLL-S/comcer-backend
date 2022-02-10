@@ -57,7 +57,7 @@ namespace DLLS.Comcer.Infraestrutura
 			builder.ApplyConfiguration(new MesaMap());
 		}
 
-		private void AddConfiguracoesDoIdentity(ModelBuilder builder)
+		private static void AddConfiguracoesDoIdentity(ModelBuilder builder)
 		{
 			builder.ApplyConfiguration(new UsuarioMap());
 			builder.ApplyConfiguration(new RolesMap());

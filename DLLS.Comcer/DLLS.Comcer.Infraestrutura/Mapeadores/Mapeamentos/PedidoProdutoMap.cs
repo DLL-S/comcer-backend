@@ -28,7 +28,7 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos
 			builder.Property(x => x.IdProduto)
 				 .HasColumnName("IDPRODUTO")
 				 .HasColumnType("NUMERIC")
-				 .IsRequired(); ;
+				 .IsRequired();
 
 			#endregion
 

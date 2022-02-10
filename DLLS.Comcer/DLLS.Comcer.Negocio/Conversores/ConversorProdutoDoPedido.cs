@@ -8,14 +8,14 @@ namespace DLLS.Comcer.Negocio.Conversores
 {
 	public class ConversorProdutoDoPedido : ConversorPadrao<ProdutoDoPedido, DtoProdutoDoPedido>, IConversorProdutoDoPedido
 	{
-		RepositorioProduto repositorioProduto;
-		ConversorProduto conversorProduto;
+		private RepositorioProduto repositorioProduto;
+		private ConversorProduto conversorProduto;
 
 
 
 		public override DtoProdutoDoPedido Converta(ProdutoDoPedido objeto)
 		{
-			var dto = base.Converta(objeto);
+			DtoProdutoDoPedido dto = base.Converta(objeto);
 			dto.Produto = ConversorProduto().Converta(RepositorioProduto().Consulte(objeto.IdProduto));
 
 			return dto;
@@ -23,7 +23,7 @@ namespace DLLS.Comcer.Negocio.Conversores
 
 		public override ProdutoDoPedido Converta(DtoProdutoDoPedido dto)
 		{
-			var objeto = base.Converta(dto);
+			ProdutoDoPedido objeto = base.Converta(dto);
 			objeto.IdProduto = dto.Produto.Id;
 			return objeto;
 		}
@@ -34,7 +34,7 @@ namespace DLLS.Comcer.Negocio.Conversores
 		}
 		private RepositorioProduto RepositorioProduto()
 		{
-			return repositorioProduto ??= new RepositorioProduto(new FabricaDeContextoDeAplicacao().CreateDbContext(null));
+			return repositorioProduto ??= new RepositorioProduto(new FabricaDeContextoDeAplicacao().CreateDbContext());
 		}
 	}
 }

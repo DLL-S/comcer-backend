@@ -19,19 +19,50 @@ namespace DLLS.Comcer.Negocio.Conversores
 				return (TDto)Activator.CreateInstance(typeof(TDto));
 			}
 
-			var dto = Copie<TDto, TObjeto>(objeto);
+			TDto dto = Copie<TDto, TObjeto>(objeto);
 
 			return dto;
 		}
 
-		public virtual TObjeto Converta(TDto dto)
+		public virtual TObjeto Converta(TDto dtos)
 		{
-			if (dto == null)
+			if (dtos == null)
 			{
 				return (TObjeto)Activator.CreateInstance(typeof(TObjeto));
 			}
 
-			return Copie<TObjeto, TDto>(dto);
+			return Copie<TObjeto, TDto>(dtos);
+		}
+
+		public virtual IList<TDto> Converta(IList<TObjeto> objetos)
+		{
+			var lista = new List<TDto>();
+
+			if (objetos == null || objetos.Count == 0)
+			{
+				return lista;
+			}
+
+			foreach (TObjeto item in objetos)
+			{
+				lista.Add(Converta(item));
+			}
+
+			return lista;
+		}
+
+		public virtual IList<TObjeto> Converta(IList<TDto> dtos)
+		{
+			var lista = new List<TObjeto>();
+
+			if (dtos == null || dtos.Count == 0)
+			{
+				return lista;
+			}
+
+			Parallel.ForEach(dtos, item => lista.Add(Converta(item)));
+
+			return lista;
 		}
 
 		public virtual DtoSaida<TDto> ConvertaParaDtoSaida(TDto dto)
@@ -47,14 +78,14 @@ namespace DLLS.Comcer.Negocio.Conversores
 
 		public virtual DtoSaida<TDto> ConvertaParaDtoSaida(TObjeto objeto)
 		{
-			var dtoConvertido = Converta(objeto);
+			TDto dtoConvertido = Converta(objeto);
 			return ConvertaParaDtoSaida(dtoConvertido);
 		}
 
-		public virtual DtoSaida<TDto> ConvertaParaDtoSaida(IList<TDto> dto)
+		public virtual DtoSaida<TDto> ConvertaParaDtoSaida(IList<TDto> dtos)
 		{
 			var dtoSaida = new DtoSaida<TDto> {
-				Resultados = dto
+				Resultados = dtos
 			};
 
 			dtoSaida.Quantidade = dtoSaida.Resultados.Count;
@@ -62,58 +93,27 @@ namespace DLLS.Comcer.Negocio.Conversores
 			return dtoSaida;
 		}
 
-		public virtual DtoSaida<TDto> ConvertaParaDtoSaida(IList<TObjeto> objeto)
+		public virtual DtoSaida<TDto> ConvertaParaDtoSaida(IList<TObjeto> objetos)
 		{
-			var dtoConvertido = Converta(objeto);
+			IList<TDto> dtoConvertido = Converta(objetos);
 			return ConvertaParaDtoSaida(dtoConvertido);
-		}
-
-		public virtual IList<TDto> Converta(IList<TObjeto> objeto)
-		{
-			var lista = new List<TDto>();
-
-			if (objeto == null || objeto.Count == 0)
-			{
-				return lista;
-			}
-
-			foreach (var item in objeto)
-			{
-				lista.Add(Converta(item));
-			};
-
-			return lista;
-		}
-
-		public virtual IList<TObjeto> Converta(IList<TDto> objeto)
-		{
-			var lista = new List<TObjeto>();
-
-			if (objeto == null || objeto.Count == 0)
-			{
-				return lista;
-			}
-
-			Parallel.ForEach(objeto, item => lista.Add(Converta(item)));
-
-			return lista;
 		}
 
 		private static TSaida Copie<TSaida, TEntrada>(TEntrada entrada)
 		{
 			Type typeT = typeof(TEntrada);
 			PropertyInfo[] propertyEntrada = typeT.GetProperties();
-			TSaida saida = (TSaida)Activator.CreateInstance(typeof(TSaida));
-			foreach (var propEntrada in propertyEntrada)
+			var saida = (TSaida)Activator.CreateInstance(typeof(TSaida));
+			foreach (PropertyInfo propEntrada in propertyEntrada)
 			{
-				var nomePropEntrada = propEntrada.Name;
-				var valorPropEntrada = propEntrada.GetValue(entrada, null);
+				string nomePropEntrada = propEntrada.Name;
+				object valorPropEntrada = propEntrada.GetValue(entrada, null);
 
 				Type tipoSaida = typeof(TSaida);
 				PropertyInfo[] propertySaida = tipoSaida.GetProperties();
-				foreach (var propSaida in propertySaida)
+				foreach (PropertyInfo propSaida in propertySaida)
 				{
-					var nomePropSaida = propSaida.Name;
+					string nomePropSaida = propSaida.Name;
 					if (nomePropEntrada == nomePropSaida)
 					{
 						try

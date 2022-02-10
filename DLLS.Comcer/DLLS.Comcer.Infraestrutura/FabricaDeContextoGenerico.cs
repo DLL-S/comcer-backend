@@ -5,7 +5,7 @@ namespace DLLS.Comcer.Infraestrutura
 {
 	public abstract class FabricaDeContextoGenerico<T> where T : DbContext
 	{
-		public T CreateDbContext(string[] args)
+		public T CreateDbContext()
 		{
 			string stringDeConexao = ConnectionStringUtils.ObtenhaStringDeConexao();
 

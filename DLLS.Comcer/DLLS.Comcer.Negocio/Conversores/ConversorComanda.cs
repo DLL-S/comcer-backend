@@ -6,7 +6,7 @@ namespace DLLS.Comcer.Negocio.Conversores
 {
 	public class ConversorComanda : ConversorPadrao<Comanda, DtoComanda>, IConversorComanda
 	{
-		ConversorPedido conversorPedido;
+		private ConversorPedido conversorPedido;
 
 		public override DtoComanda Converta(Comanda objeto)
 		{

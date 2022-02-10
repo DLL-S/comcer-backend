@@ -19,7 +19,7 @@ namespace DLLS.Comcer.API.Controllers
 		[ApiExplorerSettings(IgnoreApi = true)]
 		protected virtual ActionResult<TDto> Consultar(int codigo)
 		{
-			var dto = _servico.Consulte(codigo);
+			DtoSaida<TDto> dto = _servico.Consulte(codigo);
 			return dto == null ? NotFound() : Ok(dto);
 		}
 
@@ -30,14 +30,14 @@ namespace DLLS.Comcer.API.Controllers
 			[FromQuery] EnumOrdem ordem,
 			[FromQuery] string termoDeBusca)
 		{
-			var saida = _servico.Liste(pagina, quantidade, ordem, termoDeBusca);
+			DtoSaida<TDto> saida = _servico.Liste(pagina, quantidade, ordem, termoDeBusca);
 			return saida == null || saida.Resultados.Count == 0 ? NoContent() : Ok(saida);
 		}
 
 		[ApiExplorerSettings(IgnoreApi = true)]
 		protected virtual ActionResult<TDto> Cadastrar([FromBody] TDto novoObjeto)
 		{
-			var dto = _servico.Cadastre(novoObjeto);
+			DtoSaida<TDto> dto = _servico.Cadastre(novoObjeto);
 			return dto.Sucesso ? CreatedAtAction("Cadastrar", dto) : BadRequest(dto);
 		}
 
@@ -50,7 +50,7 @@ namespace DLLS.Comcer.API.Controllers
 			{
 				dto = _servico.Atualize(novoObjeto);
 
-				if (dto.Sucesso == false)
+				if (!dto.Sucesso)
 				{
 					return BadRequest(dto);
 				}
