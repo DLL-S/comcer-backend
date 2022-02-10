@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using DLLS.Comcer.Interfaces.InterfacesDeServicos;
 using DLLS.Comcer.Interfaces.Modelos;
 using DLLS.Comcer.Utilitarios.Enumeradores;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,6 +30,8 @@ namespace DLLS.Comcer.API.Controllers
 		[HttpGet()]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
+		[ProducesResponseType(StatusCodes.Status401Unauthorized)]
+		[Authorize()]
 		public new ActionResult<IList<DtoProduto>> Listar(
 			[FromQuery] int pagina,
 			[FromQuery] int quantidade,
@@ -43,6 +46,8 @@ namespace DLLS.Comcer.API.Controllers
 		[HttpPost()]
 		[ProducesResponseType(StatusCodes.Status201Created)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		[ProducesResponseType(StatusCodes.Status401Unauthorized)]
+		[Authorize()]
 		public new ActionResult<DtoProduto> Cadastrar([FromBody] DtoProduto obj)
 		{
 			return base.Cadastrar(obj);
@@ -51,6 +56,8 @@ namespace DLLS.Comcer.API.Controllers
 		[HttpPut()]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		[ProducesResponseType(StatusCodes.Status401Unauthorized)]
+		[Authorize()]
 		public new ActionResult<DtoProduto> Atualizar([FromBody] DtoProduto obj)
 		{
 			return base.Atualizar(obj);

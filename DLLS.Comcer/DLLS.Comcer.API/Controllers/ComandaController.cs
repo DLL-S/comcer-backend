@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DLLS.Comcer.Interfaces.InterfacesDeServicos;
 using DLLS.Comcer.Interfaces.Modelos;
 using DLLS.Comcer.Utilitarios.Enumeradores;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,6 +28,8 @@ namespace DLLS.Comcer.API.Controllers
 		[HttpGet("{codigo}")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
+		[ProducesResponseType(StatusCodes.Status401Unauthorized)]
+		[Authorize()]
 		public new ActionResult<DtoComanda> Consultar(int codigo)
 		{
 			return base.Consultar(codigo);
@@ -35,6 +38,8 @@ namespace DLLS.Comcer.API.Controllers
 		[HttpGet()]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
+		[ProducesResponseType(StatusCodes.Status401Unauthorized)]
+		[Authorize()]
 		public new ActionResult<IList<DtoComanda>> Listar(
 			[FromQuery] int pagina,
 			[FromQuery] int quantidade,
@@ -49,6 +54,8 @@ namespace DLLS.Comcer.API.Controllers
 		[HttpPut()]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		[ProducesResponseType(StatusCodes.Status401Unauthorized)]
+		[Authorize()]
 		public new ActionResult<DtoComanda> Atualizar([FromBody] DtoComanda obj)
 		{
 			return base.Atualizar(obj);
@@ -58,6 +65,8 @@ namespace DLLS.Comcer.API.Controllers
 		[HttpPut("{codigo}")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		[ProducesResponseType(StatusCodes.Status401Unauthorized)]
+		[Authorize()]
 		public ActionResult<DtoComanda> IncluirPedido(int codigo, [FromBody] DtoPedido obj)
 		{
 			DtoSaida<DtoComanda> dto;

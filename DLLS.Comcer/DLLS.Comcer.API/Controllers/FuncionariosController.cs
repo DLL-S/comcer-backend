@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using DLLS.Comcer.Interfaces.InterfacesDeServicos;
 using DLLS.Comcer.Interfaces.Modelos;
 using DLLS.Comcer.Utilitarios.Enumeradores;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,6 +30,8 @@ namespace DLLS.Comcer.API.Controllers
 		[HttpGet("{codigo}")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
+		[ProducesResponseType(StatusCodes.Status401Unauthorized)]
+		[Authorize()]
 		public new ActionResult<DtoFuncionario> Consultar(int codigo)
 		{
 			return base.Consultar(codigo);
@@ -37,6 +40,8 @@ namespace DLLS.Comcer.API.Controllers
 		[HttpGet()]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
+		[ProducesResponseType(StatusCodes.Status401Unauthorized)]
+		[Authorize()]
 		public new ActionResult<IList<DtoFuncionario>> Listar(
 			[FromQuery] int pagina,
 			[FromQuery] int quantidade,
@@ -62,6 +67,8 @@ namespace DLLS.Comcer.API.Controllers
 		[HttpPut()]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		[ProducesResponseType(StatusCodes.Status401Unauthorized)]
+		[Authorize()]
 		public new ActionResult<DtoFuncionario> Atualizar([FromBody] DtoFuncionario obj)
 		{
 			return base.Atualizar(obj);
@@ -70,6 +77,8 @@ namespace DLLS.Comcer.API.Controllers
 
 		[HttpPatch("{codigo}/Situacao")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status401Unauthorized)]
+		[Authorize()]
 		public ActionResult<EnumSituacao> AlternarSituacao(int codigo)
 		{
 			return Ok(Servico().AlterneSituacao(codigo));
