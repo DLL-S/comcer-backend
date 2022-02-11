@@ -39,19 +39,20 @@ namespace DLLS.Comcer.Negocio.Servicos
 				imagem = Image.FromStream(ms);
 			}
 
-			using (var b = new Bitmap(130, 80))
-			{
-				var g = Graphics.FromImage((Image)b);
-				g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+			var b = new Bitmap(130, 80);
 
-				g.DrawImage(imagem, 0, 0, 130, 80);
-				g.Dispose();
-				imagem = (Image)b;
-			}
+			var g = Graphics.FromImage((Image)b);
+			g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+
+			g.DrawImage(imagem, 0, 0, 130, 80);
+			g.Dispose();
+			imagem = (Image)b;
+
 			using (var ms = new MemoryStream())
 			{
 				// Convert Image to byte[]
 				imagem.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+				b.Dispose();
 				byte[] imageBytes = ms.ToArray();
 
 				saidaProduto.Foto = imageBytes;
