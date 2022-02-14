@@ -39,6 +39,16 @@ namespace DLLS.Comcer.UnitTests.Servicos
 			AssertListaDtoEhIgual(esperado.Resultados, obtido.Resultados);
 		}
 
+		protected static void AssertAreEqualByteArray(byte[] esperado, byte[] obtido)
+		{
+			Assert.AreEqual(esperado.Any(), obtido.Any());
+			Assert.AreEqual(esperado.Length, obtido.Length);
+			for (int i = 0; i < esperado.Length; i++)
+			{
+				Assert.AreEqual(esperado[i], obtido[i]);
+			}
+		}
+
 		protected static DtoSaida<TDto> EncapsuleDto(TDto dto, bool sucesso)
 		{
 			return new DtoSaida<TDto> {
