@@ -32,7 +32,7 @@ namespace DLLS.Comcer.API
 					new Claim(ClaimTypes.Name, user.Usuario.ToString()),
 					new Claim(ClaimTypes.Role, user.Role.ToString())
 				}),
-				Expires = DateTime.UtcNow.AddHours(2),
+				Expires = DateTime.UtcNow.AddHours(6),
 				SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(KEY), SecurityAlgorithms.HmacSha256Signature)
 			};
 			SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
