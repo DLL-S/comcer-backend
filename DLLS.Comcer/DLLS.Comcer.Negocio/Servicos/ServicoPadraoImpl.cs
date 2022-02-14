@@ -1,4 +1,3 @@
-using System;
 using DLLS.Comcer.Dominio.Objetos.Compartilhados;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
 using DLLS.Comcer.Interfaces.InterfacesDeConversores;
@@ -107,14 +106,7 @@ namespace DLLS.Comcer.Negocio.Servicos
 		public virtual void Exclua(int codigo)
 		{
 			Validador().AssineRegrasExclusao();
-			try
-			{
-				_repositorio.Exclua(codigo);
-			}
-			catch (Exception ex)
-			{
-				throw ex;
-			}
+			_repositorio.Exclua(codigo);
 		}
 
 		#endregion
