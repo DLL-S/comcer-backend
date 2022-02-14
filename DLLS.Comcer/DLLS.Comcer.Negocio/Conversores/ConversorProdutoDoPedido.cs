@@ -24,7 +24,11 @@ namespace DLLS.Comcer.Negocio.Conversores
 		public override ProdutoDoPedido Converta(DtoProdutoDoPedido dto)
 		{
 			ProdutoDoPedido objeto = base.Converta(dto);
-			objeto.IdProduto = dto.Produto.Id;
+			if (dto.Produto != null)
+			{
+				objeto.IdProduto = dto.Produto.Id;
+			}
+
 			return objeto;
 		}
 
