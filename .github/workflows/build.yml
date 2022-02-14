@@ -44,6 +44,6 @@ jobs:
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"dllscomcer" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}" /d:sonar.coverageReportPaths=".\sonarqubecoverage\SonarQube.xml" /d:sonar.coverage.exclusions="**Tests*.cs"
           dotnet build ./DLLS.Comcer/DLLS.Comcer.sln
-          dotnet test --no-build --collect:"XPlat Code Coverage"
-          reportgenerator "-reports:*\TestResults\*\coverage.cobertura.xml" "-targetdir:sonarqubecoverage" "-reporttypes:SonarQube"
+          dotnet test ./DLLS.Comcer/DLLS.Comcer.sln --no-build --collect:"XPlat Code Coverage"
+          reportgenerator "-reports:.\DLLS.Comcer\*\TestResults\*\coverage.cobertura.xml" "-targetdir:sonarqubecoverage" "-reporttypes:SonarQube"
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
