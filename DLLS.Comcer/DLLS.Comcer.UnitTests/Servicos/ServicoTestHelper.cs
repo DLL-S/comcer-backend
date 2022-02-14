@@ -11,15 +11,15 @@ namespace DLLS.Comcer.UnitTests.Servicos
 		where TDto : DtoBase
 		where TObjeto : ObjetoComIdNumerico
 	{
-		public static ServicoPadraoImpl<TObjeto, TDto> servico;
+		protected static ServicoPadraoImpl<TObjeto, TDto> servico;
 
-		public abstract TDto ObtenhaDto(int codigo = 0);
+		protected abstract TDto ObtenhaDto(int codigo = 0);
 
-		public abstract TObjeto ObtenhaObj(int codigo = 0);
+		protected abstract TObjeto ObtenhaObj(int codigo = 0);
 
-		public abstract void AssertDtoEhIgual(TDto esperado, TDto obtido);
+		protected abstract void AssertDtoEhIgual(TDto esperado, TDto obtido);
 
-		public virtual void AssertListaDtoEhIgual(IList<TDto> esperado, IList<TDto> obtido)
+		protected virtual void AssertListaDtoEhIgual(IList<TDto> esperado, IList<TDto> obtido)
 		{
 			Assert.AreEqual(esperado.Any(), obtido.Any());
 			Assert.AreEqual(esperado.Count, obtido.Count);
@@ -29,7 +29,7 @@ namespace DLLS.Comcer.UnitTests.Servicos
 			}
 		}
 
-		public virtual void AssertDtoSaidaEhIgual(DtoSaida<TDto> esperado, DtoSaida<TDto> obtido)
+		protected virtual void AssertDtoSaidaEhIgual(DtoSaida<TDto> esperado, DtoSaida<TDto> obtido)
 		{
 			Assert.AreEqual(esperado.Pagina, obtido.Pagina);
 			Assert.AreEqual(esperado.Quantidade, obtido.Quantidade);
@@ -39,7 +39,7 @@ namespace DLLS.Comcer.UnitTests.Servicos
 			AssertListaDtoEhIgual(esperado.Resultados, obtido.Resultados);
 		}
 
-		public static DtoSaida<TDto> EncapsuleDto(TDto dto, bool sucesso)
+		protected static DtoSaida<TDto> EncapsuleDto(TDto dto, bool sucesso)
 		{
 			return new DtoSaida<TDto> {
 				Quantidade = ConstantesTestes.INT,

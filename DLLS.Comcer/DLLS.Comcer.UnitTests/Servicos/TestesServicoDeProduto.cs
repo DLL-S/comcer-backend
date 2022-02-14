@@ -10,7 +10,7 @@ namespace DLLS.Comcer.UnitTests.Servicos
 	[TestClass]
 	public class TestesServicoDeProduto : ServicoTestHelper<DtoProduto, Produto>
 	{
-		static Mock<IRepositorioProduto> repository;
+		private static Mock<IRepositorioProduto> repository;
 
 		[ClassInitialize]
 		public static void Setup(TestContext context)
@@ -23,12 +23,12 @@ namespace DLLS.Comcer.UnitTests.Servicos
 		{
 			repository.Setup(X => X.Cadastre(It.IsAny<Produto>())).Returns(ObtenhaObj(1));
 			servico = new ServicoDeProdutoImpl(repository.Object);
-			var esperado = EncapsuleDto(ObtenhaDto(1), true);
-			var retorno = servico.Cadastre(ObtenhaDto());
+			DtoSaida<DtoProduto> esperado = EncapsuleDto(ObtenhaDto(1), true);
+			DtoSaida<DtoProduto> retorno = servico.Cadastre(ObtenhaDto());
 			AssertDtoSaidaEhIgual(esperado, retorno);
 		}
 
-		public override DtoProduto ObtenhaDto(int codigo = 0)
+		protected override DtoProduto ObtenhaDto(int codigo = 0)
 		{
 			return new DtoProduto {
 				Id = codigo,
@@ -39,7 +39,7 @@ namespace DLLS.Comcer.UnitTests.Servicos
 			};
 		}
 
-		public override Produto ObtenhaObj(int codigo = 0)
+		protected override Produto ObtenhaObj(int codigo = 0)
 		{
 			return new Produto {
 				Id = codigo,
@@ -50,7 +50,7 @@ namespace DLLS.Comcer.UnitTests.Servicos
 			};
 		}
 
-		public override void AssertDtoEhIgual(DtoProduto esperado, DtoProduto obtido)
+		protected override void AssertDtoEhIgual(DtoProduto esperado, DtoProduto obtido)
 		{
 			Assert.AreEqual(esperado.Descricao, obtido.Descricao);
 			Assert.AreEqual(esperado.Foto, obtido.Foto);

@@ -1,3 +1,4 @@
+using DLLS.Comcer.Dominio.Objetos.FuncionarioObj;
 using DLLS.Comcer.Dominio.Objetos.IdentityObj;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
 using DLLS.Comcer.Interfaces.InterfacesDeServicos;
@@ -19,7 +20,7 @@ namespace DLLS.Comcer.Negocio.Servicos
 		public DtoSaida<DtoFuncionario> CadastreUsuario(DtoLogin login, DtoFuncionario funcionario)
 		{
 			var conversorFuncionario = new ConversorFuncionario();
-			var objFuncionario = conversorFuncionario.Converta(funcionario);
+			Funcionario objFuncionario = conversorFuncionario.Converta(funcionario);
 			var usuario = new Usuario {
 				Email = login.Usuario,
 				PasswordHash = login.Senha,
