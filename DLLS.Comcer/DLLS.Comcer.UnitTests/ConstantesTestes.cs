@@ -1,13 +1,11 @@
-﻿using System;
-
-namespace DLLS.Comcer.UnitTests
+﻿namespace DLLS.Comcer.UnitTests
 {
 	public static class ConstantesTestes
 	{
-		public static string STRING = "Teste";
-		public static int INT = 1;
-		public static byte[] BYTE_ARRAY = Convert.FromBase64String("TEXT");
-		public static bool BOOL = true;
-		public static decimal DECIMAL = 1.50M;
+		public const string STRING = "Teste";
+		public const int INT = 1;
+		public static readonly byte[] BYTE_ARRAY = { 76, 69, 211 };
+		public const bool BOOL = true;
+		public const decimal DECIMAL = 1.50M;
 	}
 }

@@ -11,7 +11,7 @@ namespace DLLS.Comcer.UnitTests.Servicos
 		where TDto : DtoBase
 		where TObjeto : ObjetoComIdNumerico
 	{
-		static public ServicoPadraoImpl<TObjeto, TDto> servico;
+		public static ServicoPadraoImpl<TObjeto, TDto> servico;
 
 		public abstract TDto ObtenhaDto(int codigo = 0);
 
@@ -22,8 +22,8 @@ namespace DLLS.Comcer.UnitTests.Servicos
 		public virtual void AssertListaDtoEhIgual(IList<TDto> esperado, IList<TDto> obtido)
 		{
 			Assert.AreEqual(esperado.Any(), obtido.Any());
-			Assert.AreEqual(esperado.Count(), obtido.Count());
-			for (int i = 0; i < esperado.Count(); i++)
+			Assert.AreEqual(esperado.Count, obtido.Count);
+			for (int i = 0; i < esperado.Count; i++)
 			{
 				AssertDtoEhIgual(esperado[i], obtido[i]);
 			}
