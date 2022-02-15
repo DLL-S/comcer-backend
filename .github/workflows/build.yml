@@ -42,7 +42,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
         shell: powershell
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"dllscomcer" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}" /d:sonar.coverageReportPaths=".\sonarqubecoverage\SonarQube.xml" /d:sonar.coverage.exclusions="**Tests*.cs"
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"dllscomcer" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}" /d:sonar.coverageReportPaths=".\sonarqubecoverage\SonarQube.xml" /d:sonar.coverage.exclusions="DLLS.Comcer.Startup/**,DLLS.Comcer.API/**,DLLS.Comcer.UnitTests/**,DLLS.Comcer.Infraestrutura/Migrations/**"
           dotnet build ./DLLS.Comcer/DLLS.Comcer.sln
           dotnet test ./DLLS.Comcer/DLLS.Comcer.sln --no-build --collect:"XPlat Code Coverage"
           reportgenerator "-reports:.\DLLS.Comcer\*\TestResults\*\coverage.cobertura.xml" "-targetdir:.\DLLS.Comcer\sonarqubecoverage" "-reporttypes:SonarQube"
