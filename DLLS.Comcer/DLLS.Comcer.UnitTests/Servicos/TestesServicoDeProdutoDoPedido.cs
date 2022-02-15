@@ -67,6 +67,21 @@ namespace DLLS.Comcer.UnitTests.Servicos
 		}
 
 		[TestMethod]
+		public void TestaAtualizeStatusDoPedido()
+		{
+			repository.Setup(X => X.Consulte(It.IsAny<int>())).Returns(ObtenhaObj(1));
+			var auxEnvio = ObtenhaObj(1);
+			auxEnvio.Status = EnumStatusPedido.PENDENTE;
+			repository.Setup(X => X.Atualize(It.IsAny<ProdutoDoPedido>())).Returns(auxEnvio);
+			servico = new ServicoDeProdutosDoPedidoImpl(repository.Object);
+			DtoSaida<DtoProdutoDoPedido> retorno = ((ServicoDeProdutosDoPedidoImpl)servico).AtualizeStatus(1, EnumStatusPedido.PENDENTE);
+			var auxEsperado = ObtenhaDto(1);
+			auxEsperado.Status = EnumStatusPedido.PENDENTE;
+			DtoSaida<DtoProdutoDoPedido> esperado = EncapsuleDto(auxEsperado, true);
+			AssertDtoSaidaEhIgual(esperado, retorno);
+		}
+
+		[TestMethod]
 		[DataRow(true)]
 		[DataRow(false)]
 		public void TestaExcluaProdutoDoPedido(bool sucesso)
@@ -85,7 +100,7 @@ namespace DLLS.Comcer.UnitTests.Servicos
 			}
 		}
 
-		protected override DtoProdutoDoPedido ObtenhaDto(int codigo = 0)
+		public override DtoProdutoDoPedido ObtenhaDto(int codigo = 0)
 		{
 			return new DtoProdutoDoPedido {
 				DataHoraPedido = ConstantesTestes.DATA,
@@ -96,7 +111,7 @@ namespace DLLS.Comcer.UnitTests.Servicos
 			};
 		}
 
-		protected override ProdutoDoPedido ObtenhaObj(int codigo = 0)
+		public override ProdutoDoPedido ObtenhaObj(int codigo = 0)
 		{
 			return new ProdutoDoPedido {
 				DataHoraPedido = ConstantesTestes.DATA,
@@ -107,7 +122,7 @@ namespace DLLS.Comcer.UnitTests.Servicos
 			};
 		}
 
-		protected override void AssertDtoEhIgual(DtoProdutoDoPedido esperado, DtoProdutoDoPedido obtido)
+		public override void AssertDtoEhIgual(DtoProdutoDoPedido esperado, DtoProdutoDoPedido obtido)
 		{
 			Assert.AreEqual(esperado.DataHoraPedido, obtido.DataHoraPedido);
 			Assert.AreEqual(esperado.Id, obtido.Id);

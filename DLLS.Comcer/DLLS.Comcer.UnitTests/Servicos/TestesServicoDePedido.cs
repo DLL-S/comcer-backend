@@ -86,7 +86,7 @@ namespace DLLS.Comcer.UnitTests.Servicos
 			}
 		}
 
-		protected override DtoPedido ObtenhaDto(int codigo = 0)
+		public override DtoPedido ObtenhaDto(int codigo = 0)
 		{
 			return new DtoPedido {
 				Id = codigo,
@@ -103,7 +103,7 @@ namespace DLLS.Comcer.UnitTests.Servicos
 			};
 		}
 
-		protected override Pedido ObtenhaObj(int codigo = 0)
+		public override Pedido ObtenhaObj(int codigo = 0)
 		{
 			return new Pedido {
 				Id = codigo,
@@ -120,7 +120,7 @@ namespace DLLS.Comcer.UnitTests.Servicos
 			};
 		}
 
-		protected override void AssertDtoEhIgual(DtoPedido esperado, DtoPedido obtido)
+		public override void AssertDtoEhIgual(DtoPedido esperado, DtoPedido obtido)
 		{
 			Assert.AreEqual(esperado.Id, obtido.Id);
 			Assert.AreEqual(esperado.DataHoraPedido, obtido.DataHoraPedido);

@@ -11,15 +11,15 @@ namespace DLLS.Comcer.UnitTests.Servicos
 		where TDto : DtoBase
 		where TObjeto : ObjetoComIdNumerico
 	{
-		protected static ServicoPadraoImpl<TObjeto, TDto> servico;
+		protected ServicoPadraoImpl<TObjeto, TDto> servico;
 
-		protected abstract TDto ObtenhaDto(int codigo = 0);
+		public abstract TDto ObtenhaDto(int codigo = 0);
 
-		protected abstract TObjeto ObtenhaObj(int codigo = 0);
+		public abstract TObjeto ObtenhaObj(int codigo = 0);
 
-		protected abstract void AssertDtoEhIgual(TDto esperado, TDto obtido);
+		public abstract void AssertDtoEhIgual(TDto esperado, TDto obtido);
 
-		protected virtual void AssertListaDtoEhIgual(IList<TDto> esperado, IList<TDto> obtido)
+		public virtual void AssertListaDtoEhIgual(IList<TDto> esperado, IList<TDto> obtido)
 		{
 			Assert.AreEqual(esperado.Any(), obtido.Any());
 			Assert.AreEqual(esperado.Count, obtido.Count);
@@ -29,7 +29,7 @@ namespace DLLS.Comcer.UnitTests.Servicos
 			}
 		}
 
-		protected virtual void AssertDtoSaidaEhIgual(DtoSaida<TDto> esperado, DtoSaida<TDto> obtido)
+		public virtual void AssertDtoSaidaEhIgual(DtoSaida<TDto> esperado, DtoSaida<TDto> obtido)
 		{
 			Assert.AreEqual(esperado.Pagina, obtido.Pagina);
 			Assert.AreEqual(esperado.Quantidade, obtido.Quantidade);
@@ -39,7 +39,7 @@ namespace DLLS.Comcer.UnitTests.Servicos
 			AssertListaDtoEhIgual(esperado.Resultados, obtido.Resultados);
 		}
 
-		protected static void AssertAreEqualByteArray(byte[] esperado, byte[] obtido)
+		public static void AssertAreEqualByteArray(byte[] esperado, byte[] obtido)
 		{
 			Assert.AreEqual(esperado.Any(), obtido.Any());
 			Assert.AreEqual(esperado.Length, obtido.Length);
@@ -49,11 +49,11 @@ namespace DLLS.Comcer.UnitTests.Servicos
 			}
 		}
 
-		protected static DtoSaida<TDto> EncapsuleDto(TDto dto, bool sucesso)
+		public static DtoSaida<Tdto> EncapsuleDto<Tdto>(Tdto dto, bool sucesso) where Tdto : DtoBase
 		{
-			return new DtoSaida<TDto> {
+			return new DtoSaida<Tdto> {
 				Quantidade = ConstantesTestes.INT,
-				Resultados = new List<TDto> { dto },
+				Resultados = new List<Tdto> { dto },
 				Pagina = 0,
 				Sucesso = sucesso,
 				Total = 0

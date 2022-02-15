@@ -42,7 +42,7 @@ namespace DLLS.Comcer.UnitTests.Servicos
 			AssertDtoEhIgual(esperado, retorno);
 		}
 
-		private DtoSaida<DtoFuncionario> ObtenhaDtoSaidaFuncionario(int codigo = 0)
+		private static DtoSaida<DtoFuncionario> ObtenhaDtoSaidaFuncionario(int codigo = 0)
 		{
 			return new DtoSaida<DtoFuncionario> {
 				Quantidade = ConstantesTestes.INT,
@@ -55,7 +55,7 @@ namespace DLLS.Comcer.UnitTests.Servicos
 			};
 		}
 
-		private DtoFuncionario ObtenhaDtoFuncionario(int codigo = 0)
+		private static DtoFuncionario ObtenhaDtoFuncionario(int codigo = 0)
 		{
 			return new DtoFuncionario {
 				Id = codigo,
@@ -66,7 +66,7 @@ namespace DLLS.Comcer.UnitTests.Servicos
 			};
 		}
 
-		private void AssertDtoEhIgual(DtoLogin esperado, DtoLogin retorno)
+		private static void AssertDtoEhIgual(DtoLogin esperado, DtoLogin retorno)
 		{
 			Assert.AreEqual(esperado.Usuario, retorno.Usuario);
 			Assert.AreEqual(esperado.Token, retorno.Token);
@@ -74,7 +74,7 @@ namespace DLLS.Comcer.UnitTests.Servicos
 			Assert.AreEqual(esperado.Role, retorno.Role);
 		}
 
-		private void AssertDtoSaidaEhIgual(DtoSaida<DtoFuncionario> esperado, DtoSaida<DtoFuncionario> retorno)
+		private static void AssertDtoSaidaEhIgual(DtoSaida<DtoFuncionario> esperado, DtoSaida<DtoFuncionario> retorno)
 		{
 			Assert.AreEqual(esperado.Validacoes, retorno.Validacoes);
 			Assert.AreEqual(esperado.Total, retorno.Total);
@@ -88,7 +88,7 @@ namespace DLLS.Comcer.UnitTests.Servicos
 			Assert.AreEqual(esperado.Resultados[0].Id, retorno.Resultados[0].Id);
 		}
 
-		private DtoLogin ObtenhaDto()
+		private static DtoLogin ObtenhaDto()
 		{
 			return new DtoLogin {
 				Usuario = ConstantesTestes.STRING,
@@ -97,7 +97,7 @@ namespace DLLS.Comcer.UnitTests.Servicos
 			};
 		}
 
-		private Usuario ObtenhaObj(int codigo = 0)
+		private static Usuario ObtenhaObj(int codigo = 0)
 		{
 			return new Usuario {
 				Id = codigo,

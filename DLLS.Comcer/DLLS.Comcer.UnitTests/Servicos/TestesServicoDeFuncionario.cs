@@ -80,8 +80,7 @@ namespace DLLS.Comcer.UnitTests.Servicos
 				Assert.ThrowsException<Exception>(() => servico.Exclua(1));
 			}
 		}
-
-		protected override DtoFuncionario ObtenhaDto(int codigo = 0)
+		public override DtoFuncionario ObtenhaDto(int codigo = 0)
 		{
 			return new DtoFuncionario {
 				Id = codigo,
@@ -104,7 +103,7 @@ namespace DLLS.Comcer.UnitTests.Servicos
 			};
 		}
 
-		protected override Funcionario ObtenhaObj(int codigo = 0)
+		public override Funcionario ObtenhaObj(int codigo = 0)
 		{
 			return new Funcionario {
 				Id = codigo,
@@ -127,7 +126,7 @@ namespace DLLS.Comcer.UnitTests.Servicos
 			};
 		}
 
-		protected override void AssertDtoEhIgual(DtoFuncionario esperado, DtoFuncionario obtido)
+		public override void AssertDtoEhIgual(DtoFuncionario esperado, DtoFuncionario obtido)
 		{
 			Assert.AreEqual(esperado.Id, obtido.Id);
 			Assert.AreEqual(esperado.Nome, obtido.Nome);
