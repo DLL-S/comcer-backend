@@ -42,6 +42,15 @@ namespace DLLS.Comcer.UnitTests.Servicos
 			AssertDtoEhIgual(esperado, retorno);
 		}
 
+		[TestMethod]
+		public void TestaObtenhaRegistroNulo()
+		{
+			repository.Setup(X => X.ConsultePorLogin(It.IsAny<string>(), It.IsAny<string>()));
+			servico = new ServicoDeUsuarioImpl(repository.Object);
+			DtoLogin retorno = servico.ObtenhaRegistro("", "");
+			Assert.IsNull(retorno);
+		}
+
 		private static DtoSaida<DtoFuncionario> ObtenhaDtoSaidaFuncionario(int codigo = 0)
 		{
 			return new DtoSaida<DtoFuncionario> {
