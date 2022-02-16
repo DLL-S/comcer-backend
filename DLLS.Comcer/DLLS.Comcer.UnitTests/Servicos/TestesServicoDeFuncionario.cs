@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DLLS.Comcer.Dominio.Objetos.Compartilhados;
 using DLLS.Comcer.Dominio.Objetos.FuncionarioObj;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
+using DLLS.Comcer.Interfaces.InterfacesDeServicos;
 using DLLS.Comcer.Interfaces.Modelos;
 using DLLS.Comcer.Negocio.Servicos;
 using DLLS.Comcer.Utilitarios.Enumeradores;
@@ -60,6 +61,15 @@ namespace DLLS.Comcer.UnitTests.Servicos
 			DtoSaida<DtoFuncionario> retorno = servico.Atualize(ObtenhaDto(1));
 			DtoSaida<DtoFuncionario> esperado = EncapsuleDto(ObtenhaDto(1), true);
 			AssertDtoSaidaEhIgual(esperado, retorno);
+		}
+
+		[TestMethod]
+		public void TestaAlterneSituacaoFuncionario()
+		{
+			repository.Setup(X => X.AlterneAtivacao(It.IsAny<int>())).Returns(EnumSituacao.INATIVO);
+			servico = new ServicoDeFuncionarioImpl(repository.Object);
+			EnumSituacao retorno = ((IServicoDeFuncionario)servico).AlterneSituacao(1);
+			Assert.AreEqual(EnumSituacao.INATIVO, retorno);
 		}
 
 		[TestMethod]

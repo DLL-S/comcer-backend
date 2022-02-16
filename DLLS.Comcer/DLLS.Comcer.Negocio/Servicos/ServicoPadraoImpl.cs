@@ -94,7 +94,7 @@ namespace DLLS.Comcer.Negocio.Servicos
 			CentralDeValidacoes<TDto>.Valide(ref dtoSaida, objetoConvertido, Validador());
 
 			if (dtoSaida.Sucesso)
-				dtoSaida.Resultados[0].Id = _repositorio.Atualize(objetoConvertido).Id;
+				dtoSaida.Resultados[0] = Conversor().Converta(_repositorio.Atualize(objetoConvertido));
 
 			return dtoSaida;
 		}

@@ -37,6 +37,15 @@ namespace DLLS.Comcer.UnitTests.Servicos
 		}
 
 		[TestMethod]
+		public void ObtenhaMesasAtivasEhZero()
+		{
+			repository.Setup(X => X.Liste()).Returns(new List<Mesa>());
+			servico = new ServicoDeMesaImpl(repository.Object, servicoComanda.Object);
+			IList<int> retorno = ((ServicoDeMesaImpl)servico).ObtenhaMesasAtivas();
+			Assert.IsFalse(retorno.Any());
+		}
+
+		[TestMethod]
 		public void TestaObtenhaComandas()
 		{
 			repository.Setup(X => X.Liste()).Returns(new List<Mesa> { ObtenhaObj(1) });
@@ -52,11 +61,12 @@ namespace DLLS.Comcer.UnitTests.Servicos
 			var mesaSemComanda = ObtenhaObj(1);
 			mesaSemComanda.Comandas.Clear();
 			repository.Setup(X => X.Consulte(It.IsAny<int>())).Returns(mesaSemComanda);
+			repository.Setup(X => X.Atualize(It.IsAny<Mesa>())).Returns(ObtenhaObj(1));
 			servicoComanda.Setup(x => x.TrateInclusaoDeComanda(It.IsAny<DtoComanda>())).Returns(ObtenhaDtoComanda());
 			servico = new ServicoDeMesaImpl(repository.Object, servicoComanda.Object);
-			DtoSaida<DtoComanda> retorno = ((ServicoDeMesaImpl)servico).ObtenhaComandas(1);
-			DtoSaida<DtoComanda> esperado = EncapsuleDto(ObtenhaDto(1).Comandas.First(), true);
-			AssertDtoSaidaComandaEhIgual(esperado, retorno);
+			DtoSaida<DtoMesa> retorno = ((ServicoDeMesaImpl)servico).IncluaComanda(1, ObtenhaDtoComanda());
+			DtoSaida<DtoMesa> esperado = EncapsuleDto(ObtenhaDto(1), true);
+			AssertDtoSaidaEhIgual(esperado, retorno);
 		}
 
 		[TestMethod]
