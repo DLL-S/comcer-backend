@@ -50,7 +50,7 @@ jobs:
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
   release-build:
     name: Release Build
-    runs-on: windows-latest
+    runs-on: self-hosted
     needs: build
     steps:
       - uses: actions/checkout@v2
@@ -75,7 +75,7 @@ jobs:
 
   deploy:
     name: Deploy to azure
-    runs-on: windows-latest
+    runs-on: self-hosted
     needs: release-build
     environment:
       name: 'Production'
