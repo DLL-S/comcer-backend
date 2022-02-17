@@ -26,8 +26,7 @@ namespace DLLS.Comcer.Negocio.Servicos
 		{
 			var mesas = Repositorio().Liste().Where(x => x.Numero == numeroMesa);
 			var comandas = mesas.SelectMany(x => x.Comandas).ToList();
-			var comandaConvertida = new ConversorComanda().ConvertaParaDtoSaida(comandas);
-			return comandaConvertida;
+			return new ConversorComanda().ConvertaParaDtoSaida(comandas);
 		}
 
 		public DtoSaida<DtoMesa> IncluaComanda(int numeroMesa, DtoComanda comanda)

@@ -99,6 +99,19 @@ namespace DLLS.Comcer.UnitTests.Servicos
 		}
 
 		[TestMethod]
+		public void TestaCadastreComanda()
+		{
+			repository.Setup(X => X.Liste()).Returns(new List<Comanda>());
+			servicoProduto.Setup(x => x.Consulte(It.IsAny<int>())).Returns(EncapsuleDto(new TestesServicoDeProduto().ObtenhaDto(1), true));
+			repository.Setup(x => x.Cadastre(It.IsAny<Comanda>())).Returns(ObtenhaObj(1));
+			servico = new ServicoDeComandaImpl(repository.Object, servicoProduto.Object);
+			DtoSaida<DtoComanda> retorno = ((ServicoDeComandaImpl)servico).Cadastre(ObtenhaDto());
+			retorno.Resultados[0].ListaPedidos[0].DataHoraPedido = ConstantesTestes.DATA;
+			DtoComanda esperado = ObtenhaDto(1);
+			AssertDtoEhIgual(esperado, retorno.Resultados[0]);
+		}
+
+		[TestMethod]
 		public void TestaAtualizeComanda()
 		{
 			repository.Setup(X => X.Atualize(It.IsAny<Comanda>())).Returns(ObtenhaObj(1));

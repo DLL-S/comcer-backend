@@ -31,15 +31,9 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 		public DtoSaida<DtoProdutoDoPedido> AtualizeStatus(int codigo, EnumStatusPedido status)
 		{
-			ProdutoDoPedido objConsultado = _repositorio.Consulte(codigo);
-
-			DtoProdutoDoPedido obj = Conversor().Converta(objConsultado);
-
+			DtoProdutoDoPedido obj = Conversor().Converta(_repositorio.Consulte(codigo));
 			obj.Status = status;
-
-			DtoSaida<DtoProdutoDoPedido> retornoAtualize = base.Atualize(obj);
-
-			return retornoAtualize;
+			return base.Atualize(obj);
 		}
 	}
 }
