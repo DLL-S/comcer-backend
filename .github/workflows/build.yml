@@ -31,16 +31,16 @@ jobs:
           restore-keys: ${{ runner.os }}-sonar-scanner
       - name: Install SonarQube scanner
         if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
-        shell: powershell
+        #shell: powershell New-Item -Path .\.sonar\scanner -ItemType Directory
         run: |
-          New-Item -Path .\.sonar\scanner -ItemType Directory
+          
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
       - name: Instalar ReportGenerator
         run: dotnet tool update dotnet-reportgenerator-globaltool -g --version 4.8.7
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-        shell: powershell
+        #shell: powershell
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"dllscomcer" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}" /d:sonar.coverageReportPaths=".\sonarqubecoverage\SonarQube.xml" /d:sonar.coverage.exclusions="DLLS.Comcer.Startup/**,DLLS.Comcer.API/**,DLLS.Comcer.UnitTests/**,DLLS.Comcer.Infraestrutura/Migrations/**"
           dotnet build ./DLLS.Comcer/DLLS.Comcer.sln
