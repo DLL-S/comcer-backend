@@ -59,6 +59,8 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 		public DtoComanda TrateInclusaoDeComanda(DtoComanda comanda)
 		{
+			comanda.Valor = 0;
+
 			if (comanda.ListaPedidos != null && comanda.ListaPedidos.Count > 0)
 			{
 				foreach (DtoPedido pedido in comanda.ListaPedidos)
@@ -66,8 +68,11 @@ namespace DLLS.Comcer.Negocio.Servicos
 					pedido.DataHoraPedido = System.DateTime.Now;
 					foreach (DtoProdutoDoPedido produtoDoPedido in pedido.ProdutosDoPedido)
 					{
-						produtoDoPedido.Produto = _servicoDeProduto.Consulte(produtoDoPedido.Produto.Id).Resultados[0];
-						produtoDoPedido.ValorUnitario = produtoDoPedido.Produto.Preco;
+						if (!(produtoDoPedido.Produto is null))
+						{
+							produtoDoPedido.Produto = _servicoDeProduto.Consulte(produtoDoPedido.Produto.Id).Resultados[0];
+							produtoDoPedido.ValorUnitario = produtoDoPedido.Produto.Preco;
+						}
 						comanda.Valor += produtoDoPedido.Quantidade * produtoDoPedido.ValorUnitario;
 					}
 				}

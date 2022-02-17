@@ -26,24 +26,37 @@ namespace DLLS.Comcer.UnitTests.Servicos
 			servicoProduto = new Mock<IServicoDeProduto>();
 		}
 
+		[TestMethod]
 		public void TestaIncluaPedido()
 		{
 			var comandaSemPedido = ObtenhaObj(1);
 			comandaSemPedido.ListaPedidos.Clear();
 			comandaSemPedido.Valor = 0;
+
 			repository.Setup(X => X.Consulte(It.IsAny<int>())).Returns(comandaSemPedido);
+			repository.Setup(X => X.Atualize(It.IsAny<Comanda>())).Returns(ObtenhaObj(1));
+			servicoProduto.Setup(x => x.Consulte(It.IsAny<int>())).Returns(EncapsuleDto(new TestesServicoDeProduto().ObtenhaDto(1), true));
+
 			servico = new ServicoDeComandaImpl(repository.Object, servicoProduto.Object);
-			DtoSaida<DtoComanda> retorno = ((ServicoDeComandaImpl)servico).IncluaPedido(1, new TestesServicoDePedido().ObtenhaDto());
-			DtoSaida<DtoComanda> esperado = EncapsuleDto(ObtenhaDto(), true);
+
+			var pedido = new TestesServicoDePedido().ObtenhaDto();
+			pedido.ProdutosDoPedido[0].Produto = new TestesServicoDeProduto().ObtenhaDto(1);
+
+			DtoSaida<DtoComanda> retorno = ((ServicoDeComandaImpl)servico).IncluaPedido(1, pedido);
+			DtoSaida<DtoComanda> esperado = EncapsuleDto(ObtenhaDto(1), true);
+			retorno.Resultados[0].ListaPedidos[0].ProdutosDoPedido[0].Produto = null;
 			AssertDtoSaidaEhIgual(esperado, retorno);
 		}
 
+		[TestMethod]
 		public void TestaIncluaComanda()
 		{
 			repository.Setup(X => X.Liste()).Returns(new List<Comanda>());
+			servicoProduto.Setup(x => x.Consulte(It.IsAny<int>())).Returns(EncapsuleDto(new TestesServicoDeProduto().ObtenhaDto(1), true));
 			servico = new ServicoDeComandaImpl(repository.Object, servicoProduto.Object);
 			DtoComanda retorno = ((ServicoDeComandaImpl)servico).TrateInclusaoDeComanda(ObtenhaDto());
-			DtoComanda esperado = ObtenhaDto(1);
+			retorno.ListaPedidos[0].DataHoraPedido = ConstantesTestes.DATA;
+			DtoComanda esperado = ObtenhaDto();
 			AssertDtoEhIgual(esperado, retorno);
 		}
 
