@@ -49,6 +49,44 @@ namespace DLLS.Comcer.UnitTests.Servicos
 		}
 
 		[TestMethod]
+		public void TestaIncluaPedidoProdutoNotFound()
+		{
+			var comandaSemPedido = ObtenhaObj(1);
+			comandaSemPedido.ListaPedidos.Clear();
+			comandaSemPedido.Valor = 0;
+
+			repository.Setup(X => X.Consulte(It.IsAny<int>())).Returns(comandaSemPedido);
+			repository.Setup(X => X.Atualize(It.IsAny<Comanda>())).Returns(comandaSemPedido);
+			servicoProduto.Setup(x => x.Consulte(It.IsAny<int>()));
+
+			servico = new ServicoDeComandaImpl(repository.Object, servicoProduto.Object);
+
+			var pedido = new TestesServicoDePedido().ObtenhaDto();
+			pedido.ProdutosDoPedido[0].Produto = new TestesServicoDeProduto().ObtenhaDto(1);
+
+			var dtoComandaSemPedido = ObtenhaDto(1);
+			dtoComandaSemPedido.ListaPedidos.Clear();
+			dtoComandaSemPedido.Valor = 0;
+
+			DtoSaida<DtoComanda> retorno = ((ServicoDeComandaImpl)servico).IncluaPedido(1, pedido);
+			DtoSaida<DtoComanda> esperado = EncapsuleDto(dtoComandaSemPedido, false);
+
+			AssertDtoSaidaEhIgual(esperado, retorno);
+		}
+
+		[TestMethod]
+		public void TestaIncluaPedidoComandaNotFound()
+		{
+			repository.Setup(X => X.Consulte(It.IsAny<int>()));
+			servico = new ServicoDeComandaImpl(repository.Object, servicoProduto.Object);
+
+			var pedido = new TestesServicoDePedido().ObtenhaDto();
+
+			DtoSaida<DtoComanda> retorno = ((ServicoDeComandaImpl)servico).IncluaPedido(1, pedido);
+			Assert.IsNull(retorno);
+		}
+
+		[TestMethod]
 		public void TestaIncluaComanda()
 		{
 			repository.Setup(X => X.Liste()).Returns(new List<Comanda>());

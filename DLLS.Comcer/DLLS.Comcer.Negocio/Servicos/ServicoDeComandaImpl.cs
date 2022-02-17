@@ -24,14 +24,14 @@ namespace DLLS.Comcer.Negocio.Servicos
 		{
 			DtoSaida<DtoComanda> comanda = Consulte(codigoComanda);
 
-			if (comanda.Sucesso)
+			if (!(comanda is null))
 			{
 				pedido.DataHoraPedido = System.DateTime.Now;
 				foreach (DtoProdutoDoPedido produtoDoPedido in pedido.ProdutosDoPedido)
 				{
 					DtoSaida<DtoProduto> consultaProduto = _servicoDeProduto.Consulte(produtoDoPedido.Produto.Id);
 
-					if (consultaProduto.Sucesso)
+					if (!(consultaProduto is null))
 					{
 						produtoDoPedido.Produto = consultaProduto.Resultados[0];
 						produtoDoPedido.ValorUnitario = produtoDoPedido.Produto.Preco;
@@ -41,8 +41,8 @@ namespace DLLS.Comcer.Negocio.Servicos
 					}
 					else
 					{
-						comanda.Sucesso = consultaProduto.Sucesso;
-						comanda.Validacoes = consultaProduto.Validacoes;
+						comanda.Sucesso = false;
+						return comanda;
 					}
 				}
 

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using DLLS.Comcer.Dominio.Objetos.ComandaObj;
 using DLLS.Comcer.Dominio.Objetos.MesaObj;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
 using DLLS.Comcer.Interfaces.InterfacesDeConversores;
@@ -25,16 +24,19 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 		public DtoSaida<DtoComanda> ObtenhaComandas(int numeroMesa)
 		{
-			IEnumerable<Comanda> comandas = Repositorio().Liste().Where(x => x.Numero == numeroMesa).SelectMany(x => x.Comandas);
-
-			return new ConversorComanda().ConvertaParaDtoSaida(comandas.ToList());
+			var mesas = Repositorio().Liste().Where(x => x.Numero == numeroMesa);
+			var comandas = mesas.SelectMany(x => x.Comandas).ToList();
+			var comandaConvertida = new ConversorComanda().ConvertaParaDtoSaida(comandas);
+			return comandaConvertida;
 		}
 
 		public DtoSaida<DtoMesa> IncluaComanda(int numeroMesa, DtoComanda comanda)
 		{
 			DtoMesa mesa = Consulte(numeroMesa).Resultados[0];
 
-			mesa.Comandas.Add(_servicoDeComanda.TrateInclusaoDeComanda(comanda));
+			var comandaParaInclusao = _servicoDeComanda.TrateInclusaoDeComanda(comanda);
+
+			mesa.Comandas.Add(comandaParaInclusao);
 			mesa.Disponivel = false;
 			return Atualize(mesa);
 		}
