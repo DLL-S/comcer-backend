@@ -33,7 +33,7 @@ jobs:
         if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
         #shell: powershell New-Item -Path .\.sonar\scanner -ItemType Directory
         run: |
-          
+          mkdir -p .sonar\scanner
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
       - name: Instalar ReportGenerator
         run: dotnet tool update dotnet-reportgenerator-globaltool -g --version 4.8.7
