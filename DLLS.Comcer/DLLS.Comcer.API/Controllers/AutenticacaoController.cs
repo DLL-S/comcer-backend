@@ -14,7 +14,7 @@ namespace DLLS.Comcer.API.Controllers
 		}
 
 		[HttpPost]
-		[Route("login")]
+		[Route("Api/login")]
 		public ActionResult<DtoLogin> Authenticate([FromBody] DtoLogin model)
 		{
 			model.Senha = ServicoAutenticador.ObtenhaCriptografado(model.Senha);
