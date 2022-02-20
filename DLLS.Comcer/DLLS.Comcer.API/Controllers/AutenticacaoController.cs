@@ -21,7 +21,7 @@ namespace DLLS.Comcer.API.Controllers
 			DtoLogin usuarioDaAplicacao = _servico.ObtenhaRegistro(model.Usuario, model.Senha);
 			if (usuarioDaAplicacao == null)
 			{
-				return NotFound(new { message = Globalizacoes.LoginInvalido });
+				return BadRequest(new { message = Globalizacoes.LoginInvalido });
 			}
 
 			ServicoAutenticador.ObtenhaUsuarioLogado(ref usuarioDaAplicacao);
