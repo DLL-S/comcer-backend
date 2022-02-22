@@ -112,7 +112,7 @@ jobs:
         run: dotnet restore
 
       - name: Build
-        run: dotnet build --no-restore
+        run: dotnet build ./DLLS.Comcer/DLLS.Comcer.sln --no-restore
 
       - name: Convert sarif for uploading to GitHub
         uses: security-code-scan/security-code-scan-results-action@cdb3d5e639054395e45bf401cba8688fcaf7a687
