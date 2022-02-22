@@ -108,11 +108,8 @@ jobs:
       - name: Set up projects for analysis
         uses: security-code-scan/security-code-scan-add-action@f8ff4f2763ed6f229eded80b1f9af82ae7f32a0d
         
-      - name: Restore dependencies	
-        run: dotnet restore
-
       - name: Build
-        run: dotnet build ./DLLS.Comcer/DLLS.Comcer.sln --no-restore
+        run: dotnet build ./DLLS.Comcer/DLLS.Comcer.sln
 
       - name: Convert sarif for uploading to GitHub
         uses: security-code-scan/security-code-scan-results-action@cdb3d5e639054395e45bf401cba8688fcaf7a687
