@@ -4,6 +4,7 @@
 	{
 		PENDENTE,
 		COZINHANDO,
-		PRONTO
+		PRONTO,
+		ENTREGUE
 	}
 }
