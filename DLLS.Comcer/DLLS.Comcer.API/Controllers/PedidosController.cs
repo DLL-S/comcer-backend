@@ -4,6 +4,7 @@ using DLLS.Comcer.Interfaces.InterfacesDeServicos;
 using DLLS.Comcer.Interfaces.Modelos;
 using DLLS.Comcer.Interfaces.ModelosViews;
 using DLLS.Comcer.Utilitarios.Enumeradores;
+using DLLS.Comcer.Utilitarios.Utils;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -53,7 +54,10 @@ namespace DLLS.Comcer.API.Controllers
 		public ActionResult<IList<DtoPedidoView>> ListarPedidosView()
 		{
 			IList<DtoPedidoView> saida = ((IServicoDePedido)_servico).ListePedidosView();
-			return saida.Any() ? Ok(saida) : NoContent();
+
+			var saidaFormatada = new { Resultados = saida, Sucesso = true, Validacoes = new List<InconsistenciaDeValidacao>(), Pagina = 0, Quantidade = saida.Count, Total = saida.Count };
+
+			return saida.Any() ? Ok(saidaFormatada) : NoContent();
 		}
 		#endregion
 	}
