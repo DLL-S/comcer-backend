@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DLLS.Comcer.Dominio.Objetos.PedidoObj;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
+using DLLS.Comcer.Interfaces.ModelosViews;
 using DLLS.Comcer.Utilitarios.Enumeradores;
 
 namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
@@ -32,6 +33,11 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 					: Persistencia.OrderByDescending(x => x.DataHoraPedido).Where(x => string.IsNullOrEmpty(termoDeBusca)
 					|| (int)x.Status == int.Parse(termoDeBusca)
 					).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
+		}
+
+		public IList<PedidoProdutoView> ListePedidoDoProdutoView(int numeroPedido)
+		{
+			return Contexto.PedidosDoProdutoView.ToList().Where(x => x.NumeroPedido == numeroPedido).ToList();
 		}
 	}
 }

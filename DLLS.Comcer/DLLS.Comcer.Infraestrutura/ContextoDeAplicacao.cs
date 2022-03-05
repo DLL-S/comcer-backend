@@ -34,6 +34,7 @@ namespace DLLS.Comcer.Infraestrutura
 		public DbSet<Funcionario> Funcionarios { get; set; }
 		public DbSet<Mesa> Mesas { get; set; }
 		public DbSet<PedidoView> PedidosView { get; set; }
+		public DbSet<PedidoProdutoView> PedidosDoProdutoView { get; set; }
 
 		/// <summary>
 		/// Define os mapeamentos a serem aplicados durante a criação do modelo para o contexto.
@@ -65,9 +66,32 @@ namespace DLLS.Comcer.Infraestrutura
 									"on m.\"ID\" = c.\"MESA\""
 				);
 
-				x.Property(y => y.NumeroMesa);
-				x.Property(y => y.NumeroPedido);
 				x.Property(y => y.StatusPedido).HasConversion<string>();
+			});
+
+			builder.Entity<PedidoProdutoView>(x =>
+			{
+				x.HasNoKey();
+				x.ToSqlQuery(
+					  "select " +
+							"p.\"ID\" as NumeroPedido, " +
+							"coalesce(m.\"NUMERO\", 0) as NumeroMesa, " +
+							"prod.\"NOME\" as ProdutoPedido, " +
+							"pp.\"DATAHORAPEDIDO\" as DataHoraPedido, " +
+							"pp.\"STATUS\" as StatusPedido " +
+						"from \"PEDIDOS\" p " +
+							"inner join \"COMANDAS\" c  " +
+								"on p.\"COMANDA\" = c.\"ID\" " +
+							"left join \"MESAS\" m  " +
+								"on m.\"ID\" = c.\"MESA\" " +
+							"inner join \"PEDIDOSDOPRODUTO\" pp " +
+								"on pp.\"PEDIDO\" = p.\"ID\"  " +
+							"inner join \"PRODUTOS\" prod " +
+								"on prod.\"ID\" = pp.\"IDPRODUTO\" "
+				);
+
+				x.Property(y => y.StatusPedido).HasConversion<string>();
+				x.Property(y => y.DataHoraPedido);
 			});
 		}
 

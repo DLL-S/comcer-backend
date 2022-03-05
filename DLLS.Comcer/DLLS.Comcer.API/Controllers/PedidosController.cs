@@ -52,7 +52,7 @@ namespace DLLS.Comcer.API.Controllers
 		[Authorize()]
 		public ActionResult<IList<DtoPedidoView>> ListarPedidosView()
 		{
-			var saida = ((IServicoDePedido)_servico).ListePedidosView();
+			IList<DtoPedidoView> saida = ((IServicoDePedido)_servico).ListePedidosView();
 			return saida.Any() ? Ok(saida) : NoContent();
 		}
 		#endregion

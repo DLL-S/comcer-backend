@@ -1,8 +1,10 @@
+using System.Collections.Generic;
 using DLLS.Comcer.Dominio.Objetos.PedidoObj;
 using DLLS.Comcer.Infraestrutura;
 using DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios;
 using DLLS.Comcer.Interfaces.InterfacesDeConversores;
 using DLLS.Comcer.Interfaces.Modelos;
+using DLLS.Comcer.Interfaces.ModelosViews;
 
 namespace DLLS.Comcer.Negocio.Conversores
 {
@@ -11,7 +13,21 @@ namespace DLLS.Comcer.Negocio.Conversores
 		private RepositorioProduto repositorioProduto;
 		private ConversorProduto conversorProduto;
 
+		public IList<DtoPedidoProdutoView> Converta(IList<PedidoProdutoView> obj)
+		{
+			var lista = new List<DtoPedidoProdutoView>();
+			foreach (PedidoProdutoView item in obj)
+			{
+				lista.Add(Converta(item));
+			}
 
+			return lista;
+		}
+
+		public DtoPedidoProdutoView Converta(PedidoProdutoView obj)
+		{
+			return Copie<DtoPedidoProdutoView, PedidoProdutoView>(obj);
+		}
 
 		public override DtoProdutoDoPedido Converta(ProdutoDoPedido objeto)
 		{

@@ -1,9 +1,11 @@
+using System.Collections.Generic;
 using DLLS.Comcer.Dominio.Objetos.PedidoObj;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
 using DLLS.Comcer.Interfaces.InterfacesDeConversores;
 using DLLS.Comcer.Interfaces.InterfacesDeServicos;
 using DLLS.Comcer.Interfaces.InterfacesDeValidacao;
 using DLLS.Comcer.Interfaces.Modelos;
+using DLLS.Comcer.Interfaces.ModelosViews;
 using DLLS.Comcer.Negocio.Conversores;
 using DLLS.Comcer.Negocio.Validacoes;
 using DLLS.Comcer.Utilitarios.Enumeradores;
@@ -19,12 +21,12 @@ namespace DLLS.Comcer.Negocio.Servicos
 		{
 		}
 
-		protected override IValidadorPadrao<ProdutoDoPedido> Validador()
+		protected override IValidadorProdutoDoPedido Validador()
 		{
 			return _validador ??= new ValidadorProdutoDoPedido();
 		}
 
-		protected override IConversorPadrao<ProdutoDoPedido, DtoProdutoDoPedido> Conversor()
+		protected override IConversorProdutoDoPedido Conversor()
 		{
 			return _conversor ??= new ConversorProdutoDoPedido();
 		}
@@ -34,6 +36,11 @@ namespace DLLS.Comcer.Negocio.Servicos
 			DtoProdutoDoPedido obj = Conversor().Converta(_repositorio.Consulte(codigo));
 			obj.Status = status;
 			return base.Atualize(obj);
+		}
+
+		public IList<DtoPedidoProdutoView> ListeItensDoPedido(int numeroPedido)
+		{
+			return Conversor().Converta(((IRepositorioProdutoDoPedido)_repositorio).ListePedidoDoProdutoView(numeroPedido));
 		}
 	}
 }

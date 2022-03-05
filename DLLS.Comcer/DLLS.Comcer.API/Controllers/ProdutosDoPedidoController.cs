@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Linq;
 using DLLS.Comcer.Interfaces.InterfacesDeServicos;
 using DLLS.Comcer.Interfaces.Modelos;
+using DLLS.Comcer.Interfaces.ModelosViews;
 using DLLS.Comcer.Utilitarios.Enumeradores;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -74,6 +76,17 @@ namespace DLLS.Comcer.API.Controllers
 			}
 
 			return Ok(dto);
+		}
+
+		[HttpGet("View/{codigo}")]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status204NoContent)]
+		[ProducesResponseType(StatusCodes.Status401Unauthorized)]
+		[Authorize()]
+		public ActionResult<IList<DtoPedidoProdutoView>> ListarProdutosDoPedidoView(int codigo)
+		{
+			IList<DtoPedidoProdutoView> saida = ((IServicoDeProdutosDoPedido)_servico).ListeItensDoPedido(codigo);
+			return saida.Any() ? Ok(saida) : NoContent();
 		}
 	}
 }
