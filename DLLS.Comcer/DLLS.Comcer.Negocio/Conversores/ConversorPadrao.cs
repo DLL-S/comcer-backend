@@ -99,7 +99,7 @@ namespace DLLS.Comcer.Negocio.Conversores
 			return ConvertaParaDtoSaida(dtoConvertido);
 		}
 
-		private static TSaida Copie<TSaida, TEntrada>(TEntrada entrada)
+		protected static TSaida Copie<TSaida, TEntrada>(TEntrada entrada)
 		{
 			Type typeT = typeof(TEntrada);
 			PropertyInfo[] propertyEntrada = typeT.GetProperties();

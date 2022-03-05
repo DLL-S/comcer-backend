@@ -1,9 +1,11 @@
+using System.Collections.Generic;
 using DLLS.Comcer.Dominio.Objetos.PedidoObj;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
 using DLLS.Comcer.Interfaces.InterfacesDeConversores;
 using DLLS.Comcer.Interfaces.InterfacesDeServicos;
 using DLLS.Comcer.Interfaces.InterfacesDeValidacao;
 using DLLS.Comcer.Interfaces.Modelos;
+using DLLS.Comcer.Interfaces.ModelosViews;
 using DLLS.Comcer.Negocio.Conversores;
 using DLLS.Comcer.Negocio.Validacoes;
 
@@ -18,12 +20,17 @@ namespace DLLS.Comcer.Negocio.Servicos
 		{
 		}
 
+		public IList<DtoPedidoView> ListePedidosView()
+		{
+			return Conversor().Converta(((IRepositorioPedido)_repositorio).ObtenhaPedidos());
+		}
+
 		protected override IValidadorPadrao<Pedido> Validador()
 		{
 			return _validador ??= new ValidadorPedido();
 		}
 
-		protected override IConversorPadrao<Pedido, DtoPedido> Conversor()
+		protected override IConversorPedido Conversor()
 		{
 			return _conversor ??= new ConversorPedido();
 		}

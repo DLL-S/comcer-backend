@@ -7,6 +7,7 @@ using DLLS.Comcer.Dominio.Objetos.PedidoObj;
 using DLLS.Comcer.Dominio.Objetos.ProdutoObj;
 using DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos;
 using DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos.Identidade;
+using DLLS.Comcer.Interfaces.ModelosViews;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -32,6 +33,7 @@ namespace DLLS.Comcer.Infraestrutura
 		public DbSet<Comanda> Comandas { get; set; }
 		public DbSet<Funcionario> Funcionarios { get; set; }
 		public DbSet<Mesa> Mesas { get; set; }
+		public DbSet<PedidoView> PedidosView { get; set; }
 
 		/// <summary>
 		/// Define os mapeamentos a serem aplicados durante a criação do modelo para o contexto.
@@ -43,6 +45,30 @@ namespace DLLS.Comcer.Infraestrutura
 
 			AddConfiguracoesDoIdentity(builder);
 			AddConfiguracoesDoDominio(builder);
+
+			builder.Entity<PedidoView>(x =>
+			{
+				x.HasNoKey();
+				x.ToSqlQuery(
+					  "select " +
+								"p.\"ID\" as NumeroPedido, " +
+								"m.\"NUMERO\" as NumeroMesa, " +
+								"case " +
+									"when(select count(*) from(select \"STATUS\" from \"PEDIDOSDOPRODUTO\" pp where \"PEDIDO\" = p.\"ID\" group by \"STATUS\") listaStatus where \"STATUS\" = 'ENTREGUE') = 1 then 'ENTREGUE' " +
+									"when(select count(*) from(select \"STATUS\" from \"PEDIDOSDOPRODUTO\" pp where \"PEDIDO\" = p.\"ID\" group by \"STATUS\") listaStatus where \"STATUS\" <> 'ENTREGUE' and \"STATUS\" <> 'PRONTO') = 0 then 'PRONTO' " +
+									"else 'PENDENTE' " +
+								"end as StatusPedido " +
+							"from \"PEDIDOS\" p " +
+								"inner join \"COMANDAS\" c " +
+									"on p.\"COMANDA\" = c.\"ID\" " +
+								"inner join \"MESAS\" m  " +
+									"on m.\"ID\" = c.\"MESA\""
+				);
+
+				x.Property(y => y.NumeroMesa);
+				x.Property(y => y.NumeroPedido);
+				x.Property(y => y.StatusPedido).HasConversion<string>();
+			});
 		}
 
 		private static void AddConfiguracoesDoDominio(ModelBuilder builder)
