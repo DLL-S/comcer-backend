@@ -7,6 +7,7 @@ namespace DLLS.Comcer.Interfaces.ModelosViews
 	{
 		public int NumeroMesa { get; set; }
 		public int NumeroPedido { get; set; }
+		public int IdProdutoPedido { get; set; }
 		public string ProdutoPedido { get; set; }
 		public DateTime DataHoraPedido { get; set; }
 		public EnumStatusPedido StatusPedido { get; set; }

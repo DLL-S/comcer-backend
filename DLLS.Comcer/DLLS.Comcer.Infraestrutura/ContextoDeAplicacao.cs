@@ -76,6 +76,7 @@ namespace DLLS.Comcer.Infraestrutura
 					  "select " +
 							"p.\"ID\" as NumeroPedido, " +
 							"coalesce(m.\"NUMERO\", 0) as NumeroMesa, " +
+							"pp.\"ID\" as IdProdutoPedido, " +
 							"prod.\"NOME\" as ProdutoPedido, " +
 							"pp.\"DATAHORAPEDIDO\" as DataHoraPedido, " +
 							"pp.\"STATUS\" as StatusPedido " +
