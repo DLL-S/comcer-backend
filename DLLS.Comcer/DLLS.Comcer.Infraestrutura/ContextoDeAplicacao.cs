@@ -5,6 +5,7 @@ using DLLS.Comcer.Dominio.Objetos.IdentityObj;
 using DLLS.Comcer.Dominio.Objetos.MesaObj;
 using DLLS.Comcer.Dominio.Objetos.PedidoObj;
 using DLLS.Comcer.Dominio.Objetos.ProdutoObj;
+using DLLS.Comcer.Dominio.Views;
 using DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos;
 using DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos.Identidade;
 using DLLS.Comcer.Interfaces.ModelosViews;
@@ -35,6 +36,7 @@ namespace DLLS.Comcer.Infraestrutura
 		public DbSet<Mesa> Mesas { get; set; }
 		public DbSet<PedidoView> PedidosView { get; set; }
 		public DbSet<PedidoProdutoView> PedidosDoProdutoView { get; set; }
+		public DbSet<PedidosComandaView> PedidosComandaView { get; set; }
 
 		/// <summary>
 		/// Define os mapeamentos a serem aplicados durante a criação do modelo para o contexto.
@@ -93,6 +95,36 @@ namespace DLLS.Comcer.Infraestrutura
 
 				x.Property(y => y.StatusPedido).HasConversion<string>();
 				x.Property(y => y.DataHoraPedido);
+			});
+
+			builder.Entity<PedidosComandaView>(x =>
+			{
+				x.HasNoKey();
+				x.ToSqlQuery(
+					  "select  " +
+							"c.\"ID\" as idComanda, " +
+							"c.\"NOME\" as nomeComanda, " +
+							"c.\"VALOR\" as valorTotalComanda, " +
+							"c.\"STATUS\" statusComanda, " +
+							"pp.\"ID\" idDoProdutoDoPedido, " +
+							"prod.\"NOME\" as nomeProdutoDoPedido, " +
+							"prod.\"DESCRICAO\" as descricaoProdutoDoPedido, " +
+							"prod.\"PRECO\" precoProdutoDoPedido, " +
+							"prod.\"FOTO\" as fotoProdutoDoPedido, " +
+							"pp.\"QUANTIDADE\" as quantidadeProdutoDoPedido, " +
+							"pp.\"STATUS\" as statusProdutoDoPedido, " +
+							"pp.\"DATAHORAPEDIDO\" as dataHoraPedido " +
+						"from \"PEDIDOSDOPRODUTO\" pp " +
+						"inner join \"PEDIDOS\" p " +
+							"on p.\"ID\" = pp.\"PEDIDO\" " +
+						"inner join \"COMANDAS\" c " +
+							"on p.\"COMANDA\" = c.\"ID\" " +
+						"left join \"PRODUTOS\" prod  " +
+							"on prod.\"ID\" = pp.\"IDPRODUTO\" "
+				);
+
+				x.Property(y => y.StatusProdutoDoPedido).HasConversion<string>();
+				x.Property(y => y.StatusComanda).HasConversion<string>();
 			});
 		}
 

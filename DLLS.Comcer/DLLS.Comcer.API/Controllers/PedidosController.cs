@@ -59,6 +59,20 @@ namespace DLLS.Comcer.API.Controllers
 
 			return saida.Any() ? Ok(saidaFormatada) : NoContent();
 		}
+
+		[HttpGet("ComandaView")]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status204NoContent)]
+		[ProducesResponseType(StatusCodes.Status401Unauthorized)]
+		[Authorize()]
+		public ActionResult<IList<DtoPedidosComandaView>> ListarPedidosComandaView()
+		{
+			IList<DtoPedidosComandaView> saida = ((IServicoDePedido)_servico).ListePedidosComandaView();
+
+			var saidaFormatada = new { Resultados = saida, Sucesso = true, Validacoes = new List<InconsistenciaDeValidacao>(), Pagina = 0, Quantidade = saida.Count, Total = saida.Count };
+
+			return saida.Any() ? Ok(saidaFormatada) : NoContent();
+		}
 		#endregion
 	}
 }

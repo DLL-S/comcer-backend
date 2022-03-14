@@ -83,7 +83,7 @@ namespace DLLS.Comcer.API.Controllers
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status401Unauthorized)]
-		[Authorize()]
+		//[Authorize()]
 		public ActionResult<IList<DtoPedidoProdutoView>> ListarProdutosDoPedidoView(int codigo)
 		{
 			IList<DtoPedidoProdutoView> saida = ((IServicoDeProdutosDoPedido)_servico).ListeItensDoPedido(codigo);

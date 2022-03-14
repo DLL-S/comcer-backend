@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DLLS.Comcer.Dominio.Objetos.PedidoObj;
+using DLLS.Comcer.Dominio.Views;
 using DLLS.Comcer.Interfaces.InterfacesDeConversores;
 using DLLS.Comcer.Interfaces.Modelos;
 using DLLS.Comcer.Interfaces.ModelosViews;
@@ -39,6 +40,22 @@ namespace DLLS.Comcer.Negocio.Conversores
 		public DtoPedidoView Converta(PedidoView obj)
 		{
 			return Copie<DtoPedidoView, PedidoView>(obj);
+		}
+
+		public IList<DtoPedidosComandaView> Converta(IList<PedidosComandaView> obj)
+		{
+			var lista = new List<DtoPedidosComandaView>();
+			foreach (PedidosComandaView item in obj)
+			{
+				lista.Add(Converta(item));
+			}
+
+			return lista;
+		}
+
+		public DtoPedidosComandaView Converta(PedidosComandaView obj)
+		{
+			return Copie<DtoPedidosComandaView, PedidosComandaView>(obj);
 		}
 
 		private ConversorProdutoDoPedido ConversorProdutoDoPedido()

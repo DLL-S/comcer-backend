@@ -31,7 +31,6 @@ namespace DLLS.Comcer.API.Controllers
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status401Unauthorized)]
-		[Authorize()]
 		public new ActionResult<IList<DtoProduto>> Listar(
 			[FromQuery] int pagina,
 			[FromQuery] int quantidade,
