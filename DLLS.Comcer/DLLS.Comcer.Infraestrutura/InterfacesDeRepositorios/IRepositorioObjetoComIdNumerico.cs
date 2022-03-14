@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using DLLS.Comcer.Dominio.Objetos.Compartilhados;
 using DLLS.Comcer.Utilitarios.Enumeradores;
 
@@ -25,6 +27,12 @@ namespace DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios
 		/// </summary>
 		/// <returns>Uma lista com os registros.</returns>
 		IList<TObjeto> Liste();
+
+		/// <summary>
+		/// Consulta todos os registros que atendem a consulta no contexto definido.
+		/// </summary>
+		/// <returns>Uma lista com os registros que atendem a consulta.</returns>
+		IList<TObjeto> Liste(Expression<Func<TObjeto, bool>> predicate);
 
 		/// <summary>
 		/// Consulta uma página de registros no contexto definido.

@@ -8,5 +8,6 @@ namespace DLLS.Comcer.Interfaces.InterfacesDeServicos
 		DtoSaida<DtoComanda> ObtenhaComandas(int numeroMesa);
 		DtoSaida<DtoMesa> IncluaComanda(int numeroMesa, DtoComanda comanda);
 		IList<int> ObtenhaMesasAtivas();
+		DtoSaida<DtoComanda> EncerrarComanda(int codigo, bool paraPagamento);
 	}
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using DLLS.Comcer.Dominio.Objetos.Compartilhados;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
 using DLLS.Comcer.Utilitarios.Enumeradores;
@@ -46,6 +47,15 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 		public virtual IList<TObjeto> Liste()
 		{
 			return Persistencia.OrderBy(x => x.Id).ToList();
+		}
+
+		/// <summary>
+		/// Consulta todos os registros no contexto definido.
+		/// </summary>
+		/// <returns>Uma lista com os registros.</returns>
+		public virtual IList<TObjeto> Liste(Expression<Func<TObjeto, bool>> predicate)
+		{
+			return Persistencia.Where(predicate).ToList();
 		}
 
 		/// <summary>

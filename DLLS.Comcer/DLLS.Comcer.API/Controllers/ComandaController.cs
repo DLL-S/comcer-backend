@@ -61,7 +61,6 @@ namespace DLLS.Comcer.API.Controllers
 			return base.Atualizar(obj);
 		}
 
-
 		[HttpPut("{codigo}")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]

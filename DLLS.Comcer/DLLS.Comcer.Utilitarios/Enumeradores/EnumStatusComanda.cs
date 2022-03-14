@@ -4,5 +4,6 @@
 	{
 		ABERTA,
 		FECHADA,
+		AGUARDANDO_PAGAMENTO
 	}
 }

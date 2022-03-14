@@ -81,6 +81,22 @@ namespace DLLS.Comcer.Negocio.Servicos
 			return comanda;
 		}
 
+		public DtoSaida<DtoComanda> EncerrarComanda(int codigo, bool paraPagamento)
+		{
+			Comanda comanda = Repositorio().Consulte(codigo);
+
+			comanda.Status = paraPagamento ? Utilitarios.Enumeradores.EnumStatusComanda.AGUARDANDO_PAGAMENTO : Utilitarios.Enumeradores.EnumStatusComanda.FECHADA;
+
+			var comandaAtualizada = Atualize(Conversor().Converta(comanda));
+
+			return comandaAtualizada;
+		}
+
+		private IRepositorioComanda Repositorio()
+		{
+			return (IRepositorioComanda)_repositorio;
+		}
+
 		protected override IValidadorPadrao<Comanda> Validador()
 		{
 			return _validador ??= new ValidadorComanda();

@@ -97,6 +97,16 @@ namespace DLLS.Comcer.API.Controllers
 			return Ok(dto);
 		}
 
+		[HttpPut("encerrarcomanda/{codigoComanda}")]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		[ProducesResponseType(StatusCodes.Status401Unauthorized)]
+		[Authorize()]
+		public ActionResult<DtoComanda> EncerrarComanda(int codigoComanda, [FromQuery] bool paraPagamento = false)
+		{
+			return Ok(Servico().EncerrarComanda(codigoComanda, paraPagamento));
+		}
+
 		[HttpGet("{codigoMesa}/Comandas")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]

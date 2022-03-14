@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using DLLS.Comcer.Dominio.Objetos.ComandaObj;
 using DLLS.Comcer.Dominio.Objetos.MesaObj;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
 using DLLS.Comcer.Interfaces.InterfacesDeConversores;
@@ -24,9 +25,25 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 		public DtoSaida<DtoComanda> ObtenhaComandas(int numeroMesa)
 		{
-			var mesas = Repositorio().Liste().Where(x => x.Numero == numeroMesa);
+			var mesas = Repositorio().Liste(x => x.Numero == numeroMesa);
 			var comandas = mesas.SelectMany(x => x.Comandas).ToList();
 			return new ConversorComanda().ConvertaParaDtoSaida(comandas);
+		}
+
+		private void TrateMesaDaComanda(Comanda comanda)
+		{
+			var mesa = Repositorio().Liste(x => x.Comandas.Contains(comanda)).FirstOrDefault();
+
+			mesa.Disponivel = mesa.Comandas.All(x => x.Status == Utilitarios.Enumeradores.EnumStatusComanda.FECHADA);
+			Repositorio().Atualize(mesa);
+		}
+
+		public DtoSaida<DtoComanda> EncerrarComanda(int codigo, bool paraPagamento)
+		{
+			DtoSaida<DtoComanda> dtoSaidaComanda = _servicoDeComanda.EncerrarComanda(codigo, paraPagamento);
+			var comanda = new ConversorComanda().Converta(dtoSaidaComanda.Resultados.First());
+			TrateMesaDaComanda(comanda);
+			return dtoSaidaComanda;
 		}
 
 		public DtoSaida<DtoMesa> IncluaComanda(int numeroMesa, DtoComanda comanda)
