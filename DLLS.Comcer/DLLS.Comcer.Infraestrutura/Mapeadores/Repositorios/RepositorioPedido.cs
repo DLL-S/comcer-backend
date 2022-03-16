@@ -41,7 +41,7 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 
 		public IList<PedidosComandaView> ObtenhaPedidosComanda()
 		{
-			return Contexto.PedidosComandaView.ToList();
+			return Contexto.PedidosComandaView.ToList().Where(x => x.StatusComanda != EnumStatusComanda.FECHADA).ToList();
 		}
 	}
 }
