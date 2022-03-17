@@ -125,6 +125,7 @@ namespace DLLS.Comcer.Infraestrutura
 
 				x.Property(y => y.StatusProdutoDoPedido).HasConversion<string>();
 				x.Property(y => y.StatusComanda).HasConversion<string>();
+				x.Property(y => y.FotoProdutoDoPedido).HasConversion<string>();
 			});
 		}
 
