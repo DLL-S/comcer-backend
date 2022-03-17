@@ -11,28 +11,35 @@ namespace DLLS.Comcer.Utilitarios.Utils
 			Image imagem;
 			if (foto.Length > 0)
 			{
-				using (var ms = new MemoryStream(foto))
+				try
 				{
-					imagem = Image.FromStream(ms);
+					using (var ms = new MemoryStream(foto))
+					{
+						imagem = Image.FromStream(ms);
+					}
+
+					var b = new Bitmap(130, 80);
+
+					var g = Graphics.FromImage((Image)b);
+					g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+
+					g.DrawImage(imagem, 0, 0, 130, 80);
+					g.Dispose();
+					imagem = (Image)b;
+
+					using (var ms = new MemoryStream())
+					{
+						// Convert Image to byte[]
+						imagem.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+						b.Dispose();
+						byte[] imageBytes = ms.ToArray();
+
+						return imageBytes;
+					}
 				}
-
-				var b = new Bitmap(130, 80);
-
-				var g = Graphics.FromImage((Image)b);
-				g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-
-				g.DrawImage(imagem, 0, 0, 130, 80);
-				g.Dispose();
-				imagem = (Image)b;
-
-				using (var ms = new MemoryStream())
+				catch (System.Exception)
 				{
-					// Convert Image to byte[]
-					imagem.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-					b.Dispose();
-					byte[] imageBytes = ms.ToArray();
-
-					return imageBytes;
+					// caso ocorra erro, retornará objeto não convertido
 				}
 			}
 
