@@ -1,6 +1,3 @@
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.IO;
 using System.Threading.Tasks;
 using DLLS.Comcer.Dominio.Objetos.ProdutoObj;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
@@ -11,6 +8,7 @@ using DLLS.Comcer.Interfaces.Modelos;
 using DLLS.Comcer.Negocio.Conversores;
 using DLLS.Comcer.Negocio.Validacoes;
 using DLLS.Comcer.Utilitarios.Enumeradores;
+using DLLS.Comcer.Utilitarios.Utils;
 
 namespace DLLS.Comcer.Negocio.Servicos
 {
@@ -33,33 +31,7 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 		private static void ComprimaFotoProduto(ref DtoProduto saidaProduto)
 		{
-			Image imagem;
-			if (saidaProduto.Foto.Length > 0)
-			{
-				using (var ms = new MemoryStream(saidaProduto.Foto))
-				{
-					imagem = Image.FromStream(ms);
-				}
-
-				var b = new Bitmap(130, 80);
-
-				var g = Graphics.FromImage((Image)b);
-				g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-
-				g.DrawImage(imagem, 0, 0, 130, 80);
-				g.Dispose();
-				imagem = (Image)b;
-
-				using (var ms = new MemoryStream())
-				{
-					// Convert Image to byte[]
-					imagem.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-					b.Dispose();
-					byte[] imageBytes = ms.ToArray();
-
-					saidaProduto.Foto = imageBytes;
-				}
-			}
+			saidaProduto.Foto = CompressorDeImagem.ComprimaFotoProduto(saidaProduto.Foto);
 		}
 
 		protected override IValidadorPadrao<Produto> Validador()

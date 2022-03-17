@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using DLLS.Comcer.Dominio.Objetos.PedidoObj;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
 using DLLS.Comcer.Interfaces.InterfacesDeConversores;
@@ -9,6 +10,7 @@ using DLLS.Comcer.Interfaces.ModelosViews;
 using DLLS.Comcer.Negocio.Conversores;
 using DLLS.Comcer.Negocio.Validacoes;
 using DLLS.Comcer.Utilitarios.Enumeradores;
+using DLLS.Comcer.Utilitarios.Utils;
 
 namespace DLLS.Comcer.Negocio.Servicos
 {
@@ -19,6 +21,13 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 		public ServicoDeProdutosDoPedidoImpl(IRepositorioProdutoDoPedido repositorio) : base(repositorio)
 		{
+		}
+
+		public override DtoSaida<DtoProdutoDoPedido> Liste(int pagina, int quantidade, EnumOrdem ordem, string termoDeBusca)
+		{
+			var lista = base.Liste(pagina, quantidade, ordem, termoDeBusca);
+			Parallel.ForEach(lista.Resultados, x => x.Produto.Foto = CompressorDeImagem.ComprimaFotoProduto(x.Produto.Foto));
+			return lista;
 		}
 
 		protected override IValidadorProdutoDoPedido Validador()
