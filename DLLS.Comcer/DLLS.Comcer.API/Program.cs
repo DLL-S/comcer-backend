@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
@@ -15,7 +16,8 @@ namespace DLLS.Comcer.API
 			return Host.CreateDefaultBuilder(args)
 				.ConfigureWebHostDefaults(webBuilder =>
 				{
-					webBuilder.UseStartup<Startup>();
+					webBuilder.UseStartup<Startup>()
+						.UseUrls("http://*:" + Environment.GetEnvironmentVariable("PORT"));
 				});
 		}
 	}
