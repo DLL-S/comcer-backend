@@ -77,24 +77,13 @@ jobs:
           path: ${{env.DOTNET_ROOT}}/myapp
 
   deploy:
-    name: Deploy to azure
-    runs-on: self-hosted
     needs: release-build
-    environment:
-      name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
+    runs-on: ubuntu-latest
     steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v2
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12
         with:
-          name: .net-app
-
-      - name: Deploy to Azure Web App
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'comanda-certa'
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2E22BBBCBB684A029F327E4BB16B7A7A }}
-          package: .
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          usedocker: true
