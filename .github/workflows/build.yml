@@ -4,15 +4,24 @@ on:
     branches:
       - main # or the name of your main branch
 
+env:
+  HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+  APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          appdir: ./DLLS.Comcer
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
-          heroku_email: ${{secrets.HEROKU_EMAIL}}
-          usedocker: true
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Docker build
+        working-directory: ./DLLS.Comcer
+        run: docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
+        
+      - name: Publish
+        working-directory: ./DLLS.Comcer
+        run: |
+          heroku container:push web -a $APP_NAME
+          heroku container:release web -a $APP_NAME
+          
