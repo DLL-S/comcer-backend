@@ -15,6 +15,7 @@ COPY ["DLLS.Comcer.Dominio/DLLS.Comcer.Dominio.csproj", "DLLS.Comcer.Dominio/"]
 COPY ["DLLS.Comcer.Utilitarios/DLLS.Comcer.Utilitarios.csproj", "DLLS.Comcer.Utilitarios/"]
 COPY ["DLLS.Comcer.Interfaces/DLLS.Comcer.Interfaces.csproj", "DLLS.Comcer.Interfaces/"]
 COPY ["DLLS.Comcer.Infraestrutura/DLLS.Comcer.Infraestrutura.csproj", "DLLS.Comcer.Infraestrutura/"]
+COPY ["DLLS.Comcer.UnitTests/DLLS.Comcer.UnitTests.csproj", "DLLS.Comcer.UnitTests/"]
 RUN dotnet restore
 COPY . .
 
