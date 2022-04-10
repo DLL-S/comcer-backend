@@ -3,87 +3,25 @@ on:
   push:
     branches:
       - main # or the name of your main branch
-  pull_request:
-    # The branches below must be a subset of the branches above
-    branches: 
-      - main 
+
+env:
+  HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+  APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+
 jobs:
   build:
-    name: Sonar scan
-    runs-on: self-hosted
-    #runs-on: windows-latest
-    steps:
-      - name: Set up JDK 11
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.11
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      - name: Cache SonarQube packages
-        uses: actions/cache@v1
-        with:
-          path: ~\sonar\cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
-      - name: Cache SonarQube scanner
-        id: cache-sonar-scanner
-        uses: actions/cache@v1
-        with:
-          path: .\.sonar\scanner
-          key: ${{ runner.os }}-sonar-scanner
-          restore-keys: ${{ runner.os }}-sonar-scanner
-      - name: Install SonarQube scanner
-        if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
-        shell: powershell
-        run: |
-          New-Item -Path .\.sonar\scanner -ItemType Directory
-          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
-      - name: Instalar ReportGenerator
-        run: dotnet tool update dotnet-reportgenerator-globaltool -g --version 4.8.7
-      - name: Build and analyze
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-        shell: powershell
-        run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"dllscomcer" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="http://localhost:9000" /d:sonar.coverageReportPaths=".\sonarqubecoverage\SonarQube.xml" /d:sonar.coverage.exclusions="DLLS.Comcer.Startup/**,DLLS.Comcer.API/**,DLLS.Comcer.UnitTests/**,DLLS.Comcer.Infraestrutura/Migrations/**"
-          dotnet build ./DLLS.Comcer/DLLS.Comcer.sln
-          dotnet test ./DLLS.Comcer/DLLS.Comcer.sln --no-build --collect:"XPlat Code Coverage"
-          reportgenerator "-reports:.\DLLS.Comcer\*\TestResults\*\coverage.cobertura.xml" "-targetdir:.\DLLS.Comcer\sonarqubecoverage" "-reporttypes:SonarQube"
-          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
-  release-build:
-    name: Release Build
-    runs-on: self-hosted
-    needs: build
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Set up .NET Core
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: '5.0.x'
-          include-prerelease: true
-
-      - name: Build with dotnet
-        run: dotnet build ./DLLS.Comcer/DLLS.Comcer.sln --configuration Release
-
-      - name: dotnet publish
-        run: dotnet publish ./DLLS.Comcer/DLLS.Comcer.sln -c Release -o ${{env.DOTNET_ROOT}}/myapp
-
-      - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v2
-        with:
-          name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
-
-  deploy:
-    needs: release-build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
-          heroku_email: ${{secrets.HEROKU_EMAIL}}
-          usedocker: true
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Docker build
+        working-directory: ./DLLS.Comcer
+        run: docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
+        
+      - name: Publish
+        working-directory: ./DLLS.Comcer
+        run: |
+          heroku container:push web -a $APP_NAME
+          heroku container:release web -a $APP_NAME
+          
