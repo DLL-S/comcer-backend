@@ -1,4 +1,5 @@
 {
+  "$schema": "http://json.schemastore.org/launchsettings.json",
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
@@ -7,29 +8,26 @@
       "sslPort": 44349
     }
   },
-  "$schema": "http://json.schemastore.org/launchsettings.json",
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "connectionStringDev": "Server=localhost;Port=5432;Database=dlls-dev-comcer-2;User Id=postgres;Password=Postgres2018!;ApplicationName=DLLS.Comcer.API;",
-        "connectionString": "Server=localhost;Port=5432;Database=dlls-dev-comcer-2;User Id=postgres;Password=Postgres2018!;ApplicationName=DLLS.Comcer.API;"
-      }
+		"environmentVariables": {
+			"ASPNETCORE_ENVIRONMENT": "Development",
+			"KEY": "2C0B93CF3482B0FD9CAB9047E7D24859BC225981D3938B78BE3B90789DF6403E"
+		}
     },
     "DLLS.Comcer.API": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "connectionStringDev": "Server=localhost;Port=5432;Database=dlls-dev-comcer-2;User Id=postgres;Password=Postgres2018!;ApplicationName=DLLS.Comcer.API;",
-        "connectionString": "Server=localhost;Port=5432;Database=dlls-dev-comcer-2;User Id=postgres;Password=Postgres2018!;ApplicationName=DLLS.Comcer.API;"
-      },
-      "dotnetRunMessages": "true",
-      "applicationUrl": "http://localhost:5000,https://localhost:5001"
+		"environmentVariables": {
+			"ASPNETCORE_ENVIRONMENT": "Development",
+			"KEY": "2C0B93CF3482B0FD9CAB9047E7D24859BC225981D3938B78BE3B90789DF6403E"
+		},
+      "applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "dotnetRunMessages": "true"
     }
   }
 }
