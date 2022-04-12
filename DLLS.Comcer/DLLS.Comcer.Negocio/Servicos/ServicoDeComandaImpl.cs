@@ -33,11 +33,14 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 					if (!(consultaProduto is null))
 					{
-						produtoDoPedido.Produto = consultaProduto.Resultados[0];
-						produtoDoPedido.ValorUnitario = produtoDoPedido.Produto.Preco;
-						produtoDoPedido.DataHoraPedido = pedido.DataHoraPedido;
-						comanda.Resultados[0].ListaPedidos.Add(pedido);
-						comanda.Resultados[0].Valor += produtoDoPedido.Quantidade * produtoDoPedido.ValorUnitario;
+						if (produtoDoPedido.Status != Utilitarios.Enumeradores.EnumStatusPedido.CANCELADO)
+						{
+							produtoDoPedido.Produto = consultaProduto.Resultados[0];
+							produtoDoPedido.ValorUnitario = produtoDoPedido.Produto.Preco;
+							produtoDoPedido.DataHoraPedido = pedido.DataHoraPedido;
+							comanda.Resultados[0].ListaPedidos.Add(pedido);
+							comanda.Resultados[0].Valor += produtoDoPedido.Quantidade * produtoDoPedido.ValorUnitario;
+						}
 					}
 					else
 					{
@@ -68,12 +71,15 @@ namespace DLLS.Comcer.Negocio.Servicos
 					pedido.DataHoraPedido = System.DateTime.Now;
 					foreach (DtoProdutoDoPedido produtoDoPedido in pedido.ProdutosDoPedido)
 					{
-						if (!(produtoDoPedido.Produto is null))
+						if (produtoDoPedido.Status != Utilitarios.Enumeradores.EnumStatusPedido.CANCELADO)
 						{
-							produtoDoPedido.Produto = _servicoDeProduto.Consulte(produtoDoPedido.Produto.Id).Resultados[0];
-							produtoDoPedido.ValorUnitario = produtoDoPedido.Produto.Preco;
+							if (!(produtoDoPedido.Produto is null))
+							{
+								produtoDoPedido.Produto = _servicoDeProduto.Consulte(produtoDoPedido.Produto.Id).Resultados[0];
+								produtoDoPedido.ValorUnitario = produtoDoPedido.Produto.Preco;
+							}
+							comanda.Valor += produtoDoPedido.Quantidade * produtoDoPedido.ValorUnitario;
 						}
-						comanda.Valor += produtoDoPedido.Quantidade * produtoDoPedido.ValorUnitario;
 					}
 				}
 			}
