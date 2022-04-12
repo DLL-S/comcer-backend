@@ -57,8 +57,8 @@ namespace DLLS.Comcer.Infraestrutura
 								"p.\"ID\" as NumeroPedido, " +
 								"m.\"NUMERO\" as NumeroMesa, " +
 								"case " +
-									"when(select count(*) from (select count(*) as contEntregue, (select count(*) from (select \"STATUS\" from \"PEDIDOSDOPRODUTO\" pp where \"PEDIDO\" = p.\"ID\" group by \"STATUS\") listaTotal) as contTotal from (select \"STATUS\" from \"PEDIDOSDOPRODUTO\" pp where \"PEDIDO\" = p.\"ID\" group by \"STATUS\") listaStatus where \"STATUS\" = 'ENTREGUE') Contaentregue where Contaentregue.contEntregue = Contaentregue.contTotal) = 1 then 'ENTREGUE' " +
-									"when(select count(*) from(select \"STATUS\" from \"PEDIDOSDOPRODUTO\" pp where \"PEDIDO\" = p.\"ID\" group by \"STATUS\") listaStatus where \"STATUS\" <> 'ENTREGUE' and \"STATUS\" <> 'PRONTO') = 0 then 'PRONTO' " +
+									"when(select count(*) from (select count(*) as contEntregue, (select count(*) from (select \"STATUS\" from \"PEDIDOSDOPRODUTO\" pp where \"PEDIDO\" = p.\"ID\" AND \"STATUS\" <> 'CANCELADO' group by \"STATUS\") listaTotal) as contTotal from (select \"STATUS\" from \"PEDIDOSDOPRODUTO\" pp where \"PEDIDO\" = p.\"ID\" AND \"STATUS\" <> 'CANCELADO' group by \"STATUS\") listaStatus where \"STATUS\" = 'ENTREGUE') Contaentregue where Contaentregue.contEntregue = Contaentregue.contTotal) = 1 then 'ENTREGUE' " +
+									"when(select count(*) from(select \"STATUS\" from \"PEDIDOSDOPRODUTO\" pp where \"PEDIDO\" = p.\"ID\" AND \"STATUS\" <> 'CANCELADO' group by \"STATUS\") listaStatus where \"STATUS\" <> 'ENTREGUE' and \"STATUS\" <> 'PRONTO') = 0 then 'PRONTO' " +
 									"else 'PENDENTE' " +
 								"end as StatusPedido " +
 							"from \"PEDIDOS\" p " +
