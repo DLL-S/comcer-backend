@@ -33,6 +33,10 @@ namespace DLLS.Comcer.Negocio.Conversores
 		{
 			DtoProdutoDoPedido dto = base.Converta(objeto);
 			dto.Produto = ConversorProduto().Converta(RepositorioProduto().Consulte(objeto.IdProduto));
+			if (dto.Status == Utilitarios.Enumeradores.EnumStatusPedido.CANCELADO)
+			{
+				dto.ValorUnitario = 0;
+			}
 
 			return dto;
 		}
@@ -44,6 +48,12 @@ namespace DLLS.Comcer.Negocio.Conversores
 			{
 				objeto.IdProduto = dto.Produto.Id;
 			}
+
+			if (objeto.Status == Utilitarios.Enumeradores.EnumStatusPedido.CANCELADO)
+			{
+				dto.ValorUnitario = 0;
+			}
+
 
 			return objeto;
 		}
