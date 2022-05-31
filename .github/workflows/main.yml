@@ -1,0 +1,74 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    name: Sonar scan
+    runs-on: windows-latest
+    #runs-on: windows-latest
+    steps:
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.11
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Cache SonarQube packages
+        uses: actions/cache@v1
+        with:
+          path: ~\sonar\cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Cache SonarQube scanner
+        id: cache-sonar-scanner
+        uses: actions/cache@v1
+        with:
+          path: .\.sonar\scanner
+          key: ${{ runner.os }}-sonar-scanner
+          restore-keys: ${{ runner.os }}-sonar-scanner
+      - name: Install SonarQube scanner
+        if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
+        shell: powershell
+        run: |
+          New-Item -Path .\.sonar\scanner -ItemType Directory
+          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
+      - name: Instalar ReportGenerator
+        run: dotnet tool update dotnet-reportgenerator-globaltool -g --version 4.8.7
+      - name: Build and analyze
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+        shell: powershell
+        run: |
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"dllscomcer" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="http://localhost:9000" /d:sonar.coverageReportPaths=".\sonarqubecoverage\SonarQube.xml" /d:sonar.coverage.exclusions="DLLS.Comcer.Startup/**,DLLS.Comcer.API/**,DLLS.Comcer.UnitTests/**,DLLS.Comcer.Infraestrutura/Migrations/**"
+          dotnet build ./DLLS.Comcer/DLLS.Comcer.sln
+          dotnet test ./DLLS.Comcer/DLLS.Comcer.sln --no-build --collect:"XPlat Code Coverage"
+          reportgenerator "-reports:.\DLLS.Comcer\*\TestResults\*\coverage.cobertura.xml" "-targetdir:.\DLLS.Comcer\sonarqubecoverage" "-reporttypes:SonarQube"
+          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+      - name: publish sumary failed tests - enrico
+        uses: EnricoMi/publish-unit-test-result-action
+        with:
+          files: ".\DLLS.Comcer\*\TestResults\*\coverage.cobertura.xml"
+      - name: publish sumary failed tests - publish test
+        uses: test-summary/action
+        with:
+          paths: ".\DLLS.Comcer\*\TestResults\*\coverage.cobertura.xml"
+      - name: Upload como Artifact do Report + XML com resultado dos testes ()
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: resultado-testes
+          path: ".\DLLS.Comcer\*\TestResults\*\coverage.cobertura.xml"
+          retention-days: 30
