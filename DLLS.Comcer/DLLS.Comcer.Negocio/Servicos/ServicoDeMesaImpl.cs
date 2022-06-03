@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using DLLS.Comcer.Dominio.Objetos.ComandaObj;
 using DLLS.Comcer.Dominio.Objetos.MesaObj;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
@@ -9,6 +10,7 @@ using DLLS.Comcer.Interfaces.InterfacesDeValidacao;
 using DLLS.Comcer.Interfaces.Modelos;
 using DLLS.Comcer.Negocio.Conversores;
 using DLLS.Comcer.Negocio.Validacoes;
+using DLLS.Comcer.Utilitarios.Enumeradores;
 
 namespace DLLS.Comcer.Negocio.Servicos
 {
@@ -21,6 +23,21 @@ namespace DLLS.Comcer.Negocio.Servicos
 		public ServicoDeMesaImpl(IRepositorioMesa repositorio, IServicoDeComanda servicoDeComanda) : base(repositorio)
 		{
 			_servicoDeComanda = servicoDeComanda;
+		}
+
+		public override DtoSaida<DtoMesa> Liste(int pagina, int quantidade, EnumOrdem ordem, string termoDeBusca)
+		{
+			var retorno = base.Liste(pagina, quantidade, ordem, termoDeBusca);
+			Parallel.ForEach(retorno.Resultados, (x) => { x.Comandas.Clear(); });
+
+			return retorno;
+		}
+
+		public override DtoSaida<DtoMesa> Consulte(int codigo)
+		{
+			var retorno = base.Consulte(codigo);
+			Parallel.ForEach(retorno.Resultados, (x) => { x.Comandas.Clear(); });
+			return retorno;
 		}
 
 		public DtoSaida<DtoComanda> ObtenhaComandas(int numeroMesa)

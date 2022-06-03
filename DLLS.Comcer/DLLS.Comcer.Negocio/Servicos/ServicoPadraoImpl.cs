@@ -27,7 +27,7 @@ namespace DLLS.Comcer.Negocio.Servicos
 		/// </summary>
 		/// <param name="codigo">O código do item a ser pesquisado.</param>
 		/// <returns>Um Dto com o item encontrado ou null.</returns>
-		public DtoSaida<TDto> Consulte(int codigo)
+		public virtual DtoSaida<TDto> Consulte(int codigo)
 		{
 			TObjeto objetoConsultado = _repositorio.Consulte(codigo);
 

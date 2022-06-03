@@ -81,6 +81,8 @@ namespace DLLS.Comcer.API
 			app.UseCors(options =>
 			{
 				options.AllowAnyOrigin();
+				options.AllowAnyMethod();
+				options.AllowAnyHeader();
 			});
 			app.UseSwagger();
 			app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DLLS.Comcer.API v1"));
