@@ -56,6 +56,7 @@ namespace DLLS.Comcer.API.Controllers
 		[HttpPost()]
 		[ProducesResponseType(StatusCodes.Status201Created)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		[Authorize()]
 		public ActionResult<DtoFuncionario> Cadastrar([FromBody] ModelCadastroDeUsuario obj)
 		{
 			obj.Login.Senha = ServicoAutenticador.ObtenhaCriptografado(obj.Login.Senha);
