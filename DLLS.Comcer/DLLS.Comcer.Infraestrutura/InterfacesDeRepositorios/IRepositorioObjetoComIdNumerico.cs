@@ -54,5 +54,7 @@ namespace DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios
 		/// </summary>
 		/// <param name="codigo">O objeto a ser excluído.</param>
 		void Exclua(int codigo);
+
+		int Count();
 	}
 }

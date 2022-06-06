@@ -112,5 +112,10 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 		/// <param name="termoDeBusca">O termo de busca para a pesquisa.</param>
 		/// <returns>Uma lista de Objetos com os registros.</returns>
 		protected abstract IList<TObjeto> ListeComTermoDeBusca(int pagina, int quantidade, EnumOrdem ordem, string termoDeBusca);
+
+		public int Count()
+		{
+			return Persistencia.Count();
+		}
 	}
 }
