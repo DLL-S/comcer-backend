@@ -36,7 +36,12 @@ namespace DLLS.Comcer.Negocio.Servicos
 				return null;
 			}
 
-			return Conversor().ConvertaParaDtoSaida(objetoConsultado);
+			var saida = Conversor().ConvertaParaDtoSaida(objetoConsultado);
+			saida.Total = _repositorio.Count();
+			saida.Quantidade = 1;
+			saida.Pagina = 0;
+
+			return saida;
 		}
 
 		/// <summary>
@@ -45,7 +50,12 @@ namespace DLLS.Comcer.Negocio.Servicos
 		/// <returns>Uma lista de Dtos com os registros.</returns>
 		public virtual DtoSaida<TDto> Liste()
 		{
-			return Conversor().ConvertaParaDtoSaida(_repositorio.Liste());
+			var saida = Conversor().ConvertaParaDtoSaida(_repositorio.Liste());
+			saida.Total = _repositorio.Count();
+			saida.Quantidade = saida.Resultados.Count;
+			saida.Pagina = 0;
+
+			return saida;
 		}
 
 		/// <summary>
@@ -58,7 +68,11 @@ namespace DLLS.Comcer.Negocio.Servicos
 		/// <returns>Uma lista de Dtos com os registros.</returns>
 		public virtual DtoSaida<TDto> Liste(int pagina, int quantidade, EnumOrdem ordem, string termoDeBusca)
 		{
-			return Conversor().ConvertaParaDtoSaida(_repositorio.Liste(pagina, quantidade, ordem, termoDeBusca));
+			var saida = Conversor().ConvertaParaDtoSaida(_repositorio.Liste(pagina, quantidade, ordem, termoDeBusca));
+			saida.Total = _repositorio.Count();
+			saida.Quantidade = saida.Resultados.Count;
+			saida.Pagina = pagina;
+			return saida;
 		}
 
 		/// <summary>
@@ -76,6 +90,9 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 			if (dtoSaida.Sucesso)
 				dtoSaida.Resultados[0] = Conversor().Converta(_repositorio.Cadastre(objetoConvertido));
+
+			dtoSaida.Total = _repositorio.Count();
+			dtoSaida.Quantidade = 1;
 
 			return dtoSaida;
 		}
@@ -95,6 +112,9 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 			if (dtoSaida.Sucesso)
 				dtoSaida.Resultados[0] = Conversor().Converta(_repositorio.Atualize(objetoConvertido));
+
+			dtoSaida.Total = _repositorio.Count();
+			dtoSaida.Quantidade = 1;
 
 			return dtoSaida;
 		}

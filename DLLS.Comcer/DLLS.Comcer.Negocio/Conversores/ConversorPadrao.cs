@@ -89,6 +89,7 @@ namespace DLLS.Comcer.Negocio.Conversores
 			};
 
 			dtoSaida.Quantidade = dtoSaida.Resultados.Count;
+			dtoSaida.Total = dtoSaida.Resultados.Count;
 
 			return dtoSaida;
 		}
