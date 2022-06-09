@@ -1,33 +1,35 @@
 {
-  "$schema": "http://json.schemastore.org/launchsettings.json",
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:33578",
-      "sslPort": 44349
-    }
-  },
-  "profiles": {
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-		"environmentVariables": {
-			"ASPNETCORE_ENVIRONMENT": "Development",
-			"KEY": "2C0B93CF3482B0FD9CAB9047E7D24859BC225981D3938B78BE3B90789DF6403E"
+	"$schema": "http://json.schemastore.org/launchsettings.json",
+	"iisSettings": {
+		"windowsAuthentication": false,
+		"anonymousAuthentication": true,
+		"iisExpress": {
+			"applicationUrl": "http://localhost:33578",
+			"sslPort": 44349
 		}
-    },
-    "DLLS.Comcer.API": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-		"environmentVariables": {
-			"ASPNETCORE_ENVIRONMENT": "Development",
-			"KEY": "2C0B93CF3482B0FD9CAB9047E7D24859BC225981D3938B78BE3B90789DF6403E"
+	},
+	"profiles": {
+		"IIS Express": {
+			"commandName": "IISExpress",
+			"launchBrowser": true,
+			"launchUrl": "swagger",
+			"environmentVariables": {
+				"ASPNETCORE_ENVIRONMENT": "Development",
+				"KEY": "2C0B93CF3482B0FD9CAB9047E7D24859BC225981D3938B78BE3B90789DF6403E",
+				"PORT": "5000"
+			}
 		},
-      "applicationUrl": "https://localhost:5001;http://localhost:5000",
-      "dotnetRunMessages": "true"
-    }
-  }
+		"DLLS.Comcer.API": {
+			"commandName": "Project",
+			"launchBrowser": true,
+			"launchUrl": "swagger",
+			"environmentVariables": {
+				"ASPNETCORE_ENVIRONMENT": "Development",
+				"KEY": "2C0B93CF3482B0FD9CAB9047E7D24859BC225981D3938B78BE3B90789DF6403E",
+				"PORT": "5000"
+			},
+			"applicationUrl": "https://localhost:5001;http://localhost:5000",
+			"dotnetRunMessages": "true"
+		}
+	}
 }
