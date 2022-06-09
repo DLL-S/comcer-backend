@@ -26,7 +26,6 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 		/// <returns>Uma lista de Dtos com os registros.</returns>
 		protected override IList<Produto> ListeComTermoDeBusca(int pagina, int quantidade, EnumOrdem ordem, string termoDeBusca)
 		{
-			// c => EF.Functions.Collate(c.Name, "SQL_Latin1_General_CP1_CI_AS") == "John"
 			return ordem == EnumOrdem.ASC
 				? Persistencia
 					.Where(x => EF.Functions.ILike(x.Nome, termoDeBusca))
