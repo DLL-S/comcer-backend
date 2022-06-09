@@ -9,6 +9,7 @@ namespace DLLS.Comcer.Interfaces.ModelosViews
 		public virtual int NumeroPedido { get; set; }
 		public virtual int IdProdutoPedido { get; set; }
 		public virtual string ProdutoPedido { get; set; }
+		public virtual int Quantidade { get; set; }
 		public virtual DateTime DataHoraPedido { get; set; }
 		public virtual EnumStatusPedido StatusPedido { get; set; }
 	}
