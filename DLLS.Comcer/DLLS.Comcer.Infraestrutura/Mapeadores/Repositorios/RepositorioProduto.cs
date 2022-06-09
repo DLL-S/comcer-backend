@@ -28,13 +28,13 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 		{
 			return ordem == EnumOrdem.ASC
 				? Persistencia
-					.Where(x => EF.Functions.ILike(x.Nome, termoDeBusca))
+					.Where(x => EF.Functions.ILike(x.Nome, "%" + termoDeBusca + "%"))
 					.OrderBy(x => x.Id)
 					.Skip((pagina - 1) * quantidade)
 					.Take(quantidade)
 					.ToList()
 				: Persistencia
-					.Where(x => EF.Functions.ILike(x.Nome, termoDeBusca))
+					.Where(x => EF.Functions.ILike(x.Nome, "%" + termoDeBusca + "%"))
 					.OrderByDescending(x => x.Id)
 					.Skip((pagina - 1) * quantidade)
 					.Take(quantidade)
