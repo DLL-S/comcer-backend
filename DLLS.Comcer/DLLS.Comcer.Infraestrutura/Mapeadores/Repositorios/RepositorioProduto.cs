@@ -3,6 +3,7 @@ using System.Linq;
 using DLLS.Comcer.Dominio.Objetos.ProdutoObj;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
 using DLLS.Comcer.Utilitarios.Enumeradores;
+using Microsoft.EntityFrameworkCore;
 
 namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 {
@@ -26,8 +27,18 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 		protected override IList<Produto> ListeComTermoDeBusca(int pagina, int quantidade, EnumOrdem ordem, string termoDeBusca)
 		{
 			return ordem == EnumOrdem.ASC
-				? Persistencia.Where(x => x.Nome.Contains(termoDeBusca)).OrderBy(x => x.Id).Skip((pagina - 1) * quantidade).Take(quantidade).ToList()
-				: Persistencia.Where(x => x.Nome.Contains(termoDeBusca)).OrderByDescending(x => x.Id).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
+				? Persistencia
+					.Where(x => EF.Functions.ILike(x.Nome, "%" + termoDeBusca + "%"))
+					.OrderBy(x => x.Id)
+					.Skip((pagina - 1) * quantidade)
+					.Take(quantidade)
+					.ToList()
+				: Persistencia
+					.Where(x => EF.Functions.ILike(x.Nome, "%" + termoDeBusca + "%"))
+					.OrderByDescending(x => x.Id)
+					.Skip((pagina - 1) * quantidade)
+					.Take(quantidade)
+					.ToList();
 		}
 	}
 }

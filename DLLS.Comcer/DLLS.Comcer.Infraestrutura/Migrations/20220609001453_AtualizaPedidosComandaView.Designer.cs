@@ -3,15 +3,17 @@ using System;
 using DLLS.Comcer.Infraestrutura;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DLLS.Comcer.Infraestrutura.Migrations
 {
     [DbContext(typeof(ContextoDeAplicacao))]
-    partial class ContextoDeAplicacaoModelSnapshot : ModelSnapshot
+    [Migration("20220609001453_AtualizaPedidosComandaView")]
+    partial class AtualizaPedidosComandaView
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -323,7 +325,7 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("DataHoraPedido")
-                        .HasColumnType("TIMESTAMP")
+                        .HasColumnType("DATE")
                         .HasColumnName("DATAHORAPEDIDO");
 
                     b.HasKey("Id");
@@ -346,7 +348,7 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<DateTime>("DataHoraPedido")
-                        .HasColumnType("TIMESTAMP")
+                        .HasColumnType("DATE")
                         .HasColumnName("DATAHORAPEDIDO");
 
                     b.Property<decimal>("IdProduto")
@@ -461,7 +463,7 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                     b.ToTable("PedidosComandaView");
 
                     b
-                        .HasAnnotation("Relational:SqlQuery", "select  c.\"ID\" as idComanda, c.\"NOME\" as nomeComanda, c.\"VALOR\" as valorTotalComanda, c.\"STATUS\" statusComanda, pp.\"ID\" idDoProdutoDoPedido, prod.\"NOME\" as nomeProdutoDoPedido, prod.\"DESCRICAO\" as descricaoProdutoDoPedido, prod.\"PRECO\" precoProdutoDoPedido, prod.\"FOTO\" as fotoProdutoDoPedido, pp.\"QUANTIDADE\" as quantidadeProdutoDoPedido, pp.\"STATUS\" as statusProdutoDoPedido, pp.\"DATAHORAPEDIDO\" as dataHoraPedido from \"PEDIDOSDOPRODUTO\" pp inner join \"PEDIDOS\" p on p.\"ID\" = pp.\"PEDIDO\" inner join \"COMANDAS\" c on p.\"COMANDA\" = c.\"ID\" left join \"PRODUTOS\" prod  on prod.\"ID\" = pp.\"IDPRODUTO\" ");
+                        .HasAnnotation("Relational:SqlQuery", "select  c.\"ID\" as idComanda, m.\"NUMERO\" as numeroMesa, c.\"NOME\" as nomeComanda, c.\"VALOR\" as valorTotalComanda, c.\"STATUS\" statusComanda, pp.\"ID\" idDoProdutoDoPedido, prod.\"NOME\" as nomeProdutoDoPedido, prod.\"DESCRICAO\" as descricaoProdutoDoPedido, prod.\"PRECO\" precoProdutoDoPedido, prod.\"FOTO\" as fotoProdutoDoPedido, pp.\"QUANTIDADE\" as quantidadeProdutoDoPedido, pp.\"STATUS\" as statusProdutoDoPedido, pp.\"DATAHORAPEDIDO\" as dataHoraPedido from \"PEDIDOSDOPRODUTO\" pp inner join \"PEDIDOS\" p on p.\"ID\" = pp.\"PEDIDO\" inner join \"COMANDAS\" c on p.\"COMANDA\" = c.\"ID\" inner join \"MESAS\" m on c.\"MESA\" = m.\"ID\" left join \"PRODUTOS\" prod  on prod.\"ID\" = pp.\"IDPRODUTO\" ");
                 });
 
             modelBuilder.Entity("DLLS.Comcer.Interfaces.ModelosViews.PedidoProdutoView", b =>
@@ -481,16 +483,14 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                     b.Property<string>("ProdutoPedido")
                         .HasColumnType("text");
 
-                    b.Property<int>("Quantidade")
-                        .HasColumnType("integer");
-                        
                     b.Property<string>("StatusPedido")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.ToTable("PedidosDoProdutoView");
 
-                    b.HasAnnotation("Relational:SqlQuery", "select p.\"ID\" as NumeroPedido, coalesce(m.\"NUMERO\", 0) as NumeroMesa, pp.\"ID\" as IdProdutoPedido, prod.\"NOME\" as ProdutoPedido, pp.\"QUANTIDADE\" as Quantidade, pp.\"DATAHORAPEDIDO\" as DataHoraPedido, pp.\"STATUS\" as StatusPedido from \"PEDIDOS\" p inner join \"COMANDAS\" c  on p.\"COMANDA\" = c.\"ID\" left join \"MESAS\" m  on m.\"ID\" = c.\"MESA\" inner join \"PEDIDOSDOPRODUTO\" pp on pp.\"PEDIDO\" = p.\"ID\"  inner join \"PRODUTOS\" prod on prod.\"ID\" = pp.\"IDPRODUTO\" ");
+                    b
+                        .HasAnnotation("Relational:SqlQuery", "select p.\"ID\" as NumeroPedido, coalesce(m.\"NUMERO\", 0) as NumeroMesa, pp.\"ID\" as IdProdutoPedido, prod.\"NOME\" as ProdutoPedido, pp.\"DATAHORAPEDIDO\" as DataHoraPedido, pp.\"STATUS\" as StatusPedido from \"PEDIDOS\" p inner join \"COMANDAS\" c  on p.\"COMANDA\" = c.\"ID\" left join \"MESAS\" m  on m.\"ID\" = c.\"MESA\" inner join \"PEDIDOSDOPRODUTO\" pp on pp.\"PEDIDO\" = p.\"ID\"  inner join \"PRODUTOS\" prod on prod.\"ID\" = pp.\"IDPRODUTO\" ");
                 });
 
             modelBuilder.Entity("DLLS.Comcer.Interfaces.ModelosViews.PedidoView", b =>
