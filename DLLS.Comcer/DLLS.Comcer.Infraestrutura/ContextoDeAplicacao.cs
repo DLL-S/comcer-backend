@@ -103,7 +103,6 @@ namespace DLLS.Comcer.Infraestrutura
 				x.ToSqlQuery(
 					  "select  " +
 							"c.\"ID\" as idComanda, " +
-							"m.\"NUMERO\" as numeroMesa, " +
 							"c.\"NOME\" as nomeComanda, " +
 							"c.\"VALOR\" as valorTotalComanda, " +
 							"c.\"STATUS\" statusComanda, " +
@@ -120,8 +119,6 @@ namespace DLLS.Comcer.Infraestrutura
 							"on p.\"ID\" = pp.\"PEDIDO\" " +
 						"inner join \"COMANDAS\" c " +
 							"on p.\"COMANDA\" = c.\"ID\" " +
-						"inner join \"MESAS\" m " +
-							"on c.\"MESA\" = m.\"ID\" " +
 						"left join \"PRODUTOS\" prod  " +
 							"on prod.\"ID\" = pp.\"IDPRODUTO\" "
 				);

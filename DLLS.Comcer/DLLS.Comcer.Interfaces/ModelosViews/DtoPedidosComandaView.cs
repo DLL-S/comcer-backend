@@ -6,7 +6,6 @@ namespace DLLS.Comcer.Interfaces.ModelosViews
 	public class DtoPedidosComandaView
 	{
 		public int IdComanda { get; set; }
-		public int numeroMesa { get; set; }
 		public string NomeComanda { get; set; }
 		public decimal ValorTotalComanda { get; set; }
 		public EnumStatusComanda StatusComanda { get; set; }
