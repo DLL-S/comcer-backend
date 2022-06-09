@@ -25,7 +25,7 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 		public override DtoSaida<DtoProdutoDoPedido> Liste(int pagina, int quantidade, EnumOrdem ordem, string termoDeBusca)
 		{
-			var lista = base.Liste(pagina, quantidade, ordem, termoDeBusca);
+			DtoSaida<DtoProdutoDoPedido> lista = base.Liste(pagina, quantidade, ordem, termoDeBusca);
 			Parallel.ForEach(lista.Resultados, x => x.Produto.Foto = CompressorDeImagem.ComprimaFotoProduto(x.Produto.Foto));
 			return lista;
 		}
