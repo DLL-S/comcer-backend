@@ -3,6 +3,7 @@ using System.Linq;
 using DLLS.Comcer.Dominio.Objetos.ProdutoObj;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
 using DLLS.Comcer.Utilitarios.Enumeradores;
+using Microsoft.EntityFrameworkCore;
 
 namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 {
@@ -25,9 +26,20 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 		/// <returns>Uma lista de Dtos com os registros.</returns>
 		protected override IList<Produto> ListeComTermoDeBusca(int pagina, int quantidade, EnumOrdem ordem, string termoDeBusca)
 		{
+			// c => EF.Functions.Collate(c.Name, "SQL_Latin1_General_CP1_CI_AS") == "John"
 			return ordem == EnumOrdem.ASC
-				? Persistencia.Where(x => x.Nome.Contains(termoDeBusca)).OrderBy(x => x.Id).Skip((pagina - 1) * quantidade).Take(quantidade).ToList()
-				: Persistencia.Where(x => x.Nome.Contains(termoDeBusca)).OrderByDescending(x => x.Id).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
+				? Persistencia
+					.Where(x => EF.Functions.Collate(x.Nome, "SQL_Latin1_General_CP1_CI_AS").Contains(termoDeBusca))
+					.OrderBy(x => x.Id)
+					.Skip((pagina - 1) * quantidade)
+					.Take(quantidade)
+					.ToList()
+				: Persistencia
+					.Where(x => EF.Functions.Collate(x.Nome, "SQL_Latin1_General_CP1_CI_AS").Contains(termoDeBusca))
+					.OrderByDescending(x => x.Id)
+					.Skip((pagina - 1) * quantidade)
+					.Take(quantidade)
+					.ToList();
 		}
 	}
 }
