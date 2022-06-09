@@ -25,7 +25,7 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 		public override DtoSaida<DtoPedido> Liste(int pagina, int quantidade, EnumOrdem ordem, string termoDeBusca)
 		{
-			var lista = base.Liste(pagina, quantidade, ordem, termoDeBusca);
+			DtoSaida<DtoPedido> lista = base.Liste(pagina, quantidade, ordem, termoDeBusca);
 
 			Parallel.ForEach(lista.Resultados, x => ComprimaFotoProduto(ref x));
 
@@ -39,7 +39,7 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 		public IList<DtoPedidosComandaView> ListePedidosComandaView()
 		{
-			var lista = Conversor().Converta(((IRepositorioPedido)_repositorio).ObtenhaPedidosComanda());
+			IList<DtoPedidosComandaView> lista = Conversor().Converta(((IRepositorioPedido)_repositorio).ObtenhaPedidosComanda());
 
 			Parallel.ForEach(lista, x => x.FotoProdutoDoPedido = CompressorDeImagem.ComprimaFotoProduto(x.FotoProdutoDoPedido));
 
@@ -58,10 +58,7 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 		private static void ComprimaFotoProduto(ref DtoPedido saidaPedido)
 		{
-			foreach (var saidaProduto in saidaPedido.ProdutosDoPedido)
-			{
-				saidaProduto.Produto.Foto = CompressorDeImagem.ComprimaFotoProduto(saidaProduto.Produto.Foto);
-			}
+			Parallel.ForEach(saidaPedido.ProdutosDoPedido, x => x.Produto.Foto = CompressorDeImagem.ComprimaFotoProduto(x.Produto.Foto));
 		}
 	}
 }

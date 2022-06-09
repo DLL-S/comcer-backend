@@ -27,7 +27,7 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 		public override DtoSaida<DtoMesa> Liste(int pagina, int quantidade, EnumOrdem ordem, string termoDeBusca)
 		{
-			var retorno = base.Liste(pagina, quantidade, ordem, termoDeBusca);
+			DtoSaida<DtoMesa> retorno = base.Liste(pagina, quantidade, ordem, termoDeBusca);
 			Parallel.ForEach(retorno.Resultados, (x) => { x.Comandas.Clear(); });
 
 			return retorno;
@@ -35,21 +35,21 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 		public override DtoSaida<DtoMesa> Consulte(int codigo)
 		{
-			var retorno = base.Consulte(codigo);
+			DtoSaida<DtoMesa> retorno = base.Consulte(codigo);
 			Parallel.ForEach(retorno.Resultados, (x) => { x.Comandas.Clear(); });
 			return retorno;
 		}
 
 		public DtoSaida<DtoComanda> ObtenhaComandas(int numeroMesa)
 		{
-			var mesas = Repositorio().Liste(x => x.Numero == numeroMesa && x.Comandas.Any(y => y.Status != Utilitarios.Enumeradores.EnumStatusComanda.FECHADA));
+			IList<Mesa> mesas = Repositorio().Liste(x => x.Numero == numeroMesa && x.Comandas.Any(y => y.Status != Utilitarios.Enumeradores.EnumStatusComanda.FECHADA));
 			var comandas = mesas.SelectMany(x => x.Comandas).Where(x => x.Status != Utilitarios.Enumeradores.EnumStatusComanda.FECHADA).ToList();
 			return new ConversorComanda().ConvertaParaDtoSaida(comandas);
 		}
 
 		private void TrateMesaDaComanda(Comanda comanda)
 		{
-			var mesa = Repositorio().Liste(x => x.Comandas.Contains(comanda)).FirstOrDefault();
+			Mesa mesa = Repositorio().Liste(x => x.Comandas.Contains(comanda)).FirstOrDefault();
 
 			mesa.Disponivel = mesa.Comandas.All(x => x.Status == Utilitarios.Enumeradores.EnumStatusComanda.FECHADA);
 			Repositorio().Atualize(mesa);
