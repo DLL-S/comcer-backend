@@ -63,7 +63,7 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos
 
 			builder.Property(x => x.DataHoraPedido)
 				 .HasColumnName("DATAHORAPEDIDO")
-				 .HasColumnType("DATE")
+				 .HasColumnType("TIMESTAMP")
 				 .IsRequired();
 
 			#endregion
