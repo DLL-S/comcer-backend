@@ -29,13 +29,13 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 			// c => EF.Functions.Collate(c.Name, "SQL_Latin1_General_CP1_CI_AS") == "John"
 			return ordem == EnumOrdem.ASC
 				? Persistencia
-					.Where(x => EF.Functions.Collate(x.Nome, "SQL_Latin1_General_CP1_CI_AS").Contains(termoDeBusca))
+					.Where(x => EF.Functions.ILike(x.Nome, termoDeBusca))
 					.OrderBy(x => x.Id)
 					.Skip((pagina - 1) * quantidade)
 					.Take(quantidade)
 					.ToList()
 				: Persistencia
-					.Where(x => EF.Functions.Collate(x.Nome, "SQL_Latin1_General_CP1_CI_AS").Contains(termoDeBusca))
+					.Where(x => EF.Functions.ILike(x.Nome, termoDeBusca))
 					.OrderByDescending(x => x.Id)
 					.Skip((pagina - 1) * quantidade)
 					.Take(quantidade)
