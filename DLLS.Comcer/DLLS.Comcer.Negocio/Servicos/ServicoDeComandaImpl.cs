@@ -93,7 +93,7 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 			comanda.Status = paraPagamento ? Utilitarios.Enumeradores.EnumStatusComanda.AGUARDANDO_PAGAMENTO : Utilitarios.Enumeradores.EnumStatusComanda.FECHADA;
 
-			var comandaAtualizada = Atualize(Conversor().Converta(comanda));
+			DtoSaida<DtoComanda> comandaAtualizada = Atualize(Conversor().Converta(comanda));
 
 			return comandaAtualizada;
 		}
