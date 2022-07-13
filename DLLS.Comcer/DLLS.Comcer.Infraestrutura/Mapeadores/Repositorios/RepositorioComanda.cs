@@ -15,6 +15,11 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 		public RepositorioComanda(ContextoDeAplicacao contexto)
 			: base(contexto) { }
 
+		public Comanda ConsulteComandaDoProdutoPedido(int codigoProdutoDoPedido)
+		{
+			return Persistencia.FirstOrDefault(x => x.ListaPedidos.SelectMany(y => y.ProdutosDoPedido).Any(z => z.Id == codigoProdutoDoPedido));
+		}
+
 		/// <summary>
 		/// Retorna uma lista com os itens de acordo com os filtros passados.
 		/// </summary>

@@ -4,5 +4,6 @@ namespace DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios
 {
 	public interface IRepositorioComanda : IRepositorioObjetoComIdNumerico<Comanda>
 	{
+		Comanda ConsulteComandaDoProdutoPedido(int codigoProdutoDoPedido);
 	}
 }
