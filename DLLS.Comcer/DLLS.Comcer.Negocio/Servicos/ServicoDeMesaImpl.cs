@@ -42,7 +42,7 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 		public DtoSaida<DtoComanda> ObtenhaComandas(int numeroMesa)
 		{
-			IList<Mesa> mesas = Repositorio().Liste(x => x.Numero == numeroMesa && x.Comandas.Any(y => y.Status != Utilitarios.Enumeradores.EnumStatusComanda.FECHADA));
+			IList<Mesa> mesas = Repositorio().Liste(x => x.Id == numeroMesa && x.Comandas.Any(y => y.Status != Utilitarios.Enumeradores.EnumStatusComanda.FECHADA));
 			var comandas = mesas.SelectMany(x => x.Comandas).Where(x => x.Status != Utilitarios.Enumeradores.EnumStatusComanda.FECHADA).ToList();
 			return new ConversorComanda().ConvertaParaDtoSaida(comandas);
 		}
