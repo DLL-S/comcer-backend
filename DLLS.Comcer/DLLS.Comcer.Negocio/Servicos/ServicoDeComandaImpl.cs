@@ -85,6 +85,8 @@ namespace DLLS.Comcer.Negocio.Servicos
 							}
 							comanda.Valor += produtoDoPedido.Quantidade * produtoDoPedido.ValorUnitario;
 						}
+
+						produtoDoPedido.DataHoraPedido = pedido.DataHoraPedido;
 					}
 				}
 			}
