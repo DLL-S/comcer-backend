@@ -22,5 +22,6 @@ jobs:
       - name: Publish
         working-directory: ./DLLS.Comcer
         run: |
+          heroku config:add TZ="America/Sao_Paulo"
           heroku container:push web -a $APP_NAME
           heroku container:release web -a $APP_NAME
