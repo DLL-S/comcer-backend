@@ -1,3 +1,4 @@
+using System.Linq;
 using DLLS.Comcer.Dominio.Objetos.ComandaObj;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
 using DLLS.Comcer.Interfaces.InterfacesDeConversores;
@@ -68,7 +69,11 @@ namespace DLLS.Comcer.Negocio.Servicos
 			{
 				foreach (DtoPedido pedido in comanda.ListaPedidos)
 				{
-					pedido.DataHoraPedido = System.DateTime.Now;
+					if (!pedido.ProdutosDoPedido.Any(x => x.Status == Utilitarios.Enumeradores.EnumStatusPedido.CANCELADO))
+					{
+						pedido.DataHoraPedido = System.DateTime.Now;
+					}
+
 					foreach (DtoProdutoDoPedido produtoDoPedido in pedido.ProdutosDoPedido)
 					{
 						if (produtoDoPedido.Status != Utilitarios.Enumeradores.EnumStatusPedido.CANCELADO)
@@ -111,6 +116,11 @@ namespace DLLS.Comcer.Negocio.Servicos
 		protected override IConversorPadrao<Comanda, DtoComanda> Conversor()
 		{
 			return _conversor ??= new ConversorComanda();
+		}
+
+		public DtoComanda ObtenhaComandaDoProdutoPedido(int codigoProdutoDoPedido)
+		{
+			return Conversor().Converta(Repositorio().ConsulteComandaDoProdutoPedido(codigoProdutoDoPedido));
 		}
 	}
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using DLLS.Comcer.Dominio.Objetos.PedidoObj;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
@@ -18,9 +19,11 @@ namespace DLLS.Comcer.Negocio.Servicos
 	{
 		private IConversorProdutoDoPedido _conversor;
 		private IValidadorProdutoDoPedido _validador;
+		private IServicoDeComanda _servicoDeComanda;
 
-		public ServicoDeProdutosDoPedidoImpl(IRepositorioProdutoDoPedido repositorio) : base(repositorio)
+		public ServicoDeProdutosDoPedidoImpl(IRepositorioProdutoDoPedido repositorio, IServicoDeComanda servicoDeComanda) : base(repositorio)
 		{
+			_servicoDeComanda = servicoDeComanda;
 		}
 
 		public override DtoSaida<DtoProdutoDoPedido> Liste(int pagina, int quantidade, EnumOrdem ordem, string termoDeBusca)
@@ -44,6 +47,26 @@ namespace DLLS.Comcer.Negocio.Servicos
 		{
 			DtoProdutoDoPedido obj = Conversor().Converta(_repositorio.Consulte(codigo));
 			obj.Status = status;
+
+			if (status == EnumStatusPedido.CANCELADO)
+			{
+				obj.ValorUnitario = 0;
+				DtoComanda comanda = _servicoDeComanda.ObtenhaComandaDoProdutoPedido(codigo);
+
+				var pedidoCancelado = comanda.ListaPedidos.FirstOrDefault(x => x.ProdutosDoPedido.Any(y => y.Id == codigo));
+
+				var produtosDoPedido = pedidoCancelado.ProdutosDoPedido.ToList();
+
+				produtosDoPedido.RemoveAll(y => y.Id == codigo);
+
+				produtosDoPedido.Add(obj);
+
+				pedidoCancelado.ProdutosDoPedido = produtosDoPedido;
+
+				DtoComanda comandaParaInclusao = _servicoDeComanda.TrateInclusaoDeComanda(comanda);
+				_servicoDeComanda.Atualize(comandaParaInclusao);
+			}
+
 			return base.Atualize(obj);
 		}
 
