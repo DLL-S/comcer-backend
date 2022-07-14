@@ -31,5 +31,7 @@
 			"applicationUrl": "https://localhost:5001;http://localhost:5000",
 			"dotnetRunMessages": "true"
 		}
-	}
+	},
+
+	"TZ": "America/Sao_Paulo"
 }
