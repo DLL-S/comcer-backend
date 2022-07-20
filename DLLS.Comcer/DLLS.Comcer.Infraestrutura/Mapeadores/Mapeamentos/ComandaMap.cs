@@ -63,6 +63,19 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos
 				 .IsRequired();
 
 			#endregion
+
+			#region Data inicio e fim
+
+			builder.Property(x => x.AberturaComanda)
+				 .HasColumnName("DATAHORAABERTURACOMANDA")
+				 .HasColumnType("TIMESTAMP")
+				 .IsRequired();
+
+			builder.Property(x => x.EncerramentoComanda)
+				 .HasColumnName("DATAHORAFECHADACOMANDA")
+				 .HasColumnType("TIMESTAMP");
+
+			#endregion
 		}
 	}
 }

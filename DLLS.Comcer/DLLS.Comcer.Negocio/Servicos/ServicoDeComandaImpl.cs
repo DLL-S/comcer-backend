@@ -64,6 +64,8 @@ namespace DLLS.Comcer.Negocio.Servicos
 		{
 			comanda.Valor = 0;
 
+			comanda.AberturaComanda = System.DateTime.Now;
+
 			if (comanda.ListaPedidos != null && comanda.ListaPedidos.Count > 0)
 			{
 				foreach (DtoPedido pedido in comanda.ListaPedidos)
@@ -92,6 +94,10 @@ namespace DLLS.Comcer.Negocio.Servicos
 			Comanda comanda = Repositorio().Consulte(codigo);
 
 			comanda.Status = paraPagamento ? Utilitarios.Enumeradores.EnumStatusComanda.AGUARDANDO_PAGAMENTO : Utilitarios.Enumeradores.EnumStatusComanda.FECHADA;
+			if (!paraPagamento)
+			{
+				comanda.EncerramentoComanda = System.DateTime.Now;
+			}
 
 			DtoSaida<DtoComanda> comandaAtualizada = Atualize(Conversor().Converta(comanda));
 
