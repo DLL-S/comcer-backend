@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DLLS.Comcer.Dominio.Objetos.Compartilhados;
 using DLLS.Comcer.Dominio.Objetos.PedidoObj;
 using DLLS.Comcer.Utilitarios.Enumeradores;
@@ -16,5 +17,9 @@ namespace DLLS.Comcer.Dominio.Objetos.ComandaObj
 		public virtual decimal Valor { get; set; }
 
 		public virtual EnumStatusComanda Status { get; set; }
+
+		public virtual DateTime AberturaComanda { get; set; }
+
+		public virtual DateTime? EncerramentoComanda { get; set; }
 	}
 }
