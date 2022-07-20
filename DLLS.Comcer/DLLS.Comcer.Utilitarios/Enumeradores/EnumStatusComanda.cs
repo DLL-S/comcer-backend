@@ -3,7 +3,7 @@
 	public enum EnumStatusComanda
 	{
 		ABERTA,
-		FECHADA,
-		AGUARDANDO_PAGAMENTO
+		AGUARDANDO_PAGAMENTO,
+		FECHADA
 	}
 }
