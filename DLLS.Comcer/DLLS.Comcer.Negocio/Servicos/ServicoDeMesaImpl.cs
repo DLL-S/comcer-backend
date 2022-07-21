@@ -42,8 +42,8 @@ namespace DLLS.Comcer.Negocio.Servicos
 
 		public DtoSaida<DtoComanda> ObtenhaComandas(int numeroMesa)
 		{
-			IList<Mesa> mesas = Repositorio().Liste(x => x.Id == numeroMesa && x.Comandas.Any(y => y.Status != Utilitarios.Enumeradores.EnumStatusComanda.FECHADA));
-			var comandas = mesas.SelectMany(x => x.Comandas).Where(x => x.Status != Utilitarios.Enumeradores.EnumStatusComanda.FECHADA).ToList();
+			IList<Mesa> mesas = Repositorio().Liste(x => x.Id == numeroMesa && x.Comandas.Any(y => y.Status == EnumStatusComanda.ABERTA));
+			var comandas = mesas.SelectMany(x => x.Comandas).Where(x => x.Status == EnumStatusComanda.ABERTA).ToList();
 			return new ConversorComanda().ConvertaParaDtoSaida(comandas);
 		}
 
@@ -51,7 +51,7 @@ namespace DLLS.Comcer.Negocio.Servicos
 		{
 			Mesa mesa = Repositorio().Liste(x => x.Comandas.Contains(comanda)).FirstOrDefault();
 
-			mesa.Disponivel = mesa.Comandas.All(x => x.Status == Utilitarios.Enumeradores.EnumStatusComanda.FECHADA);
+			mesa.Disponivel = !mesa.Comandas.Any(x => x.Status == EnumStatusComanda.ABERTA);
 			Repositorio().Atualize(mesa);
 		}
 
