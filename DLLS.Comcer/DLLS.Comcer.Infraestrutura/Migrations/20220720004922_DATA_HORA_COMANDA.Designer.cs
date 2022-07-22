@@ -3,15 +3,17 @@ using System;
 using DLLS.Comcer.Infraestrutura;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DLLS.Comcer.Infraestrutura.Migrations
 {
     [DbContext(typeof(ContextoDeAplicacao))]
-    partial class ContextoDeAplicacaoModelSnapshot : ModelSnapshot
+    [Migration("20220720004922_DATA_HORA_COMANDA")]
+    partial class DATA_HORA_COMANDA
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,7 +33,7 @@ namespace DLLS.Comcer.Infraestrutura.Migrations
                         .HasColumnType("TIMESTAMP")
                         .HasColumnName("DATAHORAABERTURACOMANDA");
 
-                    b.Property<DateTime?>("EncerramentoComanda")
+                    b.Property<DateTime>("EncerramentoComanda")
                         .HasColumnType("TIMESTAMP")
                         .HasColumnName("DATAHORAFECHADACOMANDA");
 

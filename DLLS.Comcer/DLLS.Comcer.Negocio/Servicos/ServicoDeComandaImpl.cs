@@ -1,3 +1,4 @@
+using System.Linq;
 using DLLS.Comcer.Dominio.Objetos.ComandaObj;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
 using DLLS.Comcer.Interfaces.InterfacesDeConversores;
@@ -64,11 +65,17 @@ namespace DLLS.Comcer.Negocio.Servicos
 		{
 			comanda.Valor = 0;
 
+			comanda.AberturaComanda = System.DateTime.Now;
+
 			if (comanda.ListaPedidos != null && comanda.ListaPedidos.Count > 0)
 			{
 				foreach (DtoPedido pedido in comanda.ListaPedidos)
 				{
-					pedido.DataHoraPedido = System.DateTime.Now;
+					if (!pedido.ProdutosDoPedido.Any(x => x.Status == Utilitarios.Enumeradores.EnumStatusPedido.CANCELADO))
+					{
+						pedido.DataHoraPedido = System.DateTime.Now;
+					}
+
 					foreach (DtoProdutoDoPedido produtoDoPedido in pedido.ProdutosDoPedido)
 					{
 						if (produtoDoPedido.Status != Utilitarios.Enumeradores.EnumStatusPedido.CANCELADO)
@@ -80,6 +87,8 @@ namespace DLLS.Comcer.Negocio.Servicos
 							}
 							comanda.Valor += produtoDoPedido.Quantidade * produtoDoPedido.ValorUnitario;
 						}
+
+						produtoDoPedido.DataHoraPedido = pedido.DataHoraPedido;
 					}
 				}
 			}
@@ -92,6 +101,10 @@ namespace DLLS.Comcer.Negocio.Servicos
 			Comanda comanda = Repositorio().Consulte(codigo);
 
 			comanda.Status = paraPagamento ? Utilitarios.Enumeradores.EnumStatusComanda.AGUARDANDO_PAGAMENTO : Utilitarios.Enumeradores.EnumStatusComanda.FECHADA;
+			if (!paraPagamento)
+			{
+				comanda.EncerramentoComanda = System.DateTime.Now;
+			}
 
 			DtoSaida<DtoComanda> comandaAtualizada = Atualize(Conversor().Converta(comanda));
 
@@ -111,6 +124,11 @@ namespace DLLS.Comcer.Negocio.Servicos
 		protected override IConversorPadrao<Comanda, DtoComanda> Conversor()
 		{
 			return _conversor ??= new ConversorComanda();
+		}
+
+		public DtoComanda ObtenhaComandaDoProdutoPedido(int codigoProdutoDoPedido)
+		{
+			return Conversor().Converta(Repositorio().ConsulteComandaDoProdutoPedido(codigoProdutoDoPedido));
 		}
 	}
 }

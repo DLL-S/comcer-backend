@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DLLS.Comcer.Utilitarios.Enumeradores;
 
 namespace DLLS.Comcer.Interfaces.Modelos
@@ -12,5 +13,9 @@ namespace DLLS.Comcer.Interfaces.Modelos
 		public decimal Valor { get; set; }
 
 		public EnumStatusComanda Status { get; set; }
+
+		public DateTime AberturaComanda { get; set; }
+
+		public DateTime? EncerramentoComanda { get; set; }
 	}
 }
