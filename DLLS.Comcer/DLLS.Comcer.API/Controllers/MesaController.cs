@@ -49,6 +49,21 @@ namespace DLLS.Comcer.API.Controllers
 			return base.Listar(pagina, quantidade, ordem, termoDeBusca);
 		}
 
+		[HttpGet("v2")]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status204NoContent)]
+		[ProducesResponseType(StatusCodes.Status401Unauthorized)]
+		[Authorize()]
+		public new ActionResult<IList<DtoMesa>> ListarV2(
+			[FromQuery] int pagina,
+			[FromQuery] int quantidade,
+			[FromQuery] EnumOrdem ordem,
+			[FromQuery] string termoBuscado,
+			[FromQuery] string termoDeBusca)
+		{
+			return base.ListarV2(pagina, quantidade, ordem, termoBuscado, termoDeBusca);
+		}
+
 		#endregion
 
 		[HttpPost()]

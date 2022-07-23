@@ -81,6 +81,50 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 		}
 
 		/// <summary>
+		/// Retorna uma lista com os itens de acordo com os filtros passados.
+		/// </summary>
+		/// <param name="pagina">O indice do primeiro item a ser retornado (Padrão: 1).</param>
+		/// <param name="quantidade">A quantidade de itens a ser retornada (Padrão: 50).</param>
+		/// <param name="ordem">A ordem em que os itens deverão ser retornados (Padrã: ASC).</param>
+		/// <param name="termoDeBusca">O termo de busca para a pesquisa.</param>
+		/// <returns>Uma lista de Objetos com os registros.</returns>
+		public virtual IList<TObjeto> Liste(int pagina, int quantidade, EnumOrdem ordem, string termoBuscado, string termoDeBusca)
+		{
+			pagina = pagina < 1 ? 1 : pagina;
+			quantidade = quantidade < 1 ? 50 : quantidade;
+			ordem = !Enum.IsDefined(ordem) ? EnumOrdem.ASC : ordem;
+
+			if (string.IsNullOrEmpty(termoDeBusca))
+				return ordem == EnumOrdem.ASC
+					? Persistencia.OrderBy(x => x.Id).Skip((pagina - 1) * quantidade).Take(quantidade).ToList()
+					: Persistencia.OrderByDescending(x => x.Id).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
+			else
+				return ListeComTermoDeBuscaV2(pagina, quantidade, ordem, termoBuscado, termoDeBusca);
+		}
+
+		private IList<TObjeto> ListeComTermoDeBuscaV2(int pagina, int quantidade, EnumOrdem ordem, string termoBuscado, string termoDeBusca)
+		{
+			var expression = ObtenhaFiltro(termoBuscado,termoDeBusca);
+
+			var consulta = Persistencia.Where(expression);
+
+			return ordem == EnumOrdem.ASC
+					? consulta.OrderBy(x => x.Id).Skip((pagina - 1) * quantidade).Take(quantidade).ToList()
+					: consulta.OrderByDescending(x => x.Id).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
+		}
+
+		private Func<TObjeto, bool> ObtenhaFiltro(string termoBuscado, string termoDeBusca)
+		{
+			var debugCompare = typeof(TObjeto).GetProperties();
+
+			return (Objeto) => {
+
+				var prop = typeof(TObjeto).GetProperties().First(prop => prop.Name == termoBuscado);
+				return prop.GetValue(Objeto).ToString().Contains(termoDeBusca);
+			};
+		}
+
+		/// <summary>
 		/// Atualiza um registro no contexto definido.
 		/// </summary>
 		/// <param name="objeto">O objeto modificado.</param>
