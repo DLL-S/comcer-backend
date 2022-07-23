@@ -104,7 +104,7 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 
 		private IList<TObjeto> ListeComTermoDeBuscaV2(int pagina, int quantidade, EnumOrdem ordem, string termoBuscado, string termoDeBusca)
 		{
-			var expression = ObtenhaFiltro(termoBuscado,termoDeBusca);
+			var expression = ObtenhaFiltro(termoBuscado, termoDeBusca);
 
 			var consulta = Persistencia.Where(expression);
 
@@ -117,9 +117,10 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 		{
 			var debugCompare = typeof(TObjeto).GetProperties();
 
-			return (Objeto) => {
+			return (Objeto) =>
+			{
 
-				var prop = typeof(TObjeto).GetProperties().First(prop => prop.Name == termoBuscado);
+				var prop = typeof(TObjeto).GetProperties().First(prop => prop.Name.ToUpper() == termoBuscado.ToUpper());
 				return prop.GetValue(Objeto).ToString().Contains(termoDeBusca);
 			};
 		}
