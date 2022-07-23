@@ -39,7 +39,6 @@ namespace DLLS.Comcer.Negocio.Servicos
 							produtoDoPedido.Produto = consultaProduto.Resultados[0];
 							produtoDoPedido.ValorUnitario = produtoDoPedido.Produto.Preco;
 							produtoDoPedido.DataHoraPedido = pedido.DataHoraPedido;
-							comanda.Resultados[0].ListaPedidos.Add(pedido);
 							comanda.Resultados[0].Valor += produtoDoPedido.Quantidade * produtoDoPedido.ValorUnitario;
 						}
 					}
@@ -49,6 +48,8 @@ namespace DLLS.Comcer.Negocio.Servicos
 						return comanda;
 					}
 				}
+
+				comanda.Resultados[0].ListaPedidos.Add(pedido);
 
 				return Atualize(comanda.Resultados[0]);
 			}
