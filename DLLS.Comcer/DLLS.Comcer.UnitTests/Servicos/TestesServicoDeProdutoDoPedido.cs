@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DLLS.Comcer.Dominio.Objetos.PedidoObj;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
 using DLLS.Comcer.Interfaces.InterfacesDeConversores;
+using DLLS.Comcer.Interfaces.InterfacesDeServicos;
 using DLLS.Comcer.Interfaces.Modelos;
 using DLLS.Comcer.Negocio.Servicos;
 using DLLS.Comcer.Utilitarios.Enumeradores;
@@ -28,7 +29,7 @@ namespace DLLS.Comcer.UnitTests.Servicos
 		public void TestaCadastreProdutoDoPedido()
 		{
 			repository.Setup(X => X.Cadastre(It.IsAny<ProdutoDoPedido>())).Returns(ObtenhaObj(1));
-			servico = new ServicoDeProdutosDoPedidoImpl(repository.Object);
+			servico = new ServicoDeProdutosDoPedidoImpl(repository.Object, new Mock<IServicoDeComanda>().Object);
 			DtoSaida<DtoProdutoDoPedido> esperado = EncapsuleDto(ObtenhaDto(1), true);
 			DtoSaida<DtoProdutoDoPedido> retorno = servico.Cadastre(ObtenhaDto());
 			AssertDtoSaidaEhIgual(esperado, retorno);
@@ -39,7 +40,7 @@ namespace DLLS.Comcer.UnitTests.Servicos
 		{
 			repository.Setup(X => X.Consulte(It.IsAny<int>())).Returns(ObtenhaObj(1));
 			conversor.Setup(x => x.Converta(It.IsAny<ProdutoDoPedido>())).Returns(ObtenhaDto(1));
-			servico = new ServicoDeProdutosDoPedidoImpl(repository.Object);
+			servico = new ServicoDeProdutosDoPedidoImpl(repository.Object, new Mock<IServicoDeComanda>().Object);
 			DtoSaida<DtoProdutoDoPedido> retorno = servico.Consulte(1);
 			DtoSaida<DtoProdutoDoPedido> esperado = EncapsuleDto(ObtenhaDto(1), true);
 			AssertDtoSaidaEhIgual(esperado, retorno);
@@ -50,7 +51,7 @@ namespace DLLS.Comcer.UnitTests.Servicos
 		{
 			repository.Setup(X => X.Liste(1, 1, EnumOrdem.ASC, null)).Returns(new List<ProdutoDoPedido> { ObtenhaObj(1) });
 			conversor.Setup(x => x.Converta(It.IsAny<ProdutoDoPedido>())).Returns(ObtenhaDto(1));
-			servico = new ServicoDeProdutosDoPedidoImpl(repository.Object);
+			servico = new ServicoDeProdutosDoPedidoImpl(repository.Object, new Mock<IServicoDeComanda>().Object);
 			DtoSaida<DtoProdutoDoPedido> retorno = servico.Liste(1, 1, EnumOrdem.ASC, null);
 			DtoSaida<DtoProdutoDoPedido> esperado = EncapsuleDto(ObtenhaDto(1), true);
 			AssertDtoSaidaEhIgual(esperado, retorno);
@@ -60,7 +61,7 @@ namespace DLLS.Comcer.UnitTests.Servicos
 		public void TestaAtualizeProdutoDoPedido()
 		{
 			repository.Setup(X => X.Atualize(It.IsAny<ProdutoDoPedido>())).Returns(ObtenhaObj(1));
-			servico = new ServicoDeProdutosDoPedidoImpl(repository.Object);
+			servico = new ServicoDeProdutosDoPedidoImpl(repository.Object, new Mock<IServicoDeComanda>().Object);
 			DtoSaida<DtoProdutoDoPedido> retorno = servico.Atualize(ObtenhaDto(1));
 			DtoSaida<DtoProdutoDoPedido> esperado = EncapsuleDto(ObtenhaDto(1), true);
 			AssertDtoSaidaEhIgual(esperado, retorno);
@@ -73,7 +74,7 @@ namespace DLLS.Comcer.UnitTests.Servicos
 			var auxEnvio = ObtenhaObj(1);
 			auxEnvio.Status = EnumStatusPedido.PENDENTE;
 			repository.Setup(X => X.Atualize(It.IsAny<ProdutoDoPedido>())).Returns(auxEnvio);
-			servico = new ServicoDeProdutosDoPedidoImpl(repository.Object);
+			servico = new ServicoDeProdutosDoPedidoImpl(repository.Object, new Mock<IServicoDeComanda>().Object);
 			DtoSaida<DtoProdutoDoPedido> retorno = ((ServicoDeProdutosDoPedidoImpl)servico).AtualizeStatus(1, EnumStatusPedido.PENDENTE);
 			var auxEsperado = ObtenhaDto(1);
 			auxEsperado.Status = EnumStatusPedido.PENDENTE;
@@ -89,13 +90,13 @@ namespace DLLS.Comcer.UnitTests.Servicos
 			if (sucesso)
 			{
 				repository.Setup(X => X.Exclua(It.IsAny<int>()));
-				servico = new ServicoDeProdutosDoPedidoImpl(repository.Object);
+				servico = new ServicoDeProdutosDoPedidoImpl(repository.Object, new Mock<IServicoDeComanda>().Object);
 				servico.Exclua(1);
 			}
 			else
 			{
 				repository.Setup(X => X.Exclua(It.IsAny<int>())).Throws(new Exception());
-				servico = new ServicoDeProdutosDoPedidoImpl(repository.Object);
+				servico = new ServicoDeProdutosDoPedidoImpl(repository.Object, new Mock<IServicoDeComanda>().Object);
 				Assert.ThrowsException<Exception>(() => servico.Exclua(1));
 			}
 		}

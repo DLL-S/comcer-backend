@@ -109,8 +109,8 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 			var consulta = Persistencia.Where(expression);
 
 			return ordem == EnumOrdem.ASC
-					? consulta.OrderBy(x => x.Id).Skip((pagina - 1) * quantidade).Take(quantidade).ToList()
-					: consulta.OrderByDescending(x => x.Id).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
+					? consulta.OrderBy(x => x).Skip((pagina - 1) * quantidade).Take(quantidade).ToList()
+					: consulta.OrderByDescending(x => x).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
 		}
 
 		private Func<TObjeto, bool> ObtenhaFiltro(string termoBuscado, string termoDeBusca)
