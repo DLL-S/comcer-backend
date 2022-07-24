@@ -1,6 +1,8 @@
+using System;
 using System.Linq;
 using DLLS.Comcer.Dominio.Objetos.IdentityObj;
 using DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios;
+using DLLS.Comcer.Utilitarios.Globalizacoes;
 using Microsoft.EntityFrameworkCore;
 
 namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
@@ -30,7 +32,14 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 
 		public Usuario ConsultePorLogin(string usuario, string senha)
 		{
-			return Persistencia.FirstOrDefault(x => usuario == x.Email && x.PasswordHash == senha && x.Funcionario.Situacao == Utilitarios.Enumeradores.EnumSituacao.ATIVO);
+			var usuarioLogado = Persistencia.FirstOrDefault(x => usuario == x.Email && x.PasswordHash == senha);
+
+			if (usuarioLogado is null || usuarioLogado.Funcionario.Situacao == Utilitarios.Enumeradores.EnumSituacao.ATIVO)
+			{
+				return usuarioLogado;
+			}
+
+			throw new ArgumentException(Globalizacoes.UsuarioInativo);
 		}
 	}
 }

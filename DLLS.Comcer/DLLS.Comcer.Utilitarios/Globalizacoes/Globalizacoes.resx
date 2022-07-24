@@ -141,4 +141,8 @@
     <value>E-mail ou senha incorretos, por favor verifique os dados.</value>
     <comment>Retorno para falha na autenticação</comment>
   </data>
+  <data name="UsuarioInativo" xml:space="preserve">
+    <value>Usuário inativo.</value>
+    <comment>Usuário inativo.</comment>
+  </data>
 </root>

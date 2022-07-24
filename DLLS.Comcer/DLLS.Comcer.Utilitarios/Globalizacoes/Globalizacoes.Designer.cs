@@ -113,5 +113,14 @@ namespace DLLS.Comcer.Utilitarios.Globalizacoes {
                 return ResourceManager.GetString("LoginInvalido", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Usuário inativo..
+        /// </summary>
+        public static string UsuarioInativo {
+            get {
+                return ResourceManager.GetString("UsuarioInativo", resourceCulture);
+            }
+        }
     }
 }
