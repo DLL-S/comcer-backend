@@ -30,7 +30,7 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 
 		public Usuario ConsultePorLogin(string usuario, string senha)
 		{
-			return Persistencia.FirstOrDefault(x => usuario == x.Email && x.PasswordHash == senha);
+			return Persistencia.FirstOrDefault(x => usuario == x.Email && x.PasswordHash == senha && x.Funcionario.Situacao == Utilitarios.Enumeradores.EnumSituacao.ATIVO);
 		}
 	}
 }

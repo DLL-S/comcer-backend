@@ -44,6 +44,15 @@ namespace DLLS.Comcer.Infraestrutura.InterfacesDeRepositorios
 		IList<TObjeto> Liste(int pagina, int quantidade, EnumOrdem ordem, string termoDeBusca);
 
 		/// <summary>
+		/// Consulta uma página de registros no contexto definido.
+		/// </summary>
+		/// <param name="pagina">O indice do primeiro item.</param>
+		/// <param name="quantidade">A quantidade de itens a retornar.</param>
+		/// <param name="ordem">A ordem dos itens na lista.</param>
+		/// <returns>Uma lista com os registros.</returns>
+		IList<TObjeto> Liste(int pagina, int quantidade, EnumOrdem ordem, string termoBuscado, string termoDeBusca);
+
+		/// <summary>
 		/// Atualiza um registro no contexto definido.
 		/// </summary>
 		/// <param name="objeto">O objeto modificado.</param>

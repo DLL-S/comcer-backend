@@ -35,6 +35,18 @@ namespace DLLS.Comcer.API.Controllers
 		}
 
 		[ApiExplorerSettings(IgnoreApi = true)]
+		protected virtual ActionResult<IList<TDto>> ListarV2(
+			[FromQuery] int pagina,
+			[FromQuery] int quantidade,
+			[FromQuery] EnumOrdem ordem,
+			[FromQuery] string termoBuscado,
+			[FromQuery] string termoDeBusca)
+		{
+			DtoSaida<TDto> saida = _servico.Liste(pagina, quantidade, ordem, termoBuscado, termoDeBusca);
+			return saida == null || saida.Resultados.Count == 0 ? NoContent() : Ok(saida);
+		}
+
+		[ApiExplorerSettings(IgnoreApi = true)]
 		protected virtual ActionResult<TDto> Cadastrar([FromBody] TDto novoObjeto)
 		{
 			DtoSaida<TDto> dto = _servico.Cadastre(novoObjeto);

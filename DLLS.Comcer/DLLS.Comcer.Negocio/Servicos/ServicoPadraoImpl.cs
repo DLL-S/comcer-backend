@@ -76,6 +76,24 @@ namespace DLLS.Comcer.Negocio.Servicos
 		}
 
 		/// <summary>
+		/// Retorna uma lista com os itens de acordo com os filtros passados.
+		/// </summary>
+		/// <param name="pagina">O indice do primeiro item a ser retornado (Padrão: 1).</param>
+		/// <param name="quantidade">A quantidade de itens a ser retornada (Padrão: 50).</param>
+		/// <param name="ordem">A ordem em que os itens deverão ser retornados (Padrã: ASC).</param>
+		/// <param name="termoBuscado">O termo de busca para a pesquisa.</param>
+		/// <param name="termoDeBusca">O termo de busca para a pesquisa.</param>
+		/// <returns>Uma lista de Dtos com os registros.</returns>
+		public DtoSaida<TDto> Liste(int pagina, int quantidade, EnumOrdem ordem, string termoBuscado, string termoDeBusca)
+		{
+			var saida = Conversor().ConvertaParaDtoSaida(_repositorio.Liste(pagina, quantidade, ordem, termoBuscado, termoDeBusca));
+			saida.Total = _repositorio.Count();
+			saida.Quantidade = saida.Resultados.Count;
+			saida.Pagina = pagina;
+			return saida;
+		}
+
+		/// <summary>
 		/// Cadastrda um novo item na base.
 		/// </summary>
 		/// <param name="objeto">O Dto a ser cadastrado.</param>
