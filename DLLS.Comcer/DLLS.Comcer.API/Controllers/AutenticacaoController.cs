@@ -18,7 +18,15 @@ namespace DLLS.Comcer.API.Controllers
 		public ActionResult<DtoLogin> Authenticate([FromBody] DtoLogin model)
 		{
 			model.Senha = ServicoAutenticador.ObtenhaCriptografado(model.Senha);
-			DtoLogin usuarioDaAplicacao = _servico.ObtenhaRegistro(model.Usuario, model.Senha);
+			DtoLogin usuarioDaAplicacao;
+			try
+			{
+				usuarioDaAplicacao = _servico.ObtenhaRegistro(model.Usuario, model.Senha);
+			}
+			catch (System.Exception ex)
+			{
+				return BadRequest(new { message = ex.Message });
+			}
 			if (usuarioDaAplicacao == null)
 			{
 				return BadRequest(new { message = Globalizacoes.LoginInvalido });
