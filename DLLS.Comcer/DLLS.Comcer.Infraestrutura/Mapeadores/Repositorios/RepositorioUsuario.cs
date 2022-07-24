@@ -34,7 +34,7 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 		{
 			var usuarioLogado = Persistencia.FirstOrDefault(x => usuario == x.Email && x.PasswordHash == senha);
 
-			if(usuarioLogado.Funcionario.Situacao == Utilitarios.Enumeradores.EnumSituacao.ATIVO)
+			if (usuarioLogado is null || usuarioLogado.Funcionario.Situacao == Utilitarios.Enumeradores.EnumSituacao.ATIVO)
 			{
 				return usuarioLogado;
 			}
