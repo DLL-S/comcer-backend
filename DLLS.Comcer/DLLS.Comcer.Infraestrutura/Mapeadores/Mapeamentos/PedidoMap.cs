@@ -37,6 +37,14 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Mapeamentos
 
 			#endregion
 
+			#region Observacao
+
+			builder.Property(x => x.Observacao)
+				 .HasColumnName("OBSERVACAO")
+				 .HasColumnType("TEXT");
+
+			#endregion
+
 			#region DataHora
 
 			builder.Property(x => x.DataHoraPedido)

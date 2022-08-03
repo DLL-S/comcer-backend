@@ -12,6 +12,7 @@ namespace DLLS.Comcer.Dominio.Views
 		public virtual int IdDoProdutoDoPedido { get; set; }
 		public virtual string NomeProdutoDoPedido { get; set; }
 		public virtual string DescricaoProdutoDoPedido { get; set; }
+		public virtual string Observacao { get; set; }
 		public virtual decimal PrecoProdutoDoPedido { get; set; }
 		public virtual byte[] FotoProdutoDoPedido { get; set; }
 		public virtual int QuantidadeProdutoDoPedido { get; set; }
