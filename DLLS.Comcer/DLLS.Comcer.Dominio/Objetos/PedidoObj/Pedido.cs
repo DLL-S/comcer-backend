@@ -9,5 +9,7 @@ namespace DLLS.Comcer.Dominio.Objetos.PedidoObj
 		public virtual IList<ProdutoDoPedido> ProdutosDoPedido { get; set; }
 
 		public virtual DateTime DataHoraPedido { get; set; }
+
+		public virtual string Observacao { get; set; }
 	}
 }

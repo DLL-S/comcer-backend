@@ -6,6 +6,7 @@ namespace DLLS.Comcer.Interfaces.ModelosViews
 	{
 		public int NumeroMesa { get; set; }
 		public int NumeroPedido { get; set; }
+		public string Observacao { get; set; }
 		public EnumStatusPedido StatusPedido { get; set; }
 	}
 }

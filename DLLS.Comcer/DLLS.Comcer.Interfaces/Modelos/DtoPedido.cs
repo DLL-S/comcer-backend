@@ -8,5 +8,7 @@ namespace DLLS.Comcer.Interfaces.Modelos
 		public IList<DtoProdutoDoPedido> ProdutosDoPedido { get; set; }
 
 		public DateTime DataHoraPedido { get; set; }
+
+		public string Observacao { get; set; }
 	}
 }

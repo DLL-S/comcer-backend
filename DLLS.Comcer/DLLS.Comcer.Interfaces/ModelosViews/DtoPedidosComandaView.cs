@@ -12,6 +12,7 @@ namespace DLLS.Comcer.Interfaces.ModelosViews
 		public int IdDoProdutoDoPedido { get; set; }
 		public string NomeProdutoDoPedido { get; set; }
 		public string DescricaoProdutoDoPedido { get; set; }
+		public string Observacao { get; set; }
 		public decimal PrecoProdutoDoPedido { get; set; }
 		public byte[] FotoProdutoDoPedido { get; set; }
 		public int QuantidadeProdutoDoPedido { get; set; }

@@ -60,7 +60,8 @@ namespace DLLS.Comcer.Infraestrutura
 									"when(select count(*) from (select count(*) as contEntregue, (select count(*) from (select \"STATUS\" from \"PEDIDOSDOPRODUTO\" pp where \"PEDIDO\" = p.\"ID\" AND \"STATUS\" <> 'CANCELADO' group by \"STATUS\") listaTotal) as contTotal from (select \"STATUS\" from \"PEDIDOSDOPRODUTO\" pp where \"PEDIDO\" = p.\"ID\" AND \"STATUS\" <> 'CANCELADO' group by \"STATUS\") listaStatus where \"STATUS\" = 'ENTREGUE') Contaentregue where Contaentregue.contEntregue = Contaentregue.contTotal) = 1 then 'ENTREGUE' " +
 									"when(select count(*) from(select \"STATUS\" from \"PEDIDOSDOPRODUTO\" pp where \"PEDIDO\" = p.\"ID\" AND \"STATUS\" <> 'CANCELADO' group by \"STATUS\") listaStatus where \"STATUS\" <> 'ENTREGUE' and \"STATUS\" <> 'PRONTO') = 0 then 'PRONTO' " +
 									"else 'PENDENTE' " +
-								"end as StatusPedido " +
+								"end as StatusPedido, " +
+								"p.\"OBSERVACAO\" as Observacao " +
 							"from \"PEDIDOS\" p " +
 								"inner join \"COMANDAS\" c " +
 									"on p.\"COMANDA\" = c.\"ID\" " +
@@ -114,7 +115,8 @@ namespace DLLS.Comcer.Infraestrutura
 							"prod.\"FOTO\" as fotoProdutoDoPedido, " +
 							"pp.\"QUANTIDADE\" as quantidadeProdutoDoPedido, " +
 							"pp.\"STATUS\" as statusProdutoDoPedido, " +
-							"pp.\"DATAHORAPEDIDO\" as dataHoraPedido " +
+							"pp.\"DATAHORAPEDIDO\" as dataHoraPedido, " +
+							"p.\"OBSERVACAO\" as Observacao " +
 						"from \"PEDIDOSDOPRODUTO\" pp " +
 						"inner join \"PEDIDOS\" p " +
 							"on p.\"ID\" = pp.\"PEDIDO\" " +
