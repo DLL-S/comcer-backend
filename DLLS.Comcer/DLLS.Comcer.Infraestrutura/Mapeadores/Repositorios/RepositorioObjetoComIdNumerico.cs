@@ -85,7 +85,7 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 
 				if (quantidade > 0)
 				{
-					persistencia.Skip((pagina - 1) * quantidade).Take(quantidade);
+					persistencia = persistencia.Skip((pagina - 1) * quantidade).Take(quantidade);
 				}
 
 				return persistencia.ToList();
