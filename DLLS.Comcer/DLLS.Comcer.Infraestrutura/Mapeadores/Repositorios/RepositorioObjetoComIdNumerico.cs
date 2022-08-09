@@ -69,13 +69,27 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 		public virtual IList<TObjeto> Liste(int pagina, int quantidade, EnumOrdem ordem, string termoDeBusca)
 		{
 			pagina = pagina < 1 ? 1 : pagina;
-			quantidade = quantidade < 1 ? 50 : quantidade;
 			ordem = !Enum.IsDefined(ordem) ? EnumOrdem.ASC : ordem;
 
 			if (string.IsNullOrEmpty(termoDeBusca))
-				return ordem == EnumOrdem.ASC
-					? Persistencia.OrderBy(x => x.Id).Skip((pagina - 1) * quantidade).Take(quantidade).ToList()
-					: Persistencia.OrderByDescending(x => x.Id).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
+			{
+				IQueryable<TObjeto> persistencia = Persistencia;
+				if (ordem == EnumOrdem.ASC)
+				{
+					persistencia = persistencia.OrderBy(x => x.Id);
+				}
+				else
+				{
+					persistencia = persistencia.OrderByDescending(x => x.Id);
+				}
+
+				if (quantidade > 0)
+				{
+					persistencia.Skip((pagina - 1) * quantidade).Take(quantidade);
+				}
+
+				return persistencia.ToList();
+			}
 			else
 				return ListeComTermoDeBusca(pagina, quantidade, ordem, termoDeBusca);
 		}
