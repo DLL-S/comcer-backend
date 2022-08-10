@@ -54,14 +54,14 @@ namespace DLLS.Comcer.Infraestrutura
 				x.HasNoKey();
 				x.ToSqlQuery(
 					  "select " +
-								"p.\"ID\" as NumeroPedido, " +
-								"m.\"NUMERO\" as NumeroMesa, " +
+								"p.\"ID\" as \"NumeroPedido\", " +
+								"m.\"NUMERO\" as \"NumeroMesa\", " +
 								"case " +
 									"when(select count(*) from (select count(*) as contEntregue, (select count(*) from (select \"STATUS\" from \"PEDIDOSDOPRODUTO\" pp where \"PEDIDO\" = p.\"ID\" AND \"STATUS\" <> 'CANCELADO' group by \"STATUS\") listaTotal) as contTotal from (select \"STATUS\" from \"PEDIDOSDOPRODUTO\" pp where \"PEDIDO\" = p.\"ID\" AND \"STATUS\" <> 'CANCELADO' group by \"STATUS\") listaStatus where \"STATUS\" = 'ENTREGUE') Contaentregue where Contaentregue.contEntregue = Contaentregue.contTotal) = 1 then 'ENTREGUE' " +
 									"when(select count(*) from(select \"STATUS\" from \"PEDIDOSDOPRODUTO\" pp where \"PEDIDO\" = p.\"ID\" AND \"STATUS\" <> 'CANCELADO' group by \"STATUS\") listaStatus where \"STATUS\" <> 'ENTREGUE' and \"STATUS\" <> 'PRONTO') = 0 then 'PRONTO' " +
 									"else 'PENDENTE' " +
-								"end as StatusPedido, " +
-								"p.\"OBSERVACAO\" as Observacao " +
+								"end as \"StatusPedido\", " +
+								"p.\"OBSERVACAO\" as \"Observacao\" " +
 							"from \"PEDIDOS\" p " +
 								"inner join \"COMANDAS\" c " +
 									"on p.\"COMANDA\" = c.\"ID\" " +
@@ -77,20 +77,20 @@ namespace DLLS.Comcer.Infraestrutura
 				x.HasNoKey();
 				x.ToSqlQuery(
 					  "select " +
-							"p.\"ID\" as NumeroPedido, " +
-							"coalesce(m.\"NUMERO\", 0) as NumeroMesa, " +
-							"pp.\"ID\" as IdProdutoPedido, " +
-							"prod.\"NOME\" as ProdutoPedido, " +
-							"pp.\"QUANTIDADE\" as Quantidade, " +
-							"pp.\"DATAHORAPEDIDO\" as DataHoraPedido, " +
-							"pp.\"STATUS\" as StatusPedido " +
-						"from \"PEDIDOS\" p " +
+							"ped.\"ID\" as \"NumeroPedido\", " +
+							"coalesce(m.\"NUMERO\", 0) as \"NumeroMesa\", " +
+							"pp.\"ID\" as \"IdProdutoPedido\", " +
+							"prod.\"NOME\" as \"ProdutoPedido\", " +
+							"pp.\"QUANTIDADE\" as \"Quantidade\", " +
+							"pp.\"DATAHORAPEDIDO\" as \"DataHoraPedido\", " +
+							"pp.\"STATUS\" as \"StatusPedido\" " +
+						"from \"PEDIDOS\" ped " +
 							"inner join \"COMANDAS\" c  " +
-								"on p.\"COMANDA\" = c.\"ID\" " +
+								"on ped.\"COMANDA\" = c.\"ID\" " +
 							"left join \"MESAS\" m  " +
 								"on m.\"ID\" = c.\"MESA\" " +
 							"inner join \"PEDIDOSDOPRODUTO\" pp " +
-								"on pp.\"PEDIDO\" = p.\"ID\"  " +
+								"on pp.\"PEDIDO\" = ped.\"ID\"  " +
 							"inner join \"PRODUTOS\" prod " +
 								"on prod.\"ID\" = pp.\"IDPRODUTO\" "
 				);
@@ -104,19 +104,19 @@ namespace DLLS.Comcer.Infraestrutura
 				x.HasNoKey();
 				x.ToSqlQuery(
 					  "select  " +
-							"c.\"ID\" as idComanda, " +
-							"c.\"NOME\" as nomeComanda, " +
-							"c.\"VALOR\" as valorTotalComanda, " +
-							"c.\"STATUS\" statusComanda, " +
-							"pp.\"ID\" idDoProdutoDoPedido, " +
-							"prod.\"NOME\" as nomeProdutoDoPedido, " +
-							"prod.\"DESCRICAO\" as descricaoProdutoDoPedido, " +
-							"prod.\"PRECO\" precoProdutoDoPedido, " +
-							"prod.\"FOTO\" as fotoProdutoDoPedido, " +
-							"pp.\"QUANTIDADE\" as quantidadeProdutoDoPedido, " +
-							"pp.\"STATUS\" as statusProdutoDoPedido, " +
-							"pp.\"DATAHORAPEDIDO\" as dataHoraPedido, " +
-							"p.\"OBSERVACAO\" as Observacao " +
+							"c.\"ID\" as \"IdComanda\", " +
+							"c.\"NOME\" as \"NomeComanda\", " +
+							"c.\"VALOR\" as \"ValorTotalComanda\", " +
+							"c.\"STATUS\" as \"StatusComanda\", " +
+							"pp.\"ID\" as \"IdDoProdutoDoPedido\", " +
+							"prod.\"NOME\" as \"NomeProdutoDoPedido\", " +
+							"prod.\"DESCRICAO\" as \"DescricaoProdutoDoPedido\", " +
+							"prod.\"PRECO\" \"PrecoProdutoDoPedido\", " +
+							"prod.\"FOTO\" as \"FotoProdutoDoPedido\", " +
+							"pp.\"QUANTIDADE\" as \"QuantidadeProdutoDoPedido\", " +
+							"pp.\"STATUS\" as \"StatusProdutoDoPedido\", " +
+							"pp.\"DATAHORAPEDIDO\" as \"DataHoraPedido\", " +
+							"p.\"OBSERVACAO\" as \"Observacao\" " +
 						"from \"PEDIDOSDOPRODUTO\" pp " +
 						"inner join \"PEDIDOS\" p " +
 							"on p.\"ID\" = pp.\"PEDIDO\" " +

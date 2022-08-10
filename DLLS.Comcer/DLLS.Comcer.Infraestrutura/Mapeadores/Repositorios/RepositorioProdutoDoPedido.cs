@@ -37,7 +37,7 @@ namespace DLLS.Comcer.Infraestrutura.Mapeadores.Repositorios
 
 		public IList<PedidoProdutoView> ListePedidoDoProdutoView(int numeroPedido)
 		{
-			return Contexto.PedidosDoProdutoView.ToList().Where(x => x.NumeroPedido == numeroPedido).ToList();
+			return Contexto.PedidosDoProdutoView.Where(x => x.NumeroPedido == numeroPedido).ToList();
 		}
 	}
 }
